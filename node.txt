@@ -1,0 +1,15 @@
+scrapy shell http://www.bloomberg.com/search?query=bidu&endTime=2016-11-22T03:30:39.348Z
+
+
+quote = response.css("div.container")[0]
+
+
+quote.css("h1.search-result-story__headline a::text").extract()
+u'"Negatives Everywhere"'
+
+quote.css("span.metadata-timestamp time.published-at::text").extract()
+u' Oct 19, 2005 '
+
+quote.css("div.search-result-story__body::text").extract()
+
+
