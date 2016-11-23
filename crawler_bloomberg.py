@@ -1,4 +1,3 @@
-#!/usr/bin/python
 import re
 import urllib2
 import csv
@@ -15,12 +14,12 @@ https://doc.scrapy.org/en/latest/
 github.com/qolina/ScrapyFinanceNews/tree/master/ScrapyNews/spiders
 '''
 
-class newsCrawler:
+class news_Bloomberg:
     def __init__(self):
         fin = open('./input/tickerList.csv')
         # exit if the output already existed
-        if os.path.isfile('./input/bloombergNews.csv'):
-            sys.exit("bloombergNews already existed!")
+        if os.path.isfile('./input/news_bloomberg.csv'):
+            sys.exit("Bloomberg news already existed!")
 
         for line in fin:
             line = line.strip().split(',')
@@ -50,19 +49,17 @@ class newsCrawler:
                 continue
         return 1
 
-            
-
     def parser(self, soup, line, ticker):
         timeSet = soup.find_all("div", class_="search-result-story__metadata")
         titles = soup.find_all("h1", class_="search-result-story__headline")
         tags = soup.find_all("div", class_="search-result-story__body")
-        fout = open('./input/bloombergNews.csv', 'a+')
+        fout = open('./input/news_bloomberg.csv', 'a+')
         if len(timeSet) == 0: return 0
         for i in range(len(timeSet)):    
             timestamp = self.timeConvert(timeSet[i].time.get_text())
             title = " ".join(re.findall(r"\w+", titles[i].a.get_text()))
             tag = " ".join(re.findall(r"\w+", tags[i].get_text()))
-            fout.write(','.join([ticker, line[1], timestamp, title]) + '\n')
+            fout.write(','.join([ticker, line[1],timestamp, title]) + '\n')
         fout.close()
         return 1
 
@@ -80,7 +77,7 @@ class newsCrawler:
 
 
 def main():
-    newsCrawler()
+    news_Bloomberg()
     
 
 
