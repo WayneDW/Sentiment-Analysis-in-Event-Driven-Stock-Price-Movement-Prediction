@@ -58,8 +58,8 @@ class news_Bloomberg:
         for i in range(len(timeSet)):    
             timestamp = self.timeConvert(timeSet[i].time.get_text())
             title = " ".join(re.findall(r"\w+", titles[i].a.get_text()))
-            tag = " ".join(re.findall(r"\w+", tags[i].get_text()))
-            fout.write(','.join([ticker, line[1],timestamp, title]) + '\n')
+            abstract = " ".join(re.findall(r"\w+", tags[i].get_text()))
+            fout.write(','.join([ticker, line[1],timestamp, title, abstract]) + '\n')
         fout.close()
         return 1
 
