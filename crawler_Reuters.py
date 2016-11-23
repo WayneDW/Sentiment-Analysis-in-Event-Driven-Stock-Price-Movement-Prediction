@@ -84,7 +84,7 @@ class news_Reuters:
 
 
 def main():
-    newsCrawler()
+    news_Reuters()
     
 
 
