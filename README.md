@@ -1,5 +1,5 @@
-# news_Driven_stock_prediction
-Use NLP technique to predict stock price movement associated with news
+# Sentiment Analysis in Stock Movement Prediction
+Use NLP technique to predict stock price movement based on news from bloomberg and reuters
 
 
 
