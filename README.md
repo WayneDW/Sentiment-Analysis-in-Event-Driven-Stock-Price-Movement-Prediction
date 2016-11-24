@@ -13,9 +13,22 @@ http://askubuntu.com/questions/675876/cant-install-some-packages-depends-x-but-x
 
 Download the ticker list from NASDAQ
 
+```python
+./getList.py 20  # get the top N% marketcap companies
+```
+
 Use BeautifulSoup to crawl news headlines from Bloomberg and Reuters
 
+```python
+./crawler_bloomberg.py
+./crawler_reuters.py
+```
+
 Use Yahoo Finance API to crawl historical stock prices
+
+```python
+./crawler_stockPrices.py
+```
 
 Correlate the stock movement with the associated news
 
