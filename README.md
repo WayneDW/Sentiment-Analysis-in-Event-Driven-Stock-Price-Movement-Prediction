@@ -20,7 +20,7 @@ Use BeautifulSoup to crawl news headlines from [Bloomberg](http://www.bloomberg.
 ./crawler_reuters.py 
 ```
 
-Use Yahoo Finance API to crawl historical stock prices
+Use Yahoo Finance [API](https://pypi.python.org/pypi/yahoo-finance/1.1.4) to crawl historical stock prices
 
 ```python
 ./crawler_stockPrices.py
