@@ -29,7 +29,6 @@ class news_Reuters:
             line = line.strip().split(',')
             ticker, name, exchange, MarketCap = line
             self.content(ticker, line, dateList)
-            break
 
     def content(self, ticker, line, dateList):
         # http://www.reuters.com/finance/stocks/companyNews?symbol=GOOGL.O&date=11162016
@@ -66,8 +65,7 @@ class news_Reuters:
                 continue
         return 1
 
-            
-
+        
     def parser(self, soup, line, ticker, timestamp):
         content = soup.find_all("div", class_="feature")
         fout = open('./input/news_reuters.csv', 'a+')
