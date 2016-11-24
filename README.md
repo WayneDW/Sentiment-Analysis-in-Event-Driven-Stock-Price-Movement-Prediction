@@ -5,7 +5,7 @@ Use NLP technique to predict stock price movement based on news from bloomberg a
 
 
 
-## 1. Data Preprocessing
+## 0. Crawl data
 
 Download the ticker list from NASDAQ
 
@@ -27,6 +27,10 @@ Use Yahoo Finance API to crawl historical stock prices
 ```
 
 Correlate the stock movement with the associated news
+
+## 1. Data Preprocessing
+
+lower case, remove punctuation, get rid of stop words using NLTK, unify tense using en [Sites Using React](https://www.nodebox.net/code/index.php/Linguistics#verb_conjugation)
 
 ## 2. Extract relations
 
