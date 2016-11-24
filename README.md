@@ -7,13 +7,13 @@ Use NLP technique to predict stock price movement based on news from bloomberg a
 
 ## Crawl data
 
-Download the ticker list from NASDAQ
+Download the ticker list from [NASDAQ](http://www.nasdaq.com/screening/companies-by-industry.aspx)
 
 ```python
 ./getList.py 20  # get the top N% marketcap companies
 ```
 
-Use BeautifulSoup to crawl news headlines from Bloomberg and Reuters
+Use BeautifulSoup to crawl news headlines from [Bloomberg](http://www.bloomberg.com/search?query=goog&sort=time:desc) and Reuters
 
 ```python
 ./crawler_bloomberg.py 
