@@ -13,7 +13,7 @@ Download the ticker list from [NASDAQ](http://www.nasdaq.com/screening/companies
 ./getList.py 20  # get the top N% marketcap companies
 ```
 
-Use BeautifulSoup to crawl news headlines from [Bloomberg](http://www.bloomberg.com/search?query=goog&sort=time:desc) and Reuters
+Use BeautifulSoup to crawl news headlines from [Bloomberg](http://www.bloomberg.com/search?query=goog&sort=time:desc) and [Reuters](http://www.reuters.com/finance/stocks/overview?symbol=FB.O)
 
 ```python
 ./crawler_bloomberg.py 
