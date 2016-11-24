@@ -30,7 +30,7 @@ Correlate the stock movement with the associated news
 
 ## 1. Data Preprocessing
 
-lower case, remove punctuation, get rid of stop words using NLTK, unify tense using en [Sites Using React](https://www.nodebox.net/code/index.php/Linguistics#verb_conjugation)
+lower case, remove punctuation, get rid of stop words using [NLTK](http://www.nltk.org/), unify tense using [en](https://www.nodebox.net/code/index.php/Linguistics#verb_conjugation)
 
 ## 2. Extract relations
 
