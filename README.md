@@ -14,20 +14,20 @@ http://askubuntu.com/questions/675876/cant-install-some-packages-depends-x-but-x
 Download the ticker list from NASDAQ
 
 ```python
-./getList.py 20  # get the top N% marketcap companies
+./getList.py 20  # get the top N% marketcap companies, save to ./input/tickerList.csv
 ```
 
 Use BeautifulSoup to crawl news headlines from Bloomberg and Reuters
 
 ```python
-./crawler_bloomberg.py
-./crawler_reuters.py
+./crawler_bloomberg.py  # save to ./input/news_bloomberg.csv
+./crawler_reuters.py  # save to ./input/news_reuters.csv
 ```
 
 Use Yahoo Finance API to crawl historical stock prices
 
 ```python
-./crawler_stockPrices.py
+./crawler_stockPrices.py # save to 
 ```
 
 Correlate the stock movement with the associated news
