@@ -2,7 +2,13 @@
 Use NLP technique to predict stock price movement based on news from bloomberg and reuters
 
 
-
+1, data
+2, use NLTK to remove stopwords, unify tense, puntuation
+3, get score basd on tf-idf
+4, dimension reduction
+5, correlate the stock price and generate feature matrix
+6, apply a neural network model to train
+7, analyze
 
 
 ## Crawl data
