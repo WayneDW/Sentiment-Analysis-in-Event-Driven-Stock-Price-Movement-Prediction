@@ -23,7 +23,6 @@ class news_Reuters:
         if os.path.isfile('./input/news_reuters.csv'):
             sys.exit("Reuters news already existed!")
 
-
         dateList = self.dateGenerator(1000)
         for line in fin:
             line = line.strip().split(',')
