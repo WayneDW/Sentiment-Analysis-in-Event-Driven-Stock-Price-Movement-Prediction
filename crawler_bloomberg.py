@@ -20,10 +20,19 @@ class news_Bloomberg:
         # exit if the output already existed
         if os.path.isfile('./input/news_bloomberg.csv'):
             sys.exit("Bloomberg news already existed!")
-
+        
+        filterList = set()
+        try:
+            fList = open('./input/finished.list')
+            for l in fList:
+                filterList.add(l.strip())
+        except: pass
+        
         for line in fin:
             line = line.strip().split(',')
             ticker, name, exchange, MarketCap = line
+            if ticker in filterList: continue
+            print ticker
             self.content(ticker, line)
             #break
 
@@ -38,7 +47,7 @@ class news_Bloomberg:
         repeat_times = 4 # repeat downloading in case of http error
         for _ in range(repeat_times): 
             try:
-                time.sleep(np.random.poisson(6))
+                time.sleep(np.random.poisson(3))
                 response = urllib2.urlopen(url + "&page=" + str(pn))
                 data = response.read()
                 soup = BeautifulSoup(data, "lxml")
