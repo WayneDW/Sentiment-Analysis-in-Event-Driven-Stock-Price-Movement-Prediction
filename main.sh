@@ -1,3 +1,3 @@
 #!/bin/bash
 
-./getList.py 10 # extract top-x% market-cap companies to a list
+./getList.py 20 # extract top-x% market-cap companies to a list
