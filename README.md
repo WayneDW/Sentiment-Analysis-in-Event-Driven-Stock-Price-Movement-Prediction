@@ -7,6 +7,8 @@ Use NLP technique to predict stock price movement based on news from bloomberg a
 
 ## Crawl data
 
+1. Use [RCV](http://scikit-learn.org/stable/datasets/rcv1.html) to get all the news contents, to create our corpus.
+
 Download the ticker list from [NASDAQ](http://www.nasdaq.com/screening/companies-by-industry.aspx)
 
 ```python
