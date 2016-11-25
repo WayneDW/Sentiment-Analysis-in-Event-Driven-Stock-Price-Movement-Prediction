@@ -64,8 +64,7 @@ class news_Reuters:
                 continue
         return 1
 
-            
-
+        
     def parser(self, soup, line, ticker, timestamp):
         content = soup.find_all("div", class_="feature")
         fout = open('./input/news_reuters.csv', 'a+')

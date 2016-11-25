@@ -1,3 +1,4 @@
+#!/usr/bin/python
 import re
 import urllib2
 import csv
@@ -10,8 +11,10 @@ from bs4 import BeautifulSoup
 
 '''
 Other useful crawler can be found in 
-https://doc.scrapy.org/en/latest/
-github.com/qolina/ScrapyFinanceNews/tree/master/ScrapyNews/spiders
+
+How to install scrapy
+https://doc.scrapy.org/en/latest/intro/install.html
+http://askubuntu.com/questions/675876/cant-install-some-packages-depends-x-but-x-is-to-be-installed
 '''
 
 class news_Bloomberg:
