@@ -7,7 +7,7 @@ Use NLP technique to predict stock price movement based on news from bloomberg a
 
 ## Crawl data
 
-1. Use [RCV](http://scikit-learn.org/stable/datasets/rcv1.html) to get all the news contents, to create our corpus.
+1. Use [RCV](http://scikit-learn.org/stable/datasets/rcv1.html) in sklearn to get all the news contents to create our corpus. Remember to delete stop words, punctuation, etc. see detail in [tfidf-tsne](https://github.com/lazyprogrammer/machine_learning_examples/blob/master/nlp_class2/tfidf_tsne.py), on how to construct basic word2idx matrix, see [util](https://github.com/lazyprogrammer/machine_learning_examples/blob/master/rnn_class/util.py)
 
 Download the ticker list from [NASDAQ](http://www.nasdaq.com/screening/companies-by-industry.aspx)
 
