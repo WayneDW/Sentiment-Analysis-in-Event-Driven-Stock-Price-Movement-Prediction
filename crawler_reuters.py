@@ -23,10 +23,18 @@ class news_Reuters:
         if os.path.isfile('./input/news_reuters.csv'):
             sys.exit("Reuters news already existed!")
 
+        filterList = set()
+        try:
+            fList = open('./input/finished.reuters')
+            for l in fList:
+                filterList.add(l.strip())
+        except: pass
+
         dateList = self.dateGenerator(1000)
         for line in fin:
             line = line.strip().split(',')
             ticker, name, exchange, MarketCap = line
+            if ticker in filterList: continue
             self.content(ticker, line, dateList)
 
     def content(self, ticker, line, dateList):
