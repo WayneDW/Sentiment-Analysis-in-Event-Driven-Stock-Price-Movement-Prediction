@@ -55,6 +55,6 @@ Use Open IE to extract relations
 1. remove_punctuation() handles middle name (e.g., P.F -> pf)
 
 ## References:
-1. http://machinelearningmastery.com/predict-sentiment-movie-reviews-using-deep-learning/
-2. http://machinelearningmastery.com/sequence-classification-lstm-recurrent-neural-networks-python-keras/
-3. https://github.com/lazyprogrammer/machine_learning_examples/blob/master/nlp_class2/tfidf_tsne.py
+1. [Keras predict sentiment-movie-reviews using deep learning](http://machinelearningmastery.com/predict-sentiment-movie-reviews-using-deep-learning/)
+2. [Keras sequence-classification-lstm-recurrent-neural-networks](http://machinelearningmastery.com/sequence-classification-lstm-recurrent-neural-networks-python-keras/)
+3. [tf-idf + t-sne](https://github.com/lazyprogrammer/machine_learning_examples/blob/master/nlp_class2/tfidf_tsne.py)
