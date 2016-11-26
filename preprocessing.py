@@ -45,7 +45,7 @@ def build_FeatureMatrix(n_vocab=2000):
         topWords = json.load(data_file)
 
     with open('./input/stockPrices.json') as data_file:    
-        priceDt = json.load(data_file)[0]
+        priceDt = json.load(data_file)
     loc = './input/'
     input_files = [f for f in os.listdir(loc) if f.startswith('news_')]
     sentences = []
@@ -60,7 +60,7 @@ def build_FeatureMatrix(n_vocab=2000):
             line = line.strip().split(',')
             if len(line) != 5: continue
             ticker, name, day, headline, body = line
-            if ticker not in priceDt: continue
+            if ticker not in priceDt: print "??"; continue
             if day not in priceDt[ticker]: continue
 
             tokens = nltk.word_tokenize(headline) + nltk.word_tokenize(body)
