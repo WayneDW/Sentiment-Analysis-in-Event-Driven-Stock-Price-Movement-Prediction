@@ -20,14 +20,14 @@ def stock_Prices():
         line = line.strip().split(',')
         ticker, name, exchange, MarketCap = line
         try:
+            print(num, ticker)
             yahoo = Share(ticker)
             time.sleep(np.random.poisson(3))
             prices = yahoo.get_historical('2009-01-01', '2020-01-01')
             for i in range(len(prices)):
-                    prices[i]['Return'] = round(log(float(prices[i]['Close']) / float(prices[i]['Open'])), 6)
-                    del prices[i]['High'], prices[i]['Low'], prices[i]['Open'], prices[i]['Close'], prices[i]['Volume']
-            priceSet.append({ticker: prices})
-            print num, ticker
+                date = ''.join(prices[0]['Date'].split('-'))
+                priceDt = {date: round(log(float(prices[i]['Close']) / float(prices[i]['Open'])), 6)}
+                priceSet.append({ticker: priceDt})
         except:
             continue
 
