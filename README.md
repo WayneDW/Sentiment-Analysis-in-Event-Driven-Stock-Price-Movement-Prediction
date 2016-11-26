@@ -43,3 +43,7 @@ Use Open IE to extract relations
 ## Training and Model Selection
 
 ## Prediction and analysis
+
+
+## Issues
+1. remove_punctuation() handles middle name (e.g., P.F -> pf)
