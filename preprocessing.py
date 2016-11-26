@@ -7,6 +7,15 @@ import operator
 from sklearn.feature_extraction.text import CountVectorizer
 from nltk.corpus import reuters
 
+from keras.datasets import imdb
+from keras.models import Sequential
+from keras.layers import Dense
+from keras.layers import Flatten
+from keras.layers.convolutional import Convolution1D
+from keras.layers.convolutional import MaxPooling1D
+from keras.layers.embeddings import Embedding
+from keras.preprocessing import sequence
+
 
 def gen_financial_top_words(maxN=20000): # generate corpus based on Reuters news
     if not os.path.isfile('./input/topWords.json'):
@@ -35,8 +44,8 @@ def build_FeatureMatrix(n_vocab=2000):
     with open('./input/topWords.json') as data_file:    
         topWords = json.load(data_file)
 
-    with open('./input/stockPrices2.json') as data_file:    
-        priceDt = json.load(data_file)
+    with open('./input/stockPrices.json') as data_file:    
+        priceDt = json.load(data_file)[0]
     loc = './input/'
     input_files = [f for f in os.listdir(loc) if f.startswith('news_')]
     sentences = []
@@ -45,28 +54,20 @@ def build_FeatureMatrix(n_vocab=2000):
     current_idx = 2
     word_idx_count = {0: float('inf'), 1: float('inf')}
 
-    return_distribution = np.array([])
-
-    print priceDt[0]['ABMD'][0]['Date'], "((((((((((((((((((((("
+    labels = []
     for file in input_files:
         for line in open(loc + file):
             line = line.strip().split(',')
             if len(line) != 5: continue
             ticker, name, day, headline, body = line
             if ticker not in priceDt: continue
-            print day[:4] + "-" + day[4:6] + "-" + day[6:]
-            if day[:4] + "-" + day[4:6] + "-" + day[6:] not in priceDt[ticker]: continue
-            print ticker
+            if day not in priceDt[ticker]: continue
 
             tokens = nltk.word_tokenize(headline)# + nltk.word_tokenize(body)
             tokens = [unify_word(t) for t in tokens]
             for t in tokens:
-                # print t, t in nltk.corpus.stopwords.words('english'), t not in topWords
-                # print tokens
                 if t in nltk.corpus.stopwords.words('english') or t not in topWords:
                     tokens.remove(t)
-                #print tokens
-            #print tokens
             for t in tokens:
                 if t not in word2idx:
                     word2idx[t] = current_idx
@@ -76,6 +77,7 @@ def build_FeatureMatrix(n_vocab=2000):
                 word_idx_count[idx] = word_idx_count.get(idx, 0) + 1
             sentence_by_idx = [word2idx[t] for t in tokens]
             sentences.append(sentence_by_idx)
+            labels.append(round(priceDt[ticker][day], 6))
 
 
     # restrict vocabulary size
@@ -95,13 +97,20 @@ def build_FeatureMatrix(n_vocab=2000):
 
     # map full dict to truncated dict
     sentences_small = []
-    for sentence in sentences:
+    new_label = []
+    for sentence, label in zip(sentences, labels):
         if len(sentence) > 1:
             new_sentence = [idx_new_idx_map[idx] if idx in idx_new_idx_map else unknown for idx in sentence]
             sentences_small.append(new_sentence)
-    print sentences_small
+            new_label.append(label)
 
-    return sentences_small, word2idx_small
+    max_words = 10
+    truncated_small = np.matrix(sequence.pad_sequences(sentences_small, maxlen=max_words)).astype('int')
+    print truncated_small
+    featureMatrix = np.concatenate((truncated_small, np.matrix(new_label).T), axis=1)
+    print featureMatrix
+    np.savetxt('./input/featureMatrix.csv', featureMatrix, delimiter=',')
+    # return truncated_small, new_label
 
 
 

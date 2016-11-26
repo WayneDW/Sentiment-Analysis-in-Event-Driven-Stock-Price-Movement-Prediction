@@ -24,10 +24,11 @@ def stock_Prices():
             yahoo = Share(ticker)
             time.sleep(np.random.poisson(3))
             prices = yahoo.get_historical('2009-01-01', '2020-01-01')
+            priceDt = {}
             for i in range(len(prices)):
-                date = ''.join(prices[0]['Date'].split('-'))
-                priceDt = {date: round(log(float(prices[i]['Close']) / float(prices[i]['Open'])), 6)}
-                priceSet.append({ticker: priceDt})
+                date = ''.join(prices[i]['Date'].split('-'))
+                priceDt[date] = round(log(float(prices[i]['Close']) / float(prices[i]['Open'])), 6)
+            priceSet.append({ticker: priceDt})
         except:
             continue
 
