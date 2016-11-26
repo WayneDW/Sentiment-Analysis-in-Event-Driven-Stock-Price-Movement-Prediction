@@ -53,3 +53,8 @@ Use Open IE to extract relations
 
 ## Issues
 1. remove_punctuation() handles middle name (e.g., P.F -> pf)
+
+References:
+http://machinelearningmastery.com/predict-sentiment-movie-reviews-using-deep-learning/
+http://machinelearningmastery.com/sequence-classification-lstm-recurrent-neural-networks-python-keras/
+https://github.com/lazyprogrammer/machine_learning_examples/blob/master/nlp_class2/tfidf_tsne.py
