@@ -20,7 +20,7 @@ class news_Reuters:
     def __init__(self):
         fin = open('./input/tickerList.csv')
         # exit if the output already existed
-        if os.path.isfile('./input/news_reuters.csv'):
+        if os.path.isfile('./input/news_reuters_part1.csv'):
             sys.exit("Reuters news already existed!")
 
         filterList = set()
@@ -66,7 +66,7 @@ class news_Reuters:
   
     def parser(self, soup, line, ticker, timestamp):
         content = soup.find_all("div", class_="feature")
-        fout = open('./input/news_reuters.csv', 'a+')
+        fout = open('./input/news_reuters_part1.csv', 'a+')
         
         if len(content) == 0: return 0
         for i in range(len(content)):    
