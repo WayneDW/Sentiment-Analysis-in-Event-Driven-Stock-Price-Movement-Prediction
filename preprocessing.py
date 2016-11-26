@@ -63,7 +63,7 @@ def build_FeatureMatrix(n_vocab=2000):
             if ticker not in priceDt: continue
             if day not in priceDt[ticker]: continue
 
-            tokens = nltk.word_tokenize(headline)# + nltk.word_tokenize(body)
+            tokens = nltk.word_tokenize(headline) + nltk.word_tokenize(body)
             tokens = [unify_word(t) for t in tokens]
             for t in tokens:
                 if t in nltk.corpus.stopwords.words('english') or t not in topWords:
@@ -104,12 +104,15 @@ def build_FeatureMatrix(n_vocab=2000):
             sentences_small.append(new_sentence)
             new_label.append(label)
 
-    max_words = 10
+    max_words = 40
     truncated_small = np.matrix(sequence.pad_sequences(sentences_small, maxlen=max_words)).astype('int')
     print truncated_small
-    featureMatrix = np.concatenate((truncated_small, np.matrix(new_label).T), axis=1)
+    new_label = np.matrix(new_label)
+    new_label[new_label>0] = 1
+    new_label[new_label<=0] = 0
+    featureMatrix = np.concatenate((truncated_small, new_label.T), axis=1)
     print featureMatrix
-    np.savetxt('./input/featureMatrix.csv', featureMatrix, delimiter=',')
+    np.savetxt('./input/featureMatrix.csv', featureMatrix, delimiter=',', fmt="%d")
     # return truncated_small, new_label
 
 
