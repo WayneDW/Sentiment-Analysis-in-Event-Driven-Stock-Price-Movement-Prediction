@@ -31,7 +31,6 @@ def stock_Prices():
             priceSet[ticker] = priceDt
         except:
             continue
-        if num > 2: break
 
     with open('./input/stockPrices.json', 'w') as outfile:
         json.dump(priceSet, outfile, indent=4)
