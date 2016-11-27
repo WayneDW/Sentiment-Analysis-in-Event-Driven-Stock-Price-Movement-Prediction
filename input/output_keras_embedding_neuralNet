@@ -5017,3 +5017,5 @@ Label 1 Precision: 52.40%
 Label 1 Precision: 51.31%
 Label 1 Precision: 53.06%
 Label 1 Precision: 55.18%
+
+Mean Precision: 52.21%, 95% confidence interval 52.08%-52.34%
