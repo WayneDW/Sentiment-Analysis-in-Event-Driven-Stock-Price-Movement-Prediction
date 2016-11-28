@@ -38,7 +38,7 @@ Use NLP technique to predict stock price movement based on news from Reuters
 ./crawler_reuters.py # much more valueable, despite with a much smaller size
 ```
 
-#### 1.3 Use Yahoo Finance [API](https://pypi.python.org/pypi/yahoo-finance/1.1.4) to crawl historical stock prices
+#### 1.3 Use [Yahoo Finance API](https://pypi.python.org/pypi/yahoo-finance/1.1.4) to crawl historical stock prices
 
 ```python
 ./crawler_stockPrices.py
