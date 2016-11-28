@@ -63,7 +63,7 @@ Most importantly, we should seperate test set away from training+validation test
 ./genFeatureMatrix.py
 ```
 
-## 4. Train a ConvoNet to predict the stock price movement. 
+### 4. Train a ConvoNet to predict the stock price movement. 
 
 For the sake of simplicity, I just applied a ConvoNet in [Keras](http://machinelearningmastery.com/handwritten-digit-recognition-using-convolutional-neural-networks-python-keras/), the detail operations in text data is slighly differnt from the image, we can use the structure from [FIgure 1 in Yoon Kim's paper](http://www.aclweb.org/anthology/D14-1181)
 
@@ -71,14 +71,19 @@ For the sake of simplicity, I just applied a ConvoNet in [Keras](http://machinel
 ./model_cnn.py
 ```
 
-## Prediction and analysis
+### 5. Prediction and analysis
 
 As shown in the result, the performance has some extent improvement. The result from validation set is way higher than the test result, which may result in a not sufficient sample number.
 
 One remark here is that the dropout ratio set as 40% or 50% can help improve the testing result a little bit.
-```
+
 ./output/result_glove_cnn_128filters_50dropout_1hiddenLayer64nodes_binaryClassification
-```
+
+### 6. Future work
+
+From the [paper](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1331573) by Tim Loughran and Bill McDonald, some words have strong indication of positive and negative effects, we may need to dig into these words to find more information. A very simple but interest example can be found in [Financial Sentiment Analysis part1](http://francescopochetti.com/scrapying-around-web/), [part2](http://francescopochetti.com/financial-blogs-sentiment-analysis-part-crawling-web/)
+
+Another idea is to reconstruct the negative words, like 'not good' -> 'notgood'
 
 
 ## Issues
@@ -92,3 +97,4 @@ One remark here is that the dropout ratio set as 40% or 50% can help improve the
 5. [Implementation of CNN in sequence classification](https://github.com/dennybritz/cnn-text-classification-tf)
 6. [Convolutional Neural Networks for Sentence Classification](http://www.aclweb.org/anthology/D14-1181)
 7. [GloVe: Global Vectors for Word Representation](http://www-nlp.stanford.edu/pubs/glove.pdf)
+8. Tim Loughran and Bill McDonald, 2011, “When is a Liability not a Liability?  Textual Analysis, Dictionaries, and 10-Ks,” Journal of Finance, 66:1, 35-65.
