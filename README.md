@@ -85,6 +85,8 @@ From the [paper](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1331573) by
 
 Another idea is to reconstruct the negative words, like 'not good' -> 'notgood'
 
+We have lots of data from Bloomberg, however the keyword may not be the corresponding news for the specific company, one way to solve that is to filter a list with target company names. Like facebook keyword may result in a much more correlated news than financial.
+
 
 ## Issues
 1. remove_punctuation() handles middle name (e.g., P.F -> pf)
