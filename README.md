@@ -54,8 +54,8 @@ Applied [GloVe](https://github.com/lazyprogrammer/machine_learning_examples/blob
 
 ### 3. Feature Engineering
 
-Unify the word format, project to the word vector.
-lower case, remove punctuation, get rid of stop words using [NLTK](http://www.nltk.org/), unify tense and singular & plural using [en](https://www.nodebox.net/code/index.php/Linguistics#verb_conjugation)
+Unify the word format, project word in a sentence to the word vector, so every sentence results in a matrix.
+Lower case, remove punctuation, get rid of stop words using [NLTK](http://www.nltk.org/) (remark here, I didn't use it in the latest version), unify tense and singular & plural using [en](https://www.nodebox.net/code/index.php/Linguistics#verb_conjugation)
 
 Most importantly, we should seperate test set away from training+validation test, otherwise we would get a too optimistic result.
 
