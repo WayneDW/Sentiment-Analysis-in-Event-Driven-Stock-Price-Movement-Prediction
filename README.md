@@ -55,6 +55,7 @@ Applied [GloVe](https://github.com/lazyprogrammer/machine_learning_examples/blob
 ### 3. Feature Engineering
 
 Unify the word format, project word in a sentence to the word vector, so every sentence results in a matrix.
+
 A little more detail about word format: lower case, remove punctuation, get rid of stop words using [NLTK](http://www.nltk.org/) (remark here, I didn't use it in the latest version), unify tense and singular & plural using [en](https://www.nodebox.net/code/index.php/Linguistics#verb_conjugation)
 
 Most importantly, we should seperate test set away from training+validation test, otherwise we would get a too optimistic result.
@@ -65,7 +66,7 @@ Most importantly, we should seperate test set away from training+validation test
 
 ### 4. Train a ConvoNet to predict the stock price movement. 
 
-For the sake of simplicity, I just applied a ConvoNet in [Keras](http://machinelearningmastery.com/handwritten-digit-recognition-using-convolutional-neural-networks-python-keras/), the detail operations in text data is slighly differnt from the image, we can use the structure from [FIgure 1 in Yoon Kim's paper](http://www.aclweb.org/anthology/D14-1181)
+For the sake of simplicity, I just applied a ConvoNet in [Keras](http://machinelearningmastery.com/handwritten-digit-recognition-using-convolutional-neural-networks-python-keras/), the detail operations in text data is slighly differnt from the image, we can use the architecture from [FIgure 1 in Yoon Kim's paper](http://www.aclweb.org/anthology/D14-1181)
 
 ```python
 ./model_cnn.py
@@ -75,13 +76,13 @@ For the sake of simplicity, I just applied a ConvoNet in [Keras](http://machinel
 
 As shown in the result, the performance has some extent improvement. The result from validation set is way higher than the test result, which may result in a not sufficient sample number.
 
-One remark here is that the dropout ratio set as 40% or 50% can help improve the testing result a little bit.
-
 ./output/result_glove_cnn_128filters_50dropout_1hiddenLayer64nodes_binaryClassification
+
+One remark here is that the dropout ratio set as 40% or 50% can help improve the testing result a little bit.
 
 ### 6. Future work
 
-From the [paper](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1331573) by Tim Loughran and Bill McDonald, some words have strong indication of positive and negative effects in finance, we may need to dig into these words to find more information. A very simple but interest example can be found in [Financial Sentiment Analysis part1](http://francescopochetti.com/scrapying-around-web/), [part2](http://francescopochetti.com/financial-blogs-sentiment-analysis-part-crawling-web/)
+From the [work](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1331573) by Tim Loughran and Bill McDonald, some words have strong indication of positive and negative effects in finance, we may need to dig into these words to find more information. A very simple but interest example can be found in [Financial Sentiment Analysis part1](http://francescopochetti.com/scrapying-around-web/), [part2](http://francescopochetti.com/financial-blogs-sentiment-analysis-part-crawling-web/)
 
 Another idea is to reconstruct the negative words, like 'not good' -> 'notgood'
 
