@@ -11,14 +11,14 @@ Use NLP technique to predict stock price movement based on news from Reuters
   
 2. Applied GloVe to train a dense word vector from Reuters corpus in NLTK
 3. Feature Engineering
-
-  3.1 Extract feature using feature hashing
   
-  3.2 Remove punctuations, unify tense, singular & plural
+  3.2 Unify word format: remove punctuations, unify tense, singular & plural
   
-  3.3 Pad word senquence (essentially a matrix)
+  3.2 Extract feature using feature hashing based on the train word vector (step 2)
   
-4. Train a ConvoNet to predict the stock price movement.
+  3.3 Pad word senquence (essentially a matrix) to keep the same dimension
+  
+4. Trained a ConvoNet to predict the stock price movement based on a reasonable parameter selection
 5. The result shows a 15% percent improve on the validation set, and 1-2% percent improve on the test set
 
 
@@ -55,7 +55,7 @@ Applied [GloVe](https://github.com/lazyprogrammer/machine_learning_examples/blob
 ### 3. Feature Engineering
 
 Unify the word format, project word in a sentence to the word vector, so every sentence results in a matrix.
-Lower case, remove punctuation, get rid of stop words using [NLTK](http://www.nltk.org/) (remark here, I didn't use it in the latest version), unify tense and singular & plural using [en](https://www.nodebox.net/code/index.php/Linguistics#verb_conjugation)
+A little more detail about word format: lower case, remove punctuation, get rid of stop words using [NLTK](http://www.nltk.org/) (remark here, I didn't use it in the latest version), unify tense and singular & plural using [en](https://www.nodebox.net/code/index.php/Linguistics#verb_conjugation)
 
 Most importantly, we should seperate test set away from training+validation test, otherwise we would get a too optimistic result.
 
