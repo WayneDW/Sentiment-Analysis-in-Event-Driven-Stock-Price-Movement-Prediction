@@ -22,7 +22,7 @@ Use NLP technique to predict stock price movement based on news from Reuters
 5. The result shows a 15% percent improve on the validation set, and 1-2% percent improve on the test set
 
 
-## 1. Data Collection
+### 1. Data Collection
 
 
 #### 1.1 Download the ticker list from [NASDAQ](http://www.nasdaq.com/screening/companies-by-industry.aspx)
@@ -44,7 +44,7 @@ Use NLP technique to predict stock price movement based on news from Reuters
 ./crawler_stockPrices.py
 ```
 
-## 2. Word Embedding
+### 2. Word Embedding
 
 Applied [GloVe](https://github.com/lazyprogrammer/machine_learning_examples/blob/master/nlp_class2/glove.py) to train a dense word vector from Reuters corpus in NLTK
 
@@ -52,14 +52,33 @@ Applied [GloVe](https://github.com/lazyprogrammer/machine_learning_examples/blob
 ./word_embedding.py
 ```
 
-## 3. Feature Engineering
+### 3. Feature Engineering
 
-lower case, remove punctuation, get rid of stop words using [NLTK](http://www.nltk.org/), unify tense using [en](https://www.nodebox.net/code/index.php/Linguistics#verb_conjugation)
+Unify the word format, project to the word vector.
+lower case, remove punctuation, get rid of stop words using [NLTK](http://www.nltk.org/), unify tense and singular & plural using [en](https://www.nodebox.net/code/index.php/Linguistics#verb_conjugation)
 
+Most importantly, we should seperate test set away from training+validation test, otherwise we would get a too optimistic result.
 
-## Training and Model Selection
+```python
+./genFeatureMatrix.py
+```
+
+## 4. Train a ConvoNet to predict the stock price movement. 
+
+For the sake of simplicity, I just applied a ConvoNet in [Keras](http://machinelearningmastery.com/handwritten-digit-recognition-using-convolutional-neural-networks-python-keras/), the detail operations in text data is slighly differnt from the image, we can use the structure from [FIgure 1 in Yoon Kim's paper](http://www.aclweb.org/anthology/D14-1181)
+
+```python
+./model_cnn.py
+```
 
 ## Prediction and analysis
+
+As shown in the result, the performance has some extent improvement. The result from validation set is way higher than the test result, which may result in a not sufficient sample number.
+
+One remark here is that the dropout ratio set as 40% or 50% can help improve the testing result a little bit.
+```
+./output/result_glove_cnn_128filters_50dropout_1hiddenLayer64nodes_binaryClassification
+```
 
 
 ## Issues
