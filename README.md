@@ -98,6 +98,6 @@ We have lots of data from Bloomberg, however the keyword may not be the correspo
 3. [tf-idf + t-sne](https://github.com/lazyprogrammer/machine_learning_examples/blob/master/nlp_class2/tfidf_tsne.py)
 4. [IMPLEMENTING A CNN FOR TEXT CLASSIFICATION IN TENSORFLOW](http://www.wildml.com/2015/12/implementing-a-cnn-for-text-classification-in-tensorflow/)
 5. [Implementation of CNN in sequence classification](https://github.com/dennybritz/cnn-text-classification-tf)
-6. [Convolutional Neural Networks for Sentence Classification](http://www.aclweb.org/anthology/D14-1181)
-7. [GloVe: Global Vectors for Word Representation](http://www-nlp.stanford.edu/pubs/glove.pdf)
+6. Yoon Kim, Convolutional Neural Networks for Sentence Classification, EMNLP, 2014 [link](http://www.aclweb.org/anthology/D14-1181)
+7. J Pennington, R Socher, CD Manning, GloVe: Global Vectors for Word Representation, EMNLP, 2014 [link](http://www-nlp.stanford.edu/pubs/glove.pdf)
 8. Tim Loughran and Bill McDonald, 2011, “When is a Liability not a Liability?  Textual Analysis, Dictionaries, and 10-Ks,” Journal of Finance, 66:1, 35-65.
