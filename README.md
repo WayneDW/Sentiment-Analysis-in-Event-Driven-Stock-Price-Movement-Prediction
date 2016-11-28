@@ -1,14 +1,25 @@
 # Sentiment Analysis in Stock Movement Prediction
-Use NLP technique to predict stock price movement based on news from bloomberg and reuters
+Use NLP technique to predict stock price movement based on news from Reuters
 
+1. Data Collection
 
-1. data
-2. use NLTK to remove stopwords, unify tense, puntuation
-3. get score basd on tf-idf
-4. dimension reduction
-5. correlate the stock price and generate feature matrix
-6. apply a neural network model to train
-7. analyze
+  1.1 get the whole ticker list
+  
+  1.2 crawl news from Reuters using BeautifulSoup
+  
+  1.3 crawl prices using Yahoo Finance API
+  
+2. Applied GloVe to train a dense word vector from Reuters corpus in NLTK
+3. Feature Engineering
+
+  3.1 Extract feature using feature hashing
+  
+  3.2 Remove punctuations, unify tense, singular & plural
+  
+  3.3 Pad word senquence (essentially a matrix)
+  
+4. Train a ConvoNet to predict the stock price movement.
+5. The result shows a 15% percent improve on the validation set, and 1-2% percent improve on the test set
 
 
 ## Crawl data
