@@ -98,12 +98,10 @@ We have lots of data from Bloomberg, however the keyword may not be the correspo
 1. Yoon Kim, Convolutional Neural Networks for Sentence Classification, EMNLP, 2014 [link](http://www.aclweb.org/anthology/D14-1181)
 2. J Pennington, R Socher, CD Manning, GloVe: Global Vectors for Word Representation, EMNLP, 2014 [link](http://www-nlp.stanford.edu/pubs/glove.pdf)
 3. Tim Loughran and Bill McDonald, 2011, “When is a Liability not a Liability?  Textual Analysis, Dictionaries, and 10-Ks,” Journal of Finance, 66:1, 35-65.
-
 4. H Lee, etc, On the Importance of Text Analysis for Stock Price Prediction, lrec2014 [link](http://nlp.stanford.edu/pubs/lrec2014-stock.pdf)
 5. Xiao Ding, Deep Learning for Event-Driven Stock Prediction, IJCAI2014 [link](http://ijcai.org/Proceedings/15/Papers/329.pdf)
-
-1. [Keras predict sentiment-movie-reviews using deep learning](http://machinelearningmastery.com/predict-sentiment-movie-reviews-using-deep-learning/)
-2. [Keras sequence-classification-lstm-recurrent-neural-networks](http://machinelearningmastery.com/sequence-classification-lstm-recurrent-neural-networks-python-keras/)
-3. [tf-idf + t-sne](https://github.com/lazyprogrammer/machine_learning_examples/blob/master/nlp_class2/tfidf_tsne.py)
-4. [IMPLEMENTING A CNN FOR TEXT CLASSIFICATION IN TENSORFLOW](http://www.wildml.com/2015/12/implementing-a-cnn-for-text-classification-in-tensorflow/)
-5. [Implementation of CNN in sequence classification](https://github.com/dennybritz/cnn-text-classification-tf)
+6. [Keras predict sentiment-movie-reviews using deep learning](http://machinelearningmastery.com/predict-sentiment-movie-reviews-using-deep-learning/)
+7. [Keras sequence-classification-lstm-recurrent-neural-networks](http://machinelearningmastery.com/sequence-classification-lstm-recurrent-neural-networks-python-keras/)
+8. [tf-idf + t-sne](https://github.com/lazyprogrammer/machine_learning_examples/blob/master/nlp_class2/tfidf_tsne.py)
+9. [IMPLEMENTING A CNN FOR TEXT CLASSIFICATION IN TENSORFLOW](http://www.wildml.com/2015/12/implementing-a-cnn-for-text-classification-in-tensorflow/)
+10. [Implementation of CNN in sequence classification](https://github.com/dennybritz/cnn-text-classification-tf)
