@@ -1,4 +1,4 @@
-# Sentiment Analysis in Stock Movement Prediction
+# Sentiment Analysis for Event-Driven Stock Prediction
 Use NLP technique to predict stock price movement based on news from Reuters
 
 1. Data Collection
@@ -89,15 +89,21 @@ Another idea is to reconstruct the negative words, like 'not good' -> 'notgood'
 We have lots of data from Bloomberg, however the keyword may not be the corresponding news for the specific company, one way to solve that is to filter a list with target company names. Like facebook keyword may result in a much more correlated news than financial.
 
 
+
 ## Issues
 1. remove_punctuation() handles middle name (e.g., P.F -> pf)
 
 ## References:
+
+1. Yoon Kim, Convolutional Neural Networks for Sentence Classification, EMNLP, 2014 [link](http://www.aclweb.org/anthology/D14-1181)
+2. J Pennington, R Socher, CD Manning, GloVe: Global Vectors for Word Representation, EMNLP, 2014 [link](http://www-nlp.stanford.edu/pubs/glove.pdf)
+3. Tim Loughran and Bill McDonald, 2011, “When is a Liability not a Liability?  Textual Analysis, Dictionaries, and 10-Ks,” Journal of Finance, 66:1, 35-65.
+
+4. H Lee, etc, On the Importance of Text Analysis for Stock Price Prediction, lrec2014 [link](http://nlp.stanford.edu/pubs/lrec2014-stock.pdf)
+5. Xiao Ding, Deep Learning for Event-Driven Stock Prediction, IJCAI2014 [link](http://ijcai.org/Proceedings/15/Papers/329.pdf)
+
 1. [Keras predict sentiment-movie-reviews using deep learning](http://machinelearningmastery.com/predict-sentiment-movie-reviews-using-deep-learning/)
 2. [Keras sequence-classification-lstm-recurrent-neural-networks](http://machinelearningmastery.com/sequence-classification-lstm-recurrent-neural-networks-python-keras/)
 3. [tf-idf + t-sne](https://github.com/lazyprogrammer/machine_learning_examples/blob/master/nlp_class2/tfidf_tsne.py)
 4. [IMPLEMENTING A CNN FOR TEXT CLASSIFICATION IN TENSORFLOW](http://www.wildml.com/2015/12/implementing-a-cnn-for-text-classification-in-tensorflow/)
 5. [Implementation of CNN in sequence classification](https://github.com/dennybritz/cnn-text-classification-tf)
-6. Yoon Kim, Convolutional Neural Networks for Sentence Classification, EMNLP, 2014 [link](http://www.aclweb.org/anthology/D14-1181)
-7. J Pennington, R Socher, CD Manning, GloVe: Global Vectors for Word Representation, EMNLP, 2014 [link](http://www-nlp.stanford.edu/pubs/glove.pdf)
-8. Tim Loughran and Bill McDonald, 2011, “When is a Liability not a Liability?  Textual Analysis, Dictionaries, and 10-Ks,” Journal of Finance, 66:1, 35-65.
