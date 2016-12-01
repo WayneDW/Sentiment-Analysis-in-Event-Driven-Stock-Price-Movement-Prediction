@@ -19,7 +19,7 @@ Use NLP technique to predict stock price movement based on news from Reuters
   3.3 Pad word senquence (essentially a matrix) to keep the same dimension
   
 4. Trained a ConvoNet to predict the stock price movement based on a reasonable parameter selection
-5. The result shows a 15% percent improve on the validation set, and 1-2% percent improve on the test set
+5. The result shows a 15% percent improvement on the validation set, and 1-2% percent improve on the test set
 
 
 ### 1. Data Collection
