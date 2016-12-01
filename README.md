@@ -14,7 +14,7 @@ Use NLP technique to predict stock price movement based on news from Reuters
   
   3.2 Unify word format: remove punctuations, unify tense, singular & plural
   
-  3.2 Extract feature using feature hashing based on the train word vector (step 2)
+  3.2 Extract feature using feature hashing based on the trained word vector (step 2)
   
   3.3 Pad word senquence (essentially a matrix) to keep the same dimension
   
