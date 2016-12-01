@@ -64,9 +64,9 @@ Most importantly, we should seperate test set away from training+validation test
 ./genFeatureMatrix.py
 ```
 
-### 4. Train a ConvoNet to predict the stock price movement. 
+### 4. Train a ConvNet to predict the stock price movement. 
 
-For the sake of simplicity, I just applied a ConvoNet in [Keras](http://machinelearningmastery.com/handwritten-digit-recognition-using-convolutional-neural-networks-python-keras/), the detail operations in text data is slighly differnt from the image, we can use the architecture from [FIgure 1 in Yoon Kim's paper](http://www.aclweb.org/anthology/D14-1181)
+For the sake of simplicity, I just applied a ConvNet in [Keras](http://machinelearningmastery.com/handwritten-digit-recognition-using-convolutional-neural-networks-python-keras/), the detail operations in text data is slighly differnt from the image, we can use the architecture from [FIgure 1 in Yoon Kim's paper](http://www.aclweb.org/anthology/D14-1181)
 
 ```python
 ./model_cnn.py
