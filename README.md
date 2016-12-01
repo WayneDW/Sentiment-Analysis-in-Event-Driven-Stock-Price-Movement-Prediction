@@ -58,6 +58,7 @@ Applied GloVe to train a dense word vector from Reuters corpus in NLTK
 ```
 
 About the detail of the method, [link](http://www-nlp.stanford.edu/pubs/glove.pdf)
+
 About the implementation of this method, [link](https://github.com/lazyprogrammer/machine_learning_examples/blob/master/nlp_class2/glove.py)
 
 ### 3. Feature Engineering
