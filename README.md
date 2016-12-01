@@ -10,6 +10,11 @@ Use NLP technique to predict stock price movement based on news from Reuters
   1.3 crawl prices using Yahoo Finance API
   
 2. Applied GloVe to train a dense word vector from Reuters corpus in NLTK
+
+  2.1 build the word-word co-occurrence matrix
+  
+  2.2 factorizing the weighted log of the co-occurrence matrix
+  
 3. Feature Engineering
   
   3.2 Unify word format: remove punctuations, unify tense, singular & plural
@@ -46,11 +51,14 @@ Use NLP technique to predict stock price movement based on news from Reuters
 
 ### 2. Word Embedding
 
-Applied [GloVe](https://github.com/lazyprogrammer/machine_learning_examples/blob/master/nlp_class2/glove.py) to train a dense word vector from Reuters corpus in NLTK
+Applied GloVe to train a dense word vector from Reuters corpus in NLTK
 
 ```python
 ./word_embedding.py
 ```
+
+About the detail of the method, [link](http://www-nlp.stanford.edu/pubs/glove.pdf)
+About the implementation of this method, [link](https://github.com/lazyprogrammer/machine_learning_examples/blob/master/nlp_class2/glove.py)
 
 ### 3. Feature Engineering
 
@@ -64,9 +72,9 @@ Most importantly, we should seperate test set away from training+validation test
 ./genFeatureMatrix.py
 ```
 
-### 4. Train a ConvNet to predict the stock price movement. 
+### 4. Train a ConvoNet to predict the stock price movement. 
 
-For the sake of simplicity, I just applied a ConvNet in [Keras](http://machinelearningmastery.com/handwritten-digit-recognition-using-convolutional-neural-networks-python-keras/), the detail operations in text data is slighly differnt from the image, we can use the architecture from [FIgure 1 in Yoon Kim's paper](http://www.aclweb.org/anthology/D14-1181)
+For the sake of simplicity, I just applied a ConvoNet in [Keras](http://machinelearningmastery.com/handwritten-digit-recognition-using-convolutional-neural-networks-python-keras/), the detail operations in text data is slighly differnt from the image, we can use the architecture from [FIgure 1 in Yoon Kim's paper](http://www.aclweb.org/anthology/D14-1181)
 
 ```python
 ./model_cnn.py
