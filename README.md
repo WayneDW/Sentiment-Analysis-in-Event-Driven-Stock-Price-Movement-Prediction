@@ -54,7 +54,7 @@ Use NLP technique to predict stock price movement based on news from Reuters
 Applied GloVe to train a dense word vector from Reuters corpus in NLTK
 
 ```python
-./word_embedding.py
+./embeddingWord.py
 ```
 
 About the detail of the method, [link](http://www-nlp.stanford.edu/pubs/glove.pdf)
