@@ -1,64 +1,116 @@
-# Sentiment Analysis in Stock Movement Prediction
-Use NLP technique to predict stock price movement based on news from bloomberg and reuters
+# Sentiment Analysis for Event-Driven Stock Prediction
+Use NLP technique to predict stock price movement based on news from Reuters
+
+1. Data Collection
+
+  1.1 get the whole ticker list
+  
+  1.2 crawl news from Reuters using BeautifulSoup
+  
+  1.3 crawl prices using Yahoo Finance API
+  
+2. Applied GloVe to train a dense word vector from Reuters corpus in NLTK
+
+  2.1 build the word-word co-occurrence matrix
+  
+  2.2 factorizing the weighted log of the co-occurrence matrix
+  
+3. Feature Engineering
+  
+  3.2 Unify word format: remove punctuations, unify tense, singular & plural
+  
+  3.2 Extract feature using feature hashing based on the trained word vector (step 2)
+  
+  3.3 Pad word senquence (essentially a matrix) to keep the same dimension
+  
+4. Trained a ConvNet to predict the stock price movement based on a reasonable parameter selection
+5. The result shows a 15% percent improvement on the validation set, and 1-2% percent improve on the test set
 
 
-1. data
-2. use NLTK to remove stopwords, unify tense, puntuation
-3. get score basd on tf-idf
-4. dimension reduction
-5. correlate the stock price and generate feature matrix
-6. apply a neural network model to train
-7. analyze
+### 1. Data Collection
 
 
-## Crawl data
-
-1. Use [RCV](http://scikit-learn.org/stable/datasets/rcv1.html) in sklearn to get all the news contents to create our corpus. Remember to delete stop words, punctuation, etc. see detail in [tfidf-tsne](https://github.com/lazyprogrammer/machine_learning_examples/blob/master/nlp_class2/tfidf_tsne.py), on how to construct basic word2idx matrix, see [util.get_wikipedia_data](https://github.com/lazyprogrammer/machine_learning_examples/blob/master/rnn_class/util.py)
-
-Download the ticker list from [NASDAQ](http://www.nasdaq.com/screening/companies-by-industry.aspx)
+#### 1.1 Download the ticker list from [NASDAQ](http://www.nasdaq.com/screening/companies-by-industry.aspx)
 
 ```python
-./getList.py 20  # get the top N% marketcap companies
+./crawler_allTickers.py 20  # keep the top e.g. 20% marketcap companies
 ```
 
-Use BeautifulSoup to crawl news headlines from [Bloomberg](http://www.bloomberg.com/search?query=goog&sort=time:desc) and [Reuters](http://www.reuters.com/finance/stocks/overview?symbol=FB.O)
+#### 1.2 Use BeautifulSoup to crawl news headlines from [Bloomberg](http://www.bloomberg.com/search?query=goog&sort=time:desc) and [Reuters](http://www.reuters.com/finance/stocks/overview?symbol=FB.O)
 
 ```python
-./crawler_bloomberg.py 
-./crawler_reuters.py 
+./crawler_bloomberg.py # Bloomberg news is not that correlated, ignore this data at this moment
+./crawler_reuters.py # much more valueable, despite with a much smaller size
 ```
 
-Use Yahoo Finance [API](https://pypi.python.org/pypi/yahoo-finance/1.1.4) to crawl historical stock prices
+#### 1.3 Use [Yahoo Finance API](https://pypi.python.org/pypi/yahoo-finance/1.1.4) to crawl historical stock prices
 
 ```python
 ./crawler_stockPrices.py
 ```
 
-Correlate the stock movement with the associated news
+### 2. Word Embedding
 
-## Data Preprocessing
+Applied GloVe to train a dense word vector from Reuters corpus in NLTK
 
-lower case, remove punctuation, get rid of stop words using [NLTK](http://www.nltk.org/), unify tense using [en](https://www.nodebox.net/code/index.php/Linguistics#verb_conjugation)
+```python
+./word_embedding.py
+```
 
-## Extract relations
+About the detail of the method, [link](http://www-nlp.stanford.edu/pubs/glove.pdf)
 
-Use Open IE to extract relations
+About the implementation of this method, [link](https://github.com/lazyprogrammer/machine_learning_examples/blob/master/nlp_class2/glove.py)
 
-## Word Embeddings
+### 3. Feature Engineering
 
-## Training and Model Selection
+Unify the word format, project word in a sentence to the word vector, so every sentence results in a matrix.
 
-## Prediction and analysis
+A little more detail about word format: lower case, remove punctuation, get rid of stop words using [NLTK](http://www.nltk.org/) (remark here, I didn't use it in the latest version), unify tense and singular & plural using [en](https://www.nodebox.net/code/index.php/Linguistics#verb_conjugation)
+
+Most importantly, we should seperate test set away from training+validation test, otherwise we would get a too optimistic result.
+
+```python
+./genFeatureMatrix.py
+```
+
+### 4. Train a ConvoNet to predict the stock price movement. 
+
+For the sake of simplicity, I just applied a ConvoNet in [Keras](http://machinelearningmastery.com/handwritten-digit-recognition-using-convolutional-neural-networks-python-keras/), the detail operations in text data is slighly differnt from the image, we can use the architecture from [FIgure 1 in Yoon Kim's paper](http://www.aclweb.org/anthology/D14-1181)
+
+```python
+./model_cnn.py
+```
+
+### 5. Prediction and analysis
+
+As shown in the result, the performance has some extent improvement. The result from validation set is way higher than the test result, which may result in a not sufficient sample number.
+
+./output/result_glove_cnn_128filters_50dropout_1hiddenLayer64nodes_binaryClassification
+
+One remark here is that the dropout ratio set as 40% or 50% can help improve the testing result a little bit.
+
+### 6. Future work
+
+From the [work](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1331573) by Tim Loughran and Bill McDonald, some words have strong indication of positive and negative effects in finance, we may need to dig into these words to find more information. A very simple but interest example can be found in [Financial Sentiment Analysis part1](http://francescopochetti.com/scrapying-around-web/), [part2](http://francescopochetti.com/financial-blogs-sentiment-analysis-part-crawling-web/)
+
+Another idea is to reconstruct the negative words, like 'not good' -> 'notgood'
+
+We have lots of data from Bloomberg, however the keyword may not be the corresponding news for the specific company, one way to solve that is to filter a list with target company names. Like facebook keyword may result in a much more correlated news than financial.
+
 
 
 ## Issues
 1. remove_punctuation() handles middle name (e.g., P.F -> pf)
 
 ## References:
-1. [Keras predict sentiment-movie-reviews using deep learning](http://machinelearningmastery.com/predict-sentiment-movie-reviews-using-deep-learning/)
-2. [Keras sequence-classification-lstm-recurrent-neural-networks](http://machinelearningmastery.com/sequence-classification-lstm-recurrent-neural-networks-python-keras/)
-3. [tf-idf + t-sne](https://github.com/lazyprogrammer/machine_learning_examples/blob/master/nlp_class2/tfidf_tsne.py)
-4. [IMPLEMENTING A CNN FOR TEXT CLASSIFICATION IN TENSORFLOW](http://www.wildml.com/2015/12/implementing-a-cnn-for-text-classification-in-tensorflow/)
-5. [Implementation of CNN in sequence classification](https://github.com/dennybritz/cnn-text-classification-tf)
-6. [Convolutional Neural Networks for Sentence Classification](http://www.aclweb.org/anthology/D14-1181)
-7. [GloVe: Global Vectors for Word Representation](http://www-nlp.stanford.edu/pubs/glove.pdf)
+
+1. Yoon Kim, Convolutional Neural Networks for Sentence Classification, EMNLP, 2014 [link](http://www.aclweb.org/anthology/D14-1181)
+2. J Pennington, R Socher, CD Manning, GloVe: Global Vectors for Word Representation, EMNLP, 2014 [link](http://www-nlp.stanford.edu/pubs/glove.pdf)
+3. Tim Loughran and Bill McDonald, 2011, “When is a Liability not a Liability?  Textual Analysis, Dictionaries, and 10-Ks,” Journal of Finance, 66:1, 35-65.
+4. H Lee, etc, On the Importance of Text Analysis for Stock Price Prediction, lrec2014 [link](http://nlp.stanford.edu/pubs/lrec2014-stock.pdf)
+5. Xiao Ding, Deep Learning for Event-Driven Stock Prediction, IJCAI2014 [link](http://ijcai.org/Proceedings/15/Papers/329.pdf)
+6. [IMPLEMENTING A CNN FOR TEXT CLASSIFICATION IN TENSORFLOW](http://www.wildml.com/2015/12/implementing-a-cnn-for-text-classification-in-tensorflow/)
+7. [Keras predict sentiment-movie-reviews using deep learning](http://machinelearningmastery.com/predict-sentiment-movie-reviews-using-deep-learning/)
+8. [Keras sequence-classification-lstm-recurrent-neural-networks](http://machinelearningmastery.com/sequence-classification-lstm-recurrent-neural-networks-python-keras/)
+9. [tf-idf + t-sne](https://github.com/lazyprogrammer/machine_learning_examples/blob/master/nlp_class2/tfidf_tsne.py)
+10. [Implementation of CNN in sequence classification](https://github.com/dennybritz/cnn-text-classification-tf)

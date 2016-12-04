@@ -81,8 +81,6 @@ class news_Reuters:
         date_list = [base - datetime.timedelta(days=x) for x in range(0, numdays)]
         for i in range(len(date_list)): date_list[i] = date_list[i].strftime("%Y%m%d")
         return date_list
-        
-
 
 def main():
     news_Reuters()

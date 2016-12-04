@@ -37,7 +37,6 @@ class news_Bloomberg:
             if ticker in filterList: continue
             print ticker
             self.content(ticker, line)
-            #break
 
     def content(self, ticker, line):
         url = "http://www.bloomberg.com/search?sort=time:desc&query=" + ticker 

@@ -1,0 +1,9 @@
+100 trials
+
+Valid Label 1 Precision 66.72% +- 3.41%/sqrt(100)
+Valid Label 0 Precision 67.36% +- 3.35%/sqrt(100)
+
+
+Test Label 1 Precision 51.14% +- 0.77%/sqrt(100)
+Test Label 0 Precision 51.75% +- 0.89%/sqrt(100)
+
