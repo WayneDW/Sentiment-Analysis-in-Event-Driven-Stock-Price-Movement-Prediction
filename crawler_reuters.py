@@ -20,8 +20,8 @@ class news_Reuters:
     def __init__(self):
         fin = open('./input/tickerList.csv')
         # exit if the output already existed
-        if os.path.isfile('./input/news_reuters_part1.csv'):
-            sys.exit("Reuters news already existed!")
+        #if os.path.isfile('./input/news_reuters_part2.csv'):
+        #    sys.exit("Reuters news already existed!")
 
         filterList = set()
         try:
@@ -53,7 +53,7 @@ class news_Reuters:
         repeat_times = 4 # repeat downloading in case of http error
         for _ in range(repeat_times): 
             try:
-                time.sleep(np.random.poisson(5))
+                time.sleep(np.random.poisson(2))
                 response = urllib2.urlopen(url + "&date=" + new_time)
                 data = response.read()
                 soup = BeautifulSoup(data, "lxml")
@@ -66,7 +66,7 @@ class news_Reuters:
   
     def parser(self, soup, line, ticker, timestamp):
         content = soup.find_all("div", class_="feature")
-        fout = open('./input/news_reuters_part1.csv', 'a+')
+        fout = open('./input/news_reuters_part5.csv', 'a+')
         
         if len(content) == 0: return 0
         for i in range(len(content)):    
