@@ -1,0 +1,163 @@
+>>> print(model.summary())
+____________________________________________________________________________________________________
+Layer (type)                     Output Shape          Param #     Connected to                     
+====================================================================================================
+convolution2d_5 (Convolution2D)  (None, 1, 29, 64)     12864       convolution2d_input_5[0][0]      
+____________________________________________________________________________________________________
+maxpooling2d_5 (MaxPooling2D)    (None, 1, 1, 64)      0           convolution2d_5[0][0]            
+____________________________________________________________________________________________________
+dropout_2 (Dropout)              (None, 1, 1, 64)      0           maxpooling2d_5[0][0]             
+____________________________________________________________________________________________________
+flatten_2 (Flatten)              (None, 64)            0           dropout_2[0][0]                  
+____________________________________________________________________________________________________
+dense_3 (Dense)                  (None, 32)            2080        flatten_2[0][0]                  
+____________________________________________________________________________________________________
+dense_4 (Dense)                  (None, 2)             66          dense_3[0][0]                    
+====================================================================================================
+Total params: 15010
+____________________________________________________________________________________________________
+None
+>>> for i in range(10):
+...         evaluate(model, clusters, X_train, y_train, X_valid, y_valid, X_test, y_test)
+... 
+Train on 18778 samples, validate on 4694 samples
+Epoch 1/2
+3s - loss: 0.6958 - acc: 0.4964 - val_loss: 0.6928 - val_acc: 0.5175
+Epoch 2/2
+3s - loss: 0.6936 - acc: 0.5076 - val_loss: 0.6931 - val_acc: 0.5047
+[[1571  697]
+ [1628  798]]
+Valid Label 0 Precision, 49.11%
+Valid Label 1 Precision, 53.38%
+Test on 5284 samples
+[[1824  819]
+ [1749  892]]
+Test Label 0 Precision, 51.05%
+Test Label 1 Precision, 52.13%
+Train on 18778 samples, validate on 4694 samples
+Epoch 1/2
+3s - loss: 0.6927 - acc: 0.5190 - val_loss: 0.6933 - val_acc: 0.4915
+Epoch 2/2
+3s - loss: 0.6917 - acc: 0.5230 - val_loss: 0.6909 - val_acc: 0.5345
+[[ 937 1331]
+ [ 854 1572]]
+Valid Label 0 Precision, 52.32%
+Valid Label 1 Precision, 54.15%
+Test on 5284 samples
+[[1014 1629]
+ [1014 1627]]
+Test Label 0 Precision, 50.00%
+Test Label 1 Precision, 49.97%
+Train on 18778 samples, validate on 4694 samples
+Epoch 1/2
+3s - loss: 0.6911 - acc: 0.5245 - val_loss: 0.6896 - val_acc: 0.5409
+Epoch 2/2
+3s - loss: 0.6908 - acc: 0.5280 - val_loss: 0.6893 - val_acc: 0.5247
+[[ 177 2091]
+ [ 140 2286]]
+Valid Label 0 Precision, 55.84%
+Valid Label 1 Precision, 52.23%
+Test on 5284 samples
+[[ 192 2451]
+ [ 174 2467]]
+Test Label 0 Precision, 52.46%
+Test Label 1 Precision, 50.16%
+Train on 18778 samples, validate on 4694 samples
+Epoch 1/2
+3s - loss: 0.6883 - acc: 0.5379 - val_loss: 0.6878 - val_acc: 0.5488
+Epoch 2/2
+3s - loss: 0.6861 - acc: 0.5492 - val_loss: 0.6865 - val_acc: 0.5471
+[[1376  892]
+ [1234 1192]]
+Valid Label 0 Precision, 52.72%
+Valid Label 1 Precision, 57.20%
+Test on 5284 samples
+[[1464 1179]
+ [1410 1231]]
+Test Label 0 Precision, 50.94%
+Test Label 1 Precision, 51.08%
+Train on 18778 samples, validate on 4694 samples
+Epoch 1/2
+3s - loss: 0.6842 - acc: 0.5553 - val_loss: 0.6850 - val_acc: 0.5509
+Epoch 2/2
+3s - loss: 0.6834 - acc: 0.5518 - val_loss: 0.6854 - val_acc: 0.5554
+[[1374  894]
+ [1193 1233]]
+Valid Label 0 Precision, 53.53%
+Valid Label 1 Precision, 57.97%
+Test on 5284 samples
+[[1412 1231]
+ [1353 1288]]
+Test Label 0 Precision, 51.07%
+Test Label 1 Precision, 51.13%
+Train on 18778 samples, validate on 4694 samples
+Epoch 1/2
+3s - loss: 0.6801 - acc: 0.5662 - val_loss: 0.6883 - val_acc: 0.5320
+Epoch 2/2
+3s - loss: 0.6774 - acc: 0.5764 - val_loss: 0.6829 - val_acc: 0.5539
+[[1060 1208]
+ [ 886 1540]]
+Valid Label 0 Precision, 54.47%
+Valid Label 1 Precision, 56.04%
+Test on 5284 samples
+[[1096 1547]
+ [ 994 1647]]
+Test Label 0 Precision, 52.44%
+Test Label 1 Precision, 51.57%
+Train on 18778 samples, validate on 4694 samples
+Epoch 1/2
+3s - loss: 0.6760 - acc: 0.5749 - val_loss: 0.6834 - val_acc: 0.5520
+Epoch 2/2
+3s - loss: 0.6739 - acc: 0.5783 - val_loss: 0.6785 - val_acc: 0.5714
+[[1037 1231]
+ [ 781 1645]]
+Valid Label 0 Precision, 57.04%
+Valid Label 1 Precision, 57.20%
+Test on 5284 samples
+[[ 956 1687]
+ [ 883 1758]]
+Test Label 0 Precision, 51.98%
+Test Label 1 Precision, 51.03%
+Train on 18778 samples, validate on 4694 samples
+Epoch 1/2
+3s - loss: 0.6699 - acc: 0.5920 - val_loss: 0.6790 - val_acc: 0.5648
+Epoch 2/2
+3s - loss: 0.6667 - acc: 0.5927 - val_loss: 0.6778 - val_acc: 0.5690
+[[1253 1015]
+ [1008 1418]]
+Valid Label 0 Precision, 55.42%
+Valid Label 1 Precision, 58.28%
+Test on 5284 samples
+[[1232 1411]
+ [1167 1474]]
+Test Label 0 Precision, 51.35%
+Test Label 1 Precision, 51.09%
+Train on 18778 samples, validate on 4694 samples
+Epoch 1/2
+3s - loss: 0.6644 - acc: 0.5983 - val_loss: 0.6800 - val_acc: 0.5592
+Epoch 2/2
+3s - loss: 0.6644 - acc: 0.5958 - val_loss: 0.6765 - val_acc: 0.5801
+[[1148 1120]
+ [ 851 1575]]
+Valid Label 0 Precision, 57.43%
+Valid Label 1 Precision, 58.44%
+Test on 5284 samples
+[[1120 1523]
+ [1061 1580]]
+Test Label 0 Precision, 51.35%
+Test Label 1 Precision, 50.92%
+Train on 18778 samples, validate on 4694 samples
+Epoch 1/2
+3s - loss: 0.6599 - acc: 0.6044 - val_loss: 0.6749 - val_acc: 0.5810
+Epoch 2/2
+3s - loss: 0.6577 - acc: 0.6058 - val_loss: 0.6750 - val_acc: 0.5773
+[[1424  844]
+ [1140 1286]]
+Valid Label 0 Precision, 55.54%
+Valid Label 1 Precision, 60.38%
+Test on 5284 samples
+[[1401 1242]
+ [1293 1348]]
+Test Label 0 Precision, 52.00%
+Test Label 1 Precision, 52.05%
+

@@ -1,0 +1,157 @@
+Train on 18778 samples, validate on 4694 samples
+Epoch 1/2
+6s - loss: 0.6966 - acc: 0.5023 - val_loss: 0.6977 - val_acc: 0.4827
+Epoch 2/2
+6s - loss: 0.6943 - acc: 0.5123 - val_loss: 0.6901 - val_acc: 0.5435
+[[ 527 1741]
+ [ 402 2024]]
+Valid Label 0 Precision, 56.73%
+Valid Label 1 Precision, 53.76%
+Test on 5284 samples
+[[ 509 2134]
+ [ 429 2212]]
+Test Label 0 Precision, 54.26%
+Test Label 1 Precision, 50.90%
+>>> for i in range(10):
+...         evaluate(model, clusters, X_train, y_train, X_valid, y_valid, X_test, y_test)
+... 
+Train on 18778 samples, validate on 4694 samples
+Epoch 1/2
+5s - loss: 0.6911 - acc: 0.5277 - val_loss: 0.6896 - val_acc: 0.5394
+Epoch 2/2
+5s - loss: 0.6883 - acc: 0.5377 - val_loss: 0.6865 - val_acc: 0.5541
+[[ 854 1414]
+ [ 679 1747]]
+Valid Label 0 Precision, 55.71%
+Valid Label 1 Precision, 55.27%
+Test on 5284 samples
+[[ 785 1858]
+ [ 725 1916]]
+Test Label 0 Precision, 51.99%
+Test Label 1 Precision, 50.77%
+Train on 18778 samples, validate on 4694 samples
+Epoch 1/2
+5s - loss: 0.6867 - acc: 0.5429 - val_loss: 0.6854 - val_acc: 0.5579
+Epoch 2/2
+5s - loss: 0.6797 - acc: 0.5695 - val_loss: 0.6832 - val_acc: 0.5660
+[[1367  901]
+ [1136 1290]]
+Valid Label 0 Precision, 54.61%
+Valid Label 1 Precision, 58.88%
+Test on 5284 samples
+[[1305 1338]
+ [1274 1367]]
+Test Label 0 Precision, 50.60%
+Test Label 1 Precision, 50.54%
+Train on 18778 samples, validate on 4694 samples
+Epoch 1/2
+6s - loss: 0.6759 - acc: 0.5737 - val_loss: 0.6807 - val_acc: 0.5682
+Epoch 2/2
+6s - loss: 0.6698 - acc: 0.5849 - val_loss: 0.6792 - val_acc: 0.5669
+[[1422  846]
+ [1187 1239]]
+Valid Label 0 Precision, 54.50%
+Valid Label 1 Precision, 59.42%
+Test on 5284 samples
+[[1346 1297]
+ [1375 1266]]
+Test Label 0 Precision, 49.47%
+Test Label 1 Precision, 49.40%
+Train on 18778 samples, validate on 4694 samples
+Epoch 1/2
+6s - loss: 0.6634 - acc: 0.6010 - val_loss: 0.6723 - val_acc: 0.5867
+Epoch 2/2
+5s - loss: 0.6574 - acc: 0.6088 - val_loss: 0.6696 - val_acc: 0.5899
+[[1116 1152]
+ [ 773 1653]]
+Valid Label 0 Precision, 59.08%
+Valid Label 1 Precision, 58.93%
+Test on 5284 samples
+[[ 948 1695]
+ [ 967 1674]]
+Test Label 0 Precision, 49.50%
+Test Label 1 Precision, 49.69%
+Train on 18778 samples, validate on 4694 samples
+Epoch 1/2
+6s - loss: 0.6480 - acc: 0.6231 - val_loss: 0.6704 - val_acc: 0.5827
+Epoch 2/2
+5s - loss: 0.6416 - acc: 0.6257 - val_loss: 0.6653 - val_acc: 0.5933
+[[1177 1091]
+ [ 818 1608]]
+Valid Label 0 Precision, 59.00%
+Valid Label 1 Precision, 59.58%
+Test on 5284 samples
+[[1102 1541]
+ [1123 1518]]
+Test Label 0 Precision, 49.53%
+Test Label 1 Precision, 49.62%
+Train on 18778 samples, validate on 4694 samples
+Epoch 1/2
+6s - loss: 0.6336 - acc: 0.6370 - val_loss: 0.6641 - val_acc: 0.5969
+Epoch 2/2
+6s - loss: 0.6262 - acc: 0.6494 - val_loss: 0.6598 - val_acc: 0.6020
+[[1222 1046]
+ [ 822 1604]]
+Valid Label 0 Precision, 59.78%
+Valid Label 1 Precision, 60.53%
+Test on 5284 samples
+[[1029 1614]
+ [1021 1620]]
+Test Label 0 Precision, 50.20%
+Test Label 1 Precision, 50.09%
+Train on 18778 samples, validate on 4694 samples
+Epoch 1/2
+5s - loss: 0.6175 - acc: 0.6600 - val_loss: 0.6581 - val_acc: 0.6052
+Epoch 2/2
+6s - loss: 0.6048 - acc: 0.6708 - val_loss: 0.6682 - val_acc: 0.5914
+[[ 848 1420]
+ [ 498 1928]]
+Valid Label 0 Precision, 63.00%
+Valid Label 1 Precision, 57.59%
+Test on 5284 samples
+[[ 671 1972]
+ [ 694 1947]]
+Test Label 0 Precision, 49.16%
+Test Label 1 Precision, 49.68%
+Train on 18778 samples, validate on 4694 samples
+Epoch 1/2
+5s - loss: 0.6045 - acc: 0.6694 - val_loss: 0.6550 - val_acc: 0.6163
+Epoch 2/2
+5s - loss: 0.5953 - acc: 0.6821 - val_loss: 0.6574 - val_acc: 0.6086
+[[1155 1113]
+ [ 724 1702]]
+Valid Label 0 Precision, 61.47%
+Valid Label 1 Precision, 60.46%
+Test on 5284 samples
+[[ 955 1688]
+ [ 987 1654]]
+Test Label 0 Precision, 49.18%
+Test Label 1 Precision, 49.49%
+Train on 18778 samples, validate on 4694 samples
+Epoch 1/2
+5s - loss: 0.5896 - acc: 0.6830 - val_loss: 0.6565 - val_acc: 0.6157
+Epoch 2/2
+5s - loss: 0.5767 - acc: 0.6964 - val_loss: 0.6550 - val_acc: 0.6110
+[[1191 1077]
+ [ 749 1677]]
+Valid Label 0 Precision, 61.39%
+Valid Label 1 Precision, 60.89%
+Test on 5284 samples
+[[ 961 1682]
+ [1047 1594]]
+Test Label 0 Precision, 47.86%
+Test Label 1 Precision, 48.66%
+Train on 18778 samples, validate on 4694 samples
+Epoch 1/2
+5s - loss: 0.5800 - acc: 0.6922 - val_loss: 0.6534 - val_acc: 0.6165
+Epoch 2/2
+5s - loss: 0.5665 - acc: 0.7055 - val_loss: 0.6566 - val_acc: 0.6104
+[[1119 1149]
+ [ 680 1746]]
+Valid Label 0 Precision, 62.20%
+Valid Label 1 Precision, 60.31%
+Test on 5284 samples
+[[ 918 1725]
+ [1015 1626]]
+Test Label 0 Precision, 47.49%
+Test Label 1 Precision, 48.52%
