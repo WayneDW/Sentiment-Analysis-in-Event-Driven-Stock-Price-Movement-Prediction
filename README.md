@@ -104,11 +104,11 @@ We have lots of data from Bloomberg, however the keyword may not be the correspo
 
 ## References:
 
-1. Yoon Kim, Convolutional Neural Networks for Sentence Classification, EMNLP, 2014 [link](http://www.aclweb.org/anthology/D14-1181)
-2. J Pennington, R Socher, CD Manning, GloVe: Global Vectors for Word Representation, EMNLP, 2014 [link](http://www-nlp.stanford.edu/pubs/glove.pdf)
+1. Yoon Kim, [Convolutional Neural Networks for Sentence Classification](http://www.aclweb.org/anthology/D14-1181), EMNLP, 2014
+2. J Pennington, R Socher, CD Manning, [GloVe: Global Vectors for Word Representation](http://www-nlp.stanford.edu/pubs/glove.pdf), EMNLP, 2014
 3. Tim Loughran and Bill McDonald, 2011, “When is a Liability not a Liability?  Textual Analysis, Dictionaries, and 10-Ks,” Journal of Finance, 66:1, 35-65.
-4. H Lee, etc, On the Importance of Text Analysis for Stock Price Prediction, lrec2014 [link](http://nlp.stanford.edu/pubs/lrec2014-stock.pdf)
-5. Xiao Ding, Deep Learning for Event-Driven Stock Prediction, IJCAI2015 [link](http://ijcai.org/Proceedings/15/Papers/329.pdf)
+4. H Lee, etc, [On the Importance of Text Analysis for Stock Price Prediction](http://nlp.stanford.edu/pubs/lrec2014-stock.pdf), LREC, 2014
+5. Xiao Ding, [Deep Learning for Event-Driven Stock Prediction](http://ijcai.org/Proceedings/15/Papers/329.pdf), IJCAI2015
 6. [IMPLEMENTING A CNN FOR TEXT CLASSIFICATION IN TENSORFLOW](http://www.wildml.com/2015/12/implementing-a-cnn-for-text-classification-in-tensorflow/)
 7. [Keras predict sentiment-movie-reviews using deep learning](http://machinelearningmastery.com/predict-sentiment-movie-reviews-using-deep-learning/)
 8. [Keras sequence-classification-lstm-recurrent-neural-networks](http://machinelearningmastery.com/sequence-classification-lstm-recurrent-neural-networks-python-keras/)
