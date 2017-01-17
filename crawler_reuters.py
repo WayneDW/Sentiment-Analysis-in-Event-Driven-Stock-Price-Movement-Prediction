@@ -96,7 +96,7 @@ class news_Reuters:
             else: news_type = 'normal'
 
             print(ticker, timestamp, title, news_type)
-            fout.write(','.join([ticker, line[1], timestamp, title, body, news_type]) + '\n')
+            fout.write(','.join([ticker, line[1], timestamp, title, body, news_type]).encode('utf-8') + '\n')
         fout.close()
         return 1
     
