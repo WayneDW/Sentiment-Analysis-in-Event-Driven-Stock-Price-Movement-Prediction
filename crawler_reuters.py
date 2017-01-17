@@ -24,13 +24,13 @@ class news_Reuters:
         #    sys.exit("Reuters news already existed!")
 
         filterList = set()
-        try:
+        try: # this is used when we restart a task
             fList = open('./input/finished.reuters')
             for l in fList:
                 filterList.add(l.strip())
         except: pass
 
-        dateList = self.dateGenerator(1000)
+        dateList = self.dateGenerator(1000) # look back on the past 1000 days
         for line in fin:
             line = line.strip().split(',')
             ticker, name, exchange, MarketCap = line
