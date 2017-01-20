@@ -30,7 +30,7 @@ class news_Reuters:
                 filterList.add(l.strip())
         except: pass
 
-        dateList = self.dateGenerator(1000) # look back on the past 1000 days
+        dateList = self.dateGenerator(3000) # look back on the past 1000 days
         for line in fin:
             line = line.strip().split(',')
             ticker, name, exchange, MarketCap = line
