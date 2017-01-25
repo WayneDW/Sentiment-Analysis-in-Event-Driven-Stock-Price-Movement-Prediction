@@ -1,5 +1,5 @@
 # Sentiment Analysis for Event-Driven Stock Prediction
-Use NLP technique to predict stock price movement based on news from Reuters
+Use NLP method to predict stock price movement based on news from Reuters, we need the following 5 steps to implement this project.
 
 1. Data Collection
 
@@ -38,10 +38,19 @@ Use NLP technique to predict stock price movement based on news from Reuters
 
 #### 1.2 Use BeautifulSoup to crawl news headlines from [Bloomberg](http://www.bloomberg.com/search?query=goog&sort=time:desc) and [Reuters](http://www.reuters.com/finance/stocks/overview?symbol=FB.O)
 
+Suppose we find a news about Facebook on Dec.13, 2016 at reuters.com
+
+![](./imgs/tar1.PNG)
+
+We can use the following script to crawl it and format it to our local file
+
 ```python
-./crawler_bloomberg.py # Bloomberg news is not that correlated, ignore this data at this moment
-./crawler_reuters.py # much more valueable, despite with a much smaller size
+./crawler_reuters.py # more precise than Bloomberg News
 ```
+
+![](./imgs/tar2.PNG)
+
+By brute-force iterating company tickers and dates, we can get the dataset with about 30,000 ~ 100,000 news in the end. Since a company may have multiple news in a single day, the current version will only deal with topStory and ignore the others.
 
 #### 1.3 Use [Yahoo Finance API](https://pypi.python.org/pypi/yahoo-finance/1.1.4) to crawl historical stock prices
 
@@ -57,9 +66,7 @@ Applied GloVe to train a dense word vector from Reuters corpus in NLTK
 ./embeddingWord.py
 ```
 
-About the detail of the method, [link](http://www-nlp.stanford.edu/pubs/glove.pdf)
-
-About the implementation of this method, [link](https://github.com/lazyprogrammer/machine_learning_examples/blob/master/nlp_class2/glove.py)
+Read the detail of the method [here](http://www-nlp.stanford.edu/pubs/glove.pdf), implementation [here](https://github.com/lazyprogrammer/machine_learning_examples/blob/master/nlp_class2/glove.py)
 
 ### 3. Feature Engineering
 
