@@ -1,5 +1,5 @@
 # Sentiment Analysis for Event-Driven Stock Prediction
-Use NLP technique to predict stock price movement based on news from Reuters
+Use NLP method to predict stock price movement based on news from Reuters
 
 1. Data Collection
 
