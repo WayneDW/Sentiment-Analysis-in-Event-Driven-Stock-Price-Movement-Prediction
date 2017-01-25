@@ -50,7 +50,7 @@ We can use the following script to crawl it and format it to our local file
 
 ![](./imgs/tar2.PNG)
 
-By brute-force iterating company tickers and dates, we can get the dataset with about 30,000 ~ 100,000 news in the end.
+By brute-force iterating company tickers and dates, we can get the dataset with about 30,000 ~ 100,000 news in the end. Since a company may have multiple news in a single day, the current version will only deal with topStory and ignore the others.
 
 #### 1.3 Use [Yahoo Finance API](https://pypi.python.org/pypi/yahoo-finance/1.1.4) to crawl historical stock prices
 
