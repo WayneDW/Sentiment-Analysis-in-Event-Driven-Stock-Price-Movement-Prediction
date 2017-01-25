@@ -39,8 +39,7 @@ Use NLP technique to predict stock price movement based on news from Reuters
 #### 1.2 Use BeautifulSoup to crawl news headlines from [Bloomberg](http://www.bloomberg.com/search?query=goog&sort=time:desc) and [Reuters](http://www.reuters.com/finance/stocks/overview?symbol=FB.O)
 
 ```python
-./crawler_bloomberg.py # Bloomberg news is not that correlated, ignore this data at this moment
-./crawler_reuters.py # much more valueable, despite with a much smaller size
+./crawler_reuters.py # more precise than Bloomberg News
 ```
 
 #### 1.3 Use [Yahoo Finance API](https://pypi.python.org/pypi/yahoo-finance/1.1.4) to crawl historical stock prices
