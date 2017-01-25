@@ -42,7 +42,7 @@ Suppose we find a news about Facebook on Dec.13, 2016 at reuters.com
 
 ![](./imgs/tar1.PNG)
 
-You can use the following script to crawl it and format it to our local file
+We can use the following script to crawl it and format it to our local file
 
 ```python
 ./crawler_reuters.py # more precise than Bloomberg News
