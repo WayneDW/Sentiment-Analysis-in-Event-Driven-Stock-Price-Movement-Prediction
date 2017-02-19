@@ -934,3 +934,66 @@ Test on 2983 samples
 Test Label 0 Precision, 49.00%
 Test Label 1 Precision, 50.29%
 [Finished in 940.8s]
+
+Test Label 0 Precision, 49.00%
+Test Label 0 Precision, 49.14%
+Test Label 0 Precision, 49.38%
+Test Label 0 Precision, 49.94%
+Test Label 0 Precision, 49.94%
+Test Label 0 Precision, 50.13%
+Test Label 0 Precision, 50.40%
+Test Label 0 Precision, 50.43%
+Test Label 0 Precision, 50.47%
+Test Label 0 Precision, 50.57%
+Test Label 0 Precision, 50.78%
+Test Label 0 Precision, 50.95%
+Test Label 0 Precision, 51.00%
+Test Label 0 Precision, 51.07%
+Test Label 0 Precision, 51.10%
+Test Label 0 Precision, 51.10%
+Test Label 0 Precision, 51.11%
+Test Label 0 Precision, 51.18%
+Test Label 0 Precision, 51.45%
+Test Label 0 Precision, 51.75%
+Test Label 0 Precision, 51.78%
+Test Label 0 Precision, 51.90%
+Test Label 0 Precision, 51.91%
+Test Label 0 Precision, 52.01%
+Test Label 0 Precision, 52.22%
+Test Label 0 Precision, 52.33%
+Test Label 0 Precision, 52.47%
+Test Label 0 Precision, 52.85%
+Test Label 0 Precision, 53.24%
+Test Label 0 Precision, 54.84%
+
+
+
+Test Label 1 Precision, 49.26%
+Test Label 1 Precision, 49.30%
+Test Label 1 Precision, 49.96%
+Test Label 1 Precision, 50.00%
+Test Label 1 Precision, 50.29%
+Test Label 1 Precision, 50.59%
+Test Label 1 Precision, 50.63%
+Test Label 1 Precision, 50.65%
+Test Label 1 Precision, 50.72%
+Test Label 1 Precision, 50.80%
+Test Label 1 Precision, 50.83%
+Test Label 1 Precision, 51.14%
+Test Label 1 Precision, 51.30%
+Test Label 1 Precision, 51.36%
+Test Label 1 Precision, 51.73%
+Test Label 1 Precision, 51.77%
+Test Label 1 Precision, 51.78%
+Test Label 1 Precision, 51.80%
+Test Label 1 Precision, 51.83%
+Test Label 1 Precision, 51.93%
+Test Label 1 Precision, 51.96%
+Test Label 1 Precision, 52.08%
+Test Label 1 Precision, 52.38%
+Test Label 1 Precision, 52.45%
+Test Label 1 Precision, 52.67%
+Test Label 1 Precision, 52.70%
+Test Label 1 Precision, 52.85%
+Test Label 1 Precision, 52.92%
+Test Label 1 Precision, 53.62%
