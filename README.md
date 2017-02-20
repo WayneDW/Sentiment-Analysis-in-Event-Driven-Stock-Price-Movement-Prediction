@@ -95,8 +95,7 @@ For the sake of simplicity, I just applied a ConvoNet in [Keras](http://machinel
 
 ### 5. Prediction and analysis
 
-As shown in the result, the performance has some extent improvement. 
-
+As shown in the result, the prediction accuracy signifinantly improves around 1% - 2% compared to random pick.
 
 ### 6. Future work
 
