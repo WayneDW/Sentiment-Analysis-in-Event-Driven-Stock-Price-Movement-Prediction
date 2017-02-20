@@ -54,7 +54,7 @@ By brute-force iterating company tickers and dates, we can get the dataset with 
 
 #### 1.3 Use urllib2 to crawl historical stock prices
  
-** Improvement here, use normalized return over S&P 500 instead of return **
+Improvement here, use normalized return [4] over S&P 500 instead of return.
 
 ```python
 ./crawler_yahoo_finance.py # generate stock price raw data: stockPrices_raw.json, containing open, close, ..., adjClose
