@@ -17,14 +17,14 @@ Use NLP to predict stock price movement based on news from Reuters, we need the 
   
 3. Feature Engineering
   
-  3.2 Unify word format: remove punctuations, unify tense, singular & plural
+  3.2 Unify word format: unify tense, singular & plural, remove punctuations & stop words
   
   3.2 Extract feature using feature hashing based on the trained word vector (step 2)
   
   3.3 Pad word senquence (essentially a matrix) to keep the same dimension
   
 4. Trained a ConvNet to predict the stock price movement based on a reasonable parameter selection
-5. The result shows a 15% percent improvement on the validation set, and 1-2% percent improve on the test set
+5. The result shows a significant 1-2% improve on the test set
 
 
 ### 1. Data Collection
@@ -53,6 +53,8 @@ We can use the following script to crawl it and format it to our local file
 By brute-force iterating company tickers and dates, we can get the dataset with about 30,000 ~ 200,000 news in the end. Since a company may have multiple news in a single day, the current version will only deal with topStory and ignore the others.
 
 #### 1.3 Use urllib2 to crawl historical stock prices
+ 
+Improvement here, use normalized return [4] over S&P 500 instead of return.
 
 ```python
 ./crawler_yahoo_finance.py # generate stock price raw data: stockPrices_raw.json, containing open, close, ..., adjClose
@@ -69,15 +71,15 @@ To use our customized word vector, apply GloVe to train word vector from Reuters
 
 Read the detail of the method [here](http://www-nlp.stanford.edu/pubs/glove.pdf), implementation [here](https://github.com/lazyprogrammer/machine_learning_examples/blob/master/nlp_class2/glove.py)
 
-We can also a pretrained GloVe word vector from [here](http://nlp.stanford.edu/projects/glove/)
+We can also directly use a pretrained GloVe word vector from [here](http://nlp.stanford.edu/projects/glove/)
 
 ### 3. Feature Engineering
 
-Unify the word format, project word in a sentence to the word vector, so every sentence results in a matrix.
+Unify the word format, project word to a word vector, so every sentence results in a matrix.
 
-Detail about unifying word format: lower case, remove punctuation, get rid of stop words, unify tense and singular & plural using [en](https://www.nodebox.net/code/index.php/Linguistics#verb_conjugation)
+Detail about unifying word format are: lower case, remove punctuation, get rid of stop words, unify tense and singular & plural using [en](https://www.nodebox.net/code/index.php/Linguistics#verb_conjugation)
 
-Most importantly, we should seperate test set away from training+validation test, otherwise we would get a too optimistic result.
+Seperate test set away from training+validation test, otherwise we would get a too optimistic result.
 
 ```python
 ./genFeatureMatrix.py
@@ -93,10 +95,7 @@ For the sake of simplicity, I just applied a ConvoNet in [Keras](http://machinel
 
 ### 5. Prediction and analysis
 
-As shown in the result, the performance has some extent improvement. The result from validation set is way higher than the test result, which may result in a not sufficient sample number.
-
-./output/result_glove_cnn_128filters_50dropout_1hiddenLayer64nodes_binaryClassification
-
+As shown in the result, the prediction accuracy signifinantly improves around 1% - 2% compared to random pick.
 
 ### 6. Future work
 
