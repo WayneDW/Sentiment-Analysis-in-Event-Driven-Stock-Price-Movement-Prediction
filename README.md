@@ -1,5 +1,5 @@
 # Sentiment Analysis for Event-Driven Stock Prediction
-Use NLP method to predict stock price movement based on news from Reuters, we need the following 5 steps to implement this project.
+Use NLP to predict stock price movement based on news from Reuters, we need the following 5 steps to implement this project.
 
 1. Data Collection
 
@@ -7,7 +7,7 @@ Use NLP method to predict stock price movement based on news from Reuters, we ne
   
   1.2 crawl news from Reuters using BeautifulSoup
   
-  1.3 crawl prices using Yahoo Finance API
+  1.3 crawl prices using urllib2 (Yahoo Finance API is outdated)
   
 2. Applied GloVe to train a dense word vector from Reuters corpus in NLTK
 
@@ -17,14 +17,14 @@ Use NLP method to predict stock price movement based on news from Reuters, we ne
   
 3. Feature Engineering
   
-  3.2 Unify word format: remove punctuations, unify tense, singular & plural
+  3.2 Unify word format: unify tense, singular & plural, remove punctuations & stop words
   
   3.2 Extract feature using feature hashing based on the trained word vector (step 2)
   
   3.3 Pad word senquence (essentially a matrix) to keep the same dimension
   
 4. Trained a ConvNet to predict the stock price movement based on a reasonable parameter selection
-5. The result shows a 15% percent improvement on the validation set, and 1-2% percent improve on the test set
+5. The result shows a significant 1-2% improve on the test set
 
 
 ### 1. Data Collection
@@ -50,17 +50,20 @@ We can use the following script to crawl it and format it to our local file
 
 ![](./imgs/tar2.PNG)
 
-By brute-force iterating company tickers and dates, we can get the dataset with about 30,000 ~ 100,000 news in the end. Since a company may have multiple news in a single day, the current version will only deal with topStory and ignore the others.
+By brute-force iterating company tickers and dates, we can get the dataset with about 30,000 ~ 200,000 news in the end. Since a company may have multiple news in a single day, the current version will only deal with topStory and ignore the others.
 
-#### 1.3 Use [Yahoo Finance API](https://pypi.python.org/pypi/yahoo-finance/1.1.4) to crawl historical stock prices
+#### 1.3 Use urllib2 to crawl historical stock prices
+ 
+Improvement here, use normalized return [4] over S&P 500 instead of return.
 
 ```python
-./crawler_stockPrices.py
+./crawler_yahoo_finance.py # generate stock price raw data: stockPrices_raw.json, containing open, close, ..., adjClose
+./create_label.py # use raw price data to generate stockReturns.json
 ```
 
 ### 2. Word Embedding
 
-Applied GloVe to train a dense word vector from Reuters corpus in NLTK
+To use our customized word vector, apply GloVe to train word vector from Reuters corpus in NLTK
 
 ```python
 ./embeddingWord.py
@@ -68,13 +71,15 @@ Applied GloVe to train a dense word vector from Reuters corpus in NLTK
 
 Read the detail of the method [here](http://www-nlp.stanford.edu/pubs/glove.pdf), implementation [here](https://github.com/lazyprogrammer/machine_learning_examples/blob/master/nlp_class2/glove.py)
 
+We can also directly use a pretrained GloVe word vector from [here](http://nlp.stanford.edu/projects/glove/)
+
 ### 3. Feature Engineering
 
-Unify the word format, project word in a sentence to the word vector, so every sentence results in a matrix.
+Unify the word format, project word to a word vector, so every sentence results in a matrix.
 
-A little more detail about word format: lower case, remove punctuation, get rid of stop words using [NLTK](http://www.nltk.org/) (remark here, I didn't use it in the latest version), unify tense and singular & plural using [en](https://www.nodebox.net/code/index.php/Linguistics#verb_conjugation)
+Detail about unifying word format are: lower case, remove punctuation, get rid of stop words, unify tense and singular & plural using [en](https://www.nodebox.net/code/index.php/Linguistics#verb_conjugation)
 
-Most importantly, we should seperate test set away from training+validation test, otherwise we would get a too optimistic result.
+Seperate test set away from training+validation test, otherwise we would get a too optimistic result.
 
 ```python
 ./genFeatureMatrix.py
@@ -90,20 +95,13 @@ For the sake of simplicity, I just applied a ConvoNet in [Keras](http://machinel
 
 ### 5. Prediction and analysis
 
-As shown in the result, the performance has some extent improvement. The result from validation set is way higher than the test result, which may result in a not sufficient sample number.
-
-./output/result_glove_cnn_128filters_50dropout_1hiddenLayer64nodes_binaryClassification
-
-One remark here is that the dropout ratio set as 40% or 50% can help improve the testing result a little bit.
+As shown in the result, the prediction accuracy signifinantly improves around 1% - 2% compared to random pick.
 
 ### 6. Future work
 
 From the [work](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1331573) by Tim Loughran and Bill McDonald, some words have strong indication of positive and negative effects in finance, we may need to dig into these words to find more information. A very simple but interest example can be found in [Financial Sentiment Analysis part1](http://francescopochetti.com/scrapying-around-web/), [part2](http://francescopochetti.com/financial-blogs-sentiment-analysis-part-crawling-web/)
 
-Another idea is to reconstruct the negative words, like 'not good' -> 'notgood'
-
-We have lots of data from Bloomberg, however the keyword may not be the corresponding news for the specific company, one way to solve that is to filter a list with target company names. Like facebook keyword may result in a much more correlated news than financial.
-
+As suggested by H Lee, we may consider to include features of earnings surprise due to its great value
 
 
 ## Issues

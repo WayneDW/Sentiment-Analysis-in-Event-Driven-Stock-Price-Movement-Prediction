@@ -11,15 +11,15 @@ from pprint import pprint
 
 def stock_Prices():
     # exit if the output already existed
-    if os.path.isfile('./input/stockPrices.json'):
-        sys.exit("Prices data already existed!")
+    # if os.path.isfile('./input/stockPrices.json'):
+    #     sys.exit("Prices data already existed!")
 
     priceSet = {}
     fin = open('./input/tickerList.csv')
     for num, line in enumerate(fin):
         line = line.strip().split(',')
         ticker, name, exchange, MarketCap = line
-        try:
+        if 1:
             print(num, ticker)
             yahoo = Share(ticker)
             time.sleep(np.random.poisson(3))
@@ -29,8 +29,8 @@ def stock_Prices():
                 date = ''.join(prices[i]['Date'].split('-'))
                 priceDt[date] = round(log(float(prices[i]['Close']) / float(prices[i]['Open'])), 6)
             priceSet[ticker] = priceDt
-        except:
-            continue
+        #except:
+            #continue
 
     with open('./input/stockPrices.json', 'w') as outfile:
         json.dump(priceSet, outfile, indent=4)

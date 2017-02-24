@@ -1,0 +1,1001 @@
+Using TensorFlow backend.
+/usr/local/lib/python2.7/dist-packages/keras/utils/np_utils.py:21: VisibleDeprecationWarning: using a non-integer number instead of an integer will result in an error in the future
+  Y = np.zeros((len(y), nb_classes))
+/usr/local/lib/python2.7/dist-packages/keras/utils/np_utils.py:23: VisibleDeprecationWarning: using a non-integer number instead of an integer will result in an error in the future
+  Y[i, y[i]] = 1.
+('Positive News', 4789)
+('Negtive News', 4685)
+('Trial:', 0)
+Train on 33275 samples, validate on 8318 samples
+Epoch 1/10
+2s - loss: 0.6970 - acc: 0.5066 - val_loss: 0.6927 - val_acc: 0.5148
+Epoch 2/10
+2s - loss: 0.6935 - acc: 0.5090 - val_loss: 0.6927 - val_acc: 0.5120
+Epoch 3/10
+2s - loss: 0.6924 - acc: 0.5160 - val_loss: 0.6926 - val_acc: 0.5125
+Epoch 4/10
+2s - loss: 0.6923 - acc: 0.5156 - val_loss: 0.6927 - val_acc: 0.5106
+Epoch 5/10
+2s - loss: 0.6913 - acc: 0.5267 - val_loss: 0.6922 - val_acc: 0.5195
+Epoch 6/10
+2s - loss: 0.6900 - acc: 0.5319 - val_loss: 0.6925 - val_acc: 0.5102
+Epoch 7/10
+2s - loss: 0.6874 - acc: 0.5401 - val_loss: 0.6919 - val_acc: 0.5204
+Epoch 8/10
+2s - loss: 0.6851 - acc: 0.5517 - val_loss: 0.6924 - val_acc: 0.5233
+Epoch 9/10
+2s - loss: 0.6816 - acc: 0.5625 - val_loss: 0.6910 - val_acc: 0.5278
+Epoch 10/10
+2s - loss: 0.6776 - acc: 0.5724 - val_loss: 0.6940 - val_acc: 0.5262
+[[2050 2169]
+ [1772 2327]]
+Valid Label 0 Precision, 53.64%
+Valid Label 1 Precision, 51.76%
+Test on 9485 samples
+[[2158 2596]
+ [2022 2709]]
+Test Label 0 Precision, 51.63%
+Test Label 1 Precision, 51.07%
+('Trial:', 1)
+Train on 33275 samples, validate on 8318 samples
+Epoch 1/10
+2s - loss: 0.6999 - acc: 0.4976 - val_loss: 0.6931 - val_acc: 0.5050
+Epoch 2/10
+2s - loss: 0.6934 - acc: 0.5073 - val_loss: 0.6930 - val_acc: 0.5111
+Epoch 3/10
+2s - loss: 0.6926 - acc: 0.5100 - val_loss: 0.6931 - val_acc: 0.5030
+Epoch 4/10
+2s - loss: 0.6922 - acc: 0.5162 - val_loss: 0.6927 - val_acc: 0.5139
+Epoch 5/10
+2s - loss: 0.6911 - acc: 0.5258 - val_loss: 0.6924 - val_acc: 0.5142
+Epoch 6/10
+2s - loss: 0.6894 - acc: 0.5353 - val_loss: 0.6927 - val_acc: 0.5174
+Epoch 7/10
+2s - loss: 0.6880 - acc: 0.5379 - val_loss: 0.6919 - val_acc: 0.5269
+Epoch 8/10
+2s - loss: 0.6858 - acc: 0.5463 - val_loss: 0.6922 - val_acc: 0.5275
+Epoch 9/10
+2s - loss: 0.6823 - acc: 0.5592 - val_loss: 0.6929 - val_acc: 0.5240
+Epoch 10/10
+2s - loss: 0.6776 - acc: 0.5688 - val_loss: 0.6931 - val_acc: 0.5297
+[[2436 1783]
+ [2129 1970]]
+Valid Label 0 Precision, 53.36%
+Valid Label 1 Precision, 52.49%
+Test on 9485 samples
+[[2529 2225]
+ [2488 2243]]
+Test Label 0 Precision, 50.41%
+Test Label 1 Precision, 50.20%
+('Trial:', 2)
+Train on 33275 samples, validate on 8318 samples
+Epoch 1/10
+3s - loss: 0.6961 - acc: 0.5014 - val_loss: 0.6929 - val_acc: 0.5094
+Epoch 2/10
+2s - loss: 0.6929 - acc: 0.5095 - val_loss: 0.6928 - val_acc: 0.5032
+Epoch 3/10
+2s - loss: 0.6929 - acc: 0.5104 - val_loss: 0.6930 - val_acc: 0.5093
+Epoch 4/10
+2s - loss: 0.6918 - acc: 0.5195 - val_loss: 0.6930 - val_acc: 0.5094
+Epoch 5/10
+2s - loss: 0.6906 - acc: 0.5254 - val_loss: 0.6927 - val_acc: 0.5109
+Epoch 6/10
+2s - loss: 0.6892 - acc: 0.5382 - val_loss: 0.6929 - val_acc: 0.5142
+Epoch 7/10
+2s - loss: 0.6868 - acc: 0.5443 - val_loss: 0.6930 - val_acc: 0.5123
+Epoch 8/10
+2s - loss: 0.6836 - acc: 0.5579 - val_loss: 0.6928 - val_acc: 0.5164
+Epoch 9/10
+2s - loss: 0.6800 - acc: 0.5658 - val_loss: 0.6948 - val_acc: 0.5091
+Epoch 10/10
+2s - loss: 0.6764 - acc: 0.5714 - val_loss: 0.6948 - val_acc: 0.5185
+[[2637 1582]
+ [2423 1676]]
+Valid Label 0 Precision, 52.11%
+Valid Label 1 Precision, 51.44%
+Test on 9485 samples
+[[2923 1831]
+ [2804 1927]]
+Test Label 0 Precision, 51.04%
+Test Label 1 Precision, 51.28%
+('Trial:', 3)
+Train on 33275 samples, validate on 8318 samples
+Epoch 1/10
+2s - loss: 0.6975 - acc: 0.4989 - val_loss: 0.6938 - val_acc: 0.4925
+Epoch 2/10
+2s - loss: 0.6934 - acc: 0.5056 - val_loss: 0.6929 - val_acc: 0.5010
+Epoch 3/10
+2s - loss: 0.6932 - acc: 0.5068 - val_loss: 0.6927 - val_acc: 0.5155
+Epoch 4/10
+2s - loss: 0.6920 - acc: 0.5199 - val_loss: 0.6925 - val_acc: 0.5125
+Epoch 5/10
+2s - loss: 0.6915 - acc: 0.5209 - val_loss: 0.6920 - val_acc: 0.5133
+Epoch 6/10
+2s - loss: 0.6909 - acc: 0.5259 - val_loss: 0.6919 - val_acc: 0.5186
+Epoch 7/10
+2s - loss: 0.6887 - acc: 0.5368 - val_loss: 0.6921 - val_acc: 0.5212
+Epoch 8/10
+2s - loss: 0.6877 - acc: 0.5395 - val_loss: 0.6921 - val_acc: 0.5145
+Epoch 9/10
+2s - loss: 0.6851 - acc: 0.5504 - val_loss: 0.6914 - val_acc: 0.5190
+Epoch 10/10
+2s - loss: 0.6812 - acc: 0.5595 - val_loss: 0.6928 - val_acc: 0.5215
+[[2202 2017]
+ [1963 2136]]
+Valid Label 0 Precision, 52.87%
+Valid Label 1 Precision, 51.43%
+Test on 9485 samples
+[[2229 2525]
+ [2145 2586]]
+Test Label 0 Precision, 50.96%
+Test Label 1 Precision, 50.60%
+('Trial:', 4)
+Train on 33275 samples, validate on 8318 samples
+Epoch 1/10
+2s - loss: 0.6993 - acc: 0.5003 - val_loss: 0.6928 - val_acc: 0.5059
+Epoch 2/10
+2s - loss: 0.6931 - acc: 0.5076 - val_loss: 0.6927 - val_acc: 0.5144
+Epoch 3/10
+2s - loss: 0.6924 - acc: 0.5175 - val_loss: 0.6924 - val_acc: 0.5157
+Epoch 4/10
+2s - loss: 0.6916 - acc: 0.5227 - val_loss: 0.6924 - val_acc: 0.5153
+Epoch 5/10
+2s - loss: 0.6903 - acc: 0.5316 - val_loss: 0.6927 - val_acc: 0.5123
+Epoch 6/10
+2s - loss: 0.6885 - acc: 0.5386 - val_loss: 0.6922 - val_acc: 0.5166
+Epoch 7/10
+2s - loss: 0.6865 - acc: 0.5452 - val_loss: 0.6933 - val_acc: 0.5151
+Epoch 8/10
+2s - loss: 0.6842 - acc: 0.5545 - val_loss: 0.6929 - val_acc: 0.5172
+Epoch 9/10
+2s - loss: 0.6804 - acc: 0.5643 - val_loss: 0.6923 - val_acc: 0.5207
+Epoch 10/10
+2s - loss: 0.6767 - acc: 0.5701 - val_loss: 0.6945 - val_acc: 0.5226
+[[3103 1116]
+ [2855 1244]]
+Valid Label 0 Precision, 52.08%
+Valid Label 1 Precision, 52.71%
+Test on 9485 samples
+[[3379 1375]
+ [3322 1409]]
+Test Label 0 Precision, 50.43%
+Test Label 1 Precision, 50.61%
+('Trial:', 5)
+Train on 33275 samples, validate on 8318 samples
+Epoch 1/10
+2s - loss: 0.6954 - acc: 0.4976 - val_loss: 0.6932 - val_acc: 0.4981
+Epoch 2/10
+2s - loss: 0.6932 - acc: 0.5078 - val_loss: 0.6932 - val_acc: 0.4940
+Epoch 3/10
+2s - loss: 0.6932 - acc: 0.5049 - val_loss: 0.6931 - val_acc: 0.5078
+Epoch 4/10
+2s - loss: 0.6925 - acc: 0.5108 - val_loss: 0.6930 - val_acc: 0.5123
+Epoch 5/10
+2s - loss: 0.6921 - acc: 0.5149 - val_loss: 0.6928 - val_acc: 0.5129
+Epoch 6/10
+2s - loss: 0.6914 - acc: 0.5217 - val_loss: 0.6927 - val_acc: 0.5102
+Epoch 7/10
+2s - loss: 0.6899 - acc: 0.5328 - val_loss: 0.6924 - val_acc: 0.5101
+Epoch 8/10
+2s - loss: 0.6873 - acc: 0.5443 - val_loss: 0.6936 - val_acc: 0.5083
+Epoch 9/10
+2s - loss: 0.6850 - acc: 0.5469 - val_loss: 0.6918 - val_acc: 0.5157
+Epoch 10/10
+2s - loss: 0.6816 - acc: 0.5595 - val_loss: 0.6950 - val_acc: 0.5164
+[[1186 3033]
+ [ 990 3109]]
+Valid Label 0 Precision, 54.50%
+Valid Label 1 Precision, 50.62%
+Test on 9485 samples
+[[1038 3716]
+ [1054 3677]]
+Test Label 0 Precision, 49.62%
+Test Label 1 Precision, 49.74%
+('Trial:', 6)
+Train on 33275 samples, validate on 8318 samples
+Epoch 1/10
+2s - loss: 0.6977 - acc: 0.5004 - val_loss: 0.6933 - val_acc: 0.4946
+Epoch 2/10
+2s - loss: 0.6936 - acc: 0.4992 - val_loss: 0.6931 - val_acc: 0.4980
+Epoch 3/10
+2s - loss: 0.6934 - acc: 0.5015 - val_loss: 0.6931 - val_acc: 0.4948
+Epoch 4/10
+2s - loss: 0.6928 - acc: 0.5082 - val_loss: 0.6931 - val_acc: 0.4992
+Epoch 5/10
+2s - loss: 0.6924 - acc: 0.5160 - val_loss: 0.6927 - val_acc: 0.5173
+Epoch 6/10
+2s - loss: 0.6919 - acc: 0.5208 - val_loss: 0.6931 - val_acc: 0.5002
+Epoch 7/10
+2s - loss: 0.6904 - acc: 0.5265 - val_loss: 0.6926 - val_acc: 0.5190
+Epoch 8/10
+2s - loss: 0.6890 - acc: 0.5360 - val_loss: 0.6929 - val_acc: 0.5172
+Epoch 9/10
+2s - loss: 0.6871 - acc: 0.5409 - val_loss: 0.6929 - val_acc: 0.5195
+Epoch 10/10
+2s - loss: 0.6852 - acc: 0.5477 - val_loss: 0.6931 - val_acc: 0.5234
+[[2741 1478]
+ [2486 1613]]
+Valid Label 0 Precision, 52.44%
+Valid Label 1 Precision, 52.18%
+Test on 9485 samples
+[[3022 1732]
+ [2913 1818]]
+Test Label 0 Precision, 50.92%
+Test Label 1 Precision, 51.21%
+('Trial:', 7)
+Train on 33275 samples, validate on 8318 samples
+Epoch 1/10
+2s - loss: 0.6951 - acc: 0.5051 - val_loss: 0.6936 - val_acc: 0.4959
+Epoch 2/10
+2s - loss: 0.6932 - acc: 0.5072 - val_loss: 0.6931 - val_acc: 0.5113
+Epoch 3/10
+2s - loss: 0.6925 - acc: 0.5133 - val_loss: 0.6930 - val_acc: 0.5036
+Epoch 4/10
+2s - loss: 0.6917 - acc: 0.5193 - val_loss: 0.6925 - val_acc: 0.5215
+Epoch 5/10
+2s - loss: 0.6905 - acc: 0.5281 - val_loss: 0.6923 - val_acc: 0.5226
+Epoch 6/10
+2s - loss: 0.6883 - acc: 0.5421 - val_loss: 0.6918 - val_acc: 0.5256
+Epoch 7/10
+2s - loss: 0.6857 - acc: 0.5483 - val_loss: 0.6923 - val_acc: 0.5207
+Epoch 8/10
+2s - loss: 0.6822 - acc: 0.5595 - val_loss: 0.6957 - val_acc: 0.5189
+Epoch 9/10
+2s - loss: 0.6789 - acc: 0.5701 - val_loss: 0.6982 - val_acc: 0.5162
+Epoch 10/10
+2s - loss: 0.6752 - acc: 0.5760 - val_loss: 0.6998 - val_acc: 0.5203
+[[1572 2647]
+ [1343 2756]]
+Valid Label 0 Precision, 53.93%
+Valid Label 1 Precision, 51.01%
+Test on 9485 samples
+[[1556 3198]
+ [1485 3246]]
+Test Label 0 Precision, 51.17%
+Test Label 1 Precision, 50.37%
+('Trial:', 8)
+Train on 33275 samples, validate on 8318 samples
+Epoch 1/10
+2s - loss: 0.6974 - acc: 0.5044 - val_loss: 0.6931 - val_acc: 0.4999
+Epoch 2/10
+2s - loss: 0.6937 - acc: 0.5015 - val_loss: 0.6933 - val_acc: 0.4939
+Epoch 3/10
+2s - loss: 0.6929 - acc: 0.5098 - val_loss: 0.6928 - val_acc: 0.5075
+Epoch 4/10
+2s - loss: 0.6920 - acc: 0.5169 - val_loss: 0.6925 - val_acc: 0.5142
+Epoch 5/10
+2s - loss: 0.6911 - acc: 0.5236 - val_loss: 0.6925 - val_acc: 0.5159
+Epoch 6/10
+2s - loss: 0.6899 - acc: 0.5318 - val_loss: 0.6926 - val_acc: 0.5053
+Epoch 7/10
+2s - loss: 0.6882 - acc: 0.5368 - val_loss: 0.6924 - val_acc: 0.5148
+Epoch 8/10
+2s - loss: 0.6861 - acc: 0.5470 - val_loss: 0.6925 - val_acc: 0.5178
+Epoch 9/10
+2s - loss: 0.6825 - acc: 0.5565 - val_loss: 0.6917 - val_acc: 0.5301
+Epoch 10/10
+2s - loss: 0.6795 - acc: 0.5665 - val_loss: 0.6948 - val_acc: 0.5198
+[[2405 1814]
+ [2180 1919]]
+Valid Label 0 Precision, 52.45%
+Valid Label 1 Precision, 51.41%
+Test on 9485 samples
+[[2464 2290]
+ [2303 2428]]
+Test Label 0 Precision, 51.69%
+Test Label 1 Precision, 51.46%
+('Trial:', 9)
+Train on 33275 samples, validate on 8318 samples
+Epoch 1/10
+2s - loss: 0.6972 - acc: 0.4981 - val_loss: 0.6929 - val_acc: 0.5066
+Epoch 2/10
+2s - loss: 0.6934 - acc: 0.5061 - val_loss: 0.6933 - val_acc: 0.5030
+Epoch 3/10
+2s - loss: 0.6930 - acc: 0.5073 - val_loss: 0.6930 - val_acc: 0.5075
+Epoch 4/10
+2s - loss: 0.6922 - acc: 0.5180 - val_loss: 0.6928 - val_acc: 0.5072
+Epoch 5/10
+2s - loss: 0.6913 - acc: 0.5243 - val_loss: 0.6930 - val_acc: 0.5120
+Epoch 6/10
+2s - loss: 0.6908 - acc: 0.5241 - val_loss: 0.6934 - val_acc: 0.5073
+Epoch 7/10
+2s - loss: 0.6897 - acc: 0.5342 - val_loss: 0.6926 - val_acc: 0.5150
+Epoch 8/10
+2s - loss: 0.6880 - acc: 0.5411 - val_loss: 0.6928 - val_acc: 0.5124
+Epoch 9/10
+2s - loss: 0.6851 - acc: 0.5470 - val_loss: 0.6945 - val_acc: 0.5137
+Epoch 10/10
+2s - loss: 0.6827 - acc: 0.5580 - val_loss: 0.6943 - val_acc: 0.5197
+[[2408 1811]
+ [2184 1915]]
+Valid Label 0 Precision, 52.44%
+Valid Label 1 Precision, 51.40%
+Test on 9485 samples
+[[2502 2252]
+ [2395 2336]]
+Test Label 0 Precision, 51.09%
+Test Label 1 Precision, 50.92%
+('Trial:', 10)
+Train on 33275 samples, validate on 8318 samples
+Epoch 1/10
+3s - loss: 0.7008 - acc: 0.5017 - val_loss: 0.6929 - val_acc: 0.5141
+Epoch 2/10
+2s - loss: 0.6936 - acc: 0.5064 - val_loss: 0.6928 - val_acc: 0.5129
+Epoch 3/10
+2s - loss: 0.6926 - acc: 0.5137 - val_loss: 0.6928 - val_acc: 0.5137
+Epoch 4/10
+2s - loss: 0.6923 - acc: 0.5125 - val_loss: 0.6926 - val_acc: 0.5153
+Epoch 5/10
+2s - loss: 0.6910 - acc: 0.5242 - val_loss: 0.6928 - val_acc: 0.5150
+Epoch 6/10
+2s - loss: 0.6889 - acc: 0.5339 - val_loss: 0.6930 - val_acc: 0.5197
+Epoch 7/10
+2s - loss: 0.6873 - acc: 0.5448 - val_loss: 0.6929 - val_acc: 0.5203
+Epoch 8/10
+2s - loss: 0.6841 - acc: 0.5528 - val_loss: 0.6934 - val_acc: 0.5218
+Epoch 9/10
+2s - loss: 0.6820 - acc: 0.5601 - val_loss: 0.6930 - val_acc: 0.5195
+Epoch 10/10
+2s - loss: 0.6783 - acc: 0.5685 - val_loss: 0.6948 - val_acc: 0.5230
+[[2936 1283]
+ [2685 1414]]
+Valid Label 0 Precision, 52.23%
+Valid Label 1 Precision, 52.43%
+Test on 9485 samples
+[[3289 1465]
+ [3160 1571]]
+Test Label 0 Precision, 51.00%
+Test Label 1 Precision, 51.75%
+('Trial:', 11)
+Train on 33275 samples, validate on 8318 samples
+Epoch 1/10
+2s - loss: 0.7019 - acc: 0.5010 - val_loss: 0.6938 - val_acc: 0.5014
+Epoch 2/10
+2s - loss: 0.6935 - acc: 0.5024 - val_loss: 0.6932 - val_acc: 0.4998
+Epoch 3/10
+2s - loss: 0.6931 - acc: 0.5084 - val_loss: 0.6930 - val_acc: 0.5035
+Epoch 4/10
+2s - loss: 0.6924 - acc: 0.5131 - val_loss: 0.6929 - val_acc: 0.5049
+Epoch 5/10
+2s - loss: 0.6921 - acc: 0.5195 - val_loss: 0.6926 - val_acc: 0.5143
+Epoch 6/10
+2s - loss: 0.6914 - acc: 0.5254 - val_loss: 0.6925 - val_acc: 0.5172
+Epoch 7/10
+2s - loss: 0.6903 - acc: 0.5311 - val_loss: 0.6933 - val_acc: 0.5123
+Epoch 8/10
+2s - loss: 0.6894 - acc: 0.5323 - val_loss: 0.6925 - val_acc: 0.5183
+Epoch 9/10
+2s - loss: 0.6878 - acc: 0.5415 - val_loss: 0.6932 - val_acc: 0.5160
+Epoch 10/10
+2s - loss: 0.6853 - acc: 0.5505 - val_loss: 0.6933 - val_acc: 0.5119
+[[1757 2462]
+ [1598 2501]]
+Valid Label 0 Precision, 52.37%
+Valid Label 1 Precision, 50.39%
+Test on 9485 samples
+[[1913 2841]
+ [1721 3010]]
+Test Label 0 Precision, 52.64%
+Test Label 1 Precision, 51.44%
+('Trial:', 12)
+Train on 33275 samples, validate on 8318 samples
+Epoch 1/10
+2s - loss: 0.6958 - acc: 0.4974 - val_loss: 0.6930 - val_acc: 0.5067
+Epoch 2/10
+2s - loss: 0.6934 - acc: 0.5024 - val_loss: 0.6929 - val_acc: 0.5038
+Epoch 3/10
+2s - loss: 0.6932 - acc: 0.5090 - val_loss: 0.6931 - val_acc: 0.5103
+Epoch 4/10
+2s - loss: 0.6920 - acc: 0.5174 - val_loss: 0.6928 - val_acc: 0.5065
+Epoch 5/10
+2s - loss: 0.6914 - acc: 0.5229 - val_loss: 0.6923 - val_acc: 0.5120
+Epoch 6/10
+2s - loss: 0.6899 - acc: 0.5299 - val_loss: 0.6928 - val_acc: 0.5124
+Epoch 7/10
+2s - loss: 0.6886 - acc: 0.5376 - val_loss: 0.6924 - val_acc: 0.5188
+Epoch 8/10
+2s - loss: 0.6866 - acc: 0.5444 - val_loss: 0.6920 - val_acc: 0.5154
+Epoch 9/10
+2s - loss: 0.6840 - acc: 0.5526 - val_loss: 0.6929 - val_acc: 0.5191
+Epoch 10/10
+2s - loss: 0.6812 - acc: 0.5632 - val_loss: 0.6942 - val_acc: 0.5197
+[[2235 1984]
+ [2011 2088]]
+Valid Label 0 Precision, 52.64%
+Valid Label 1 Precision, 51.28%
+Test on 9485 samples
+[[2231 2523]
+ [2117 2614]]
+Test Label 0 Precision, 51.31%
+Test Label 1 Precision, 50.89%
+('Trial:', 13)
+Train on 33275 samples, validate on 8318 samples
+Epoch 1/10
+2s - loss: 0.6974 - acc: 0.5014 - val_loss: 0.6932 - val_acc: 0.5035
+Epoch 2/10
+2s - loss: 0.6933 - acc: 0.5050 - val_loss: 0.6930 - val_acc: 0.5063
+Epoch 3/10
+2s - loss: 0.6927 - acc: 0.5109 - val_loss: 0.6929 - val_acc: 0.5091
+Epoch 4/10
+2s - loss: 0.6921 - acc: 0.5174 - val_loss: 0.6926 - val_acc: 0.5142
+Epoch 5/10
+2s - loss: 0.6913 - acc: 0.5242 - val_loss: 0.6923 - val_acc: 0.5135
+Epoch 6/10
+2s - loss: 0.6893 - acc: 0.5351 - val_loss: 0.6920 - val_acc: 0.5127
+Epoch 7/10
+2s - loss: 0.6873 - acc: 0.5408 - val_loss: 0.6920 - val_acc: 0.5236
+Epoch 8/10
+2s - loss: 0.6847 - acc: 0.5503 - val_loss: 0.6928 - val_acc: 0.5224
+Epoch 9/10
+2s - loss: 0.6807 - acc: 0.5653 - val_loss: 0.6952 - val_acc: 0.5189
+Epoch 10/10
+2s - loss: 0.6783 - acc: 0.5708 - val_loss: 0.6943 - val_acc: 0.5221
+[[2048 2171]
+ [1804 2295]]
+Valid Label 0 Precision, 53.17%
+Valid Label 1 Precision, 51.39%
+Test on 9485 samples
+[[2222 2532]
+ [2055 2676]]
+Test Label 0 Precision, 51.95%
+Test Label 1 Precision, 51.38%
+('Trial:', 14)
+Train on 33275 samples, validate on 8318 samples
+Epoch 1/10
+2s - loss: 0.6967 - acc: 0.5011 - val_loss: 0.6933 - val_acc: 0.4969
+Epoch 2/10
+2s - loss: 0.6933 - acc: 0.5038 - val_loss: 0.6931 - val_acc: 0.4972
+Epoch 3/10
+2s - loss: 0.6924 - acc: 0.5136 - val_loss: 0.6930 - val_acc: 0.5031
+Epoch 4/10
+2s - loss: 0.6918 - acc: 0.5187 - val_loss: 0.6926 - val_acc: 0.5168
+Epoch 5/10
+2s - loss: 0.6907 - acc: 0.5255 - val_loss: 0.6927 - val_acc: 0.5167
+Epoch 6/10
+2s - loss: 0.6896 - acc: 0.5331 - val_loss: 0.6928 - val_acc: 0.5150
+Epoch 7/10
+2s - loss: 0.6882 - acc: 0.5392 - val_loss: 0.6918 - val_acc: 0.5200
+Epoch 8/10
+2s - loss: 0.6860 - acc: 0.5461 - val_loss: 0.6922 - val_acc: 0.5212
+Epoch 9/10
+2s - loss: 0.6834 - acc: 0.5543 - val_loss: 0.6928 - val_acc: 0.5196
+Epoch 10/10
+2s - loss: 0.6804 - acc: 0.5609 - val_loss: 0.6929 - val_acc: 0.5243
+[[2973 1246]
+ [2711 1388]]
+Valid Label 0 Precision, 52.30%
+Valid Label 1 Precision, 52.70%
+Test on 9485 samples
+[[3164 1590]
+ [2972 1759]]
+Test Label 0 Precision, 51.56%
+Test Label 1 Precision, 52.52%
+('Trial:', 15)
+Train on 33275 samples, validate on 8318 samples
+Epoch 1/10
+3s - loss: 0.6973 - acc: 0.5013 - val_loss: 0.6933 - val_acc: 0.5002
+Epoch 2/10
+2s - loss: 0.6937 - acc: 0.5039 - val_loss: 0.6929 - val_acc: 0.5129
+Epoch 3/10
+2s - loss: 0.6928 - acc: 0.5119 - val_loss: 0.6932 - val_acc: 0.4924
+Epoch 4/10
+2s - loss: 0.6923 - acc: 0.5131 - val_loss: 0.6927 - val_acc: 0.5102
+Epoch 5/10
+2s - loss: 0.6915 - acc: 0.5208 - val_loss: 0.6927 - val_acc: 0.5151
+Epoch 6/10
+2s - loss: 0.6909 - acc: 0.5249 - val_loss: 0.6924 - val_acc: 0.5124
+Epoch 7/10
+2s - loss: 0.6892 - acc: 0.5376 - val_loss: 0.6926 - val_acc: 0.5166
+Epoch 8/10
+2s - loss: 0.6874 - acc: 0.5419 - val_loss: 0.6929 - val_acc: 0.5105
+Epoch 9/10
+2s - loss: 0.6851 - acc: 0.5521 - val_loss: 0.6929 - val_acc: 0.5147
+Epoch 10/10
+2s - loss: 0.6821 - acc: 0.5588 - val_loss: 0.6944 - val_acc: 0.5155
+[[3054 1165]
+ [2865 1234]]
+Valid Label 0 Precision, 51.60%
+Valid Label 1 Precision, 51.44%
+Test on 9485 samples
+[[3247 1507]
+ [3262 1469]]
+Test Label 0 Precision, 49.88%
+Test Label 1 Precision, 49.36%
+('Trial:', 16)
+Train on 33275 samples, validate on 8318 samples
+Epoch 1/10
+2s - loss: 0.6970 - acc: 0.4997 - val_loss: 0.6934 - val_acc: 0.4972
+Epoch 2/10
+2s - loss: 0.6931 - acc: 0.5090 - val_loss: 0.6931 - val_acc: 0.5007
+Epoch 3/10
+2s - loss: 0.6923 - acc: 0.5171 - val_loss: 0.6926 - val_acc: 0.5155
+Epoch 4/10
+2s - loss: 0.6918 - acc: 0.5180 - val_loss: 0.6923 - val_acc: 0.5135
+Epoch 5/10
+3s - loss: 0.6905 - acc: 0.5280 - val_loss: 0.6917 - val_acc: 0.5208
+Epoch 6/10
+3s - loss: 0.6882 - acc: 0.5387 - val_loss: 0.6925 - val_acc: 0.5218
+Epoch 7/10
+3s - loss: 0.6866 - acc: 0.5444 - val_loss: 0.6924 - val_acc: 0.5177
+Epoch 8/10
+3s - loss: 0.6851 - acc: 0.5510 - val_loss: 0.6927 - val_acc: 0.5200
+Epoch 9/10
+3s - loss: 0.6811 - acc: 0.5626 - val_loss: 0.6935 - val_acc: 0.5242
+Epoch 10/10
+2s - loss: 0.6777 - acc: 0.5681 - val_loss: 0.6953 - val_acc: 0.5166
+[[1805 2414]
+ [1607 2492]]
+Valid Label 0 Precision, 52.90%
+Valid Label 1 Precision, 50.79%
+Test on 9485 samples
+[[1987 2767]
+ [1916 2815]]
+Test Label 0 Precision, 50.91%
+Test Label 1 Precision, 50.43%
+('Trial:', 17)
+Train on 33275 samples, validate on 8318 samples
+Epoch 1/10
+2s - loss: 0.6983 - acc: 0.5043 - val_loss: 0.6935 - val_acc: 0.4975
+Epoch 2/10
+2s - loss: 0.6935 - acc: 0.5088 - val_loss: 0.6932 - val_acc: 0.5048
+Epoch 3/10
+2s - loss: 0.6927 - acc: 0.5159 - val_loss: 0.6930 - val_acc: 0.5032
+Epoch 4/10
+2s - loss: 0.6911 - acc: 0.5233 - val_loss: 0.6928 - val_acc: 0.5105
+Epoch 5/10
+3s - loss: 0.6909 - acc: 0.5266 - val_loss: 0.6922 - val_acc: 0.5230
+Epoch 6/10
+3s - loss: 0.6890 - acc: 0.5352 - val_loss: 0.6928 - val_acc: 0.5094
+Epoch 7/10
+3s - loss: 0.6868 - acc: 0.5444 - val_loss: 0.6918 - val_acc: 0.5313
+Epoch 8/10
+3s - loss: 0.6841 - acc: 0.5552 - val_loss: 0.6930 - val_acc: 0.5228
+Epoch 9/10
+2s - loss: 0.6814 - acc: 0.5603 - val_loss: 0.6933 - val_acc: 0.5191
+Epoch 10/10
+2s - loss: 0.6786 - acc: 0.5695 - val_loss: 0.6936 - val_acc: 0.5256
+[[2188 2031]
+ [1915 2184]]
+Valid Label 0 Precision, 53.33%
+Valid Label 1 Precision, 51.81%
+Test on 9485 samples
+[[2228 2526]
+ [2063 2668]]
+Test Label 0 Precision, 51.92%
+Test Label 1 Precision, 51.37%
+('Trial:', 18)
+Train on 33275 samples, validate on 8318 samples
+Epoch 1/10
+2s - loss: 0.6966 - acc: 0.5050 - val_loss: 0.6930 - val_acc: 0.4976
+Epoch 2/10
+2s - loss: 0.6932 - acc: 0.5040 - val_loss: 0.6928 - val_acc: 0.5137
+Epoch 3/10
+2s - loss: 0.6923 - acc: 0.5135 - val_loss: 0.6924 - val_acc: 0.5115
+Epoch 4/10
+2s - loss: 0.6912 - acc: 0.5213 - val_loss: 0.6929 - val_acc: 0.5067
+Epoch 5/10
+2s - loss: 0.6905 - acc: 0.5296 - val_loss: 0.6921 - val_acc: 0.5180
+Epoch 6/10
+2s - loss: 0.6894 - acc: 0.5324 - val_loss: 0.6926 - val_acc: 0.5101
+Epoch 7/10
+2s - loss: 0.6873 - acc: 0.5395 - val_loss: 0.6913 - val_acc: 0.5231
+Epoch 8/10
+2s - loss: 0.6848 - acc: 0.5547 - val_loss: 0.6923 - val_acc: 0.5209
+Epoch 9/10
+2s - loss: 0.6802 - acc: 0.5645 - val_loss: 0.6940 - val_acc: 0.5233
+Epoch 10/10
+2s - loss: 0.6768 - acc: 0.5733 - val_loss: 0.6952 - val_acc: 0.5210
+[[2030 2189]
+ [1795 2304]]
+Valid Label 0 Precision, 53.07%
+Valid Label 1 Precision, 51.28%
+Test on 9485 samples
+[[1963 2791]
+ [1874 2857]]
+Test Label 0 Precision, 51.16%
+Test Label 1 Precision, 50.58%
+('Trial:', 19)
+Train on 33275 samples, validate on 8318 samples
+Epoch 1/10
+3s - loss: 0.6960 - acc: 0.4997 - val_loss: 0.6934 - val_acc: 0.5013
+Epoch 2/10
+2s - loss: 0.6936 - acc: 0.5024 - val_loss: 0.6933 - val_acc: 0.5069
+Epoch 3/10
+2s - loss: 0.6926 - acc: 0.5143 - val_loss: 0.6926 - val_acc: 0.5145
+Epoch 4/10
+2s - loss: 0.6918 - acc: 0.5233 - val_loss: 0.6924 - val_acc: 0.5173
+Epoch 5/10
+2s - loss: 0.6910 - acc: 0.5247 - val_loss: 0.6927 - val_acc: 0.5150
+Epoch 6/10
+2s - loss: 0.6898 - acc: 0.5345 - val_loss: 0.6924 - val_acc: 0.5168
+Epoch 7/10
+2s - loss: 0.6870 - acc: 0.5462 - val_loss: 0.6930 - val_acc: 0.5103
+Epoch 8/10
+2s - loss: 0.6846 - acc: 0.5515 - val_loss: 0.6927 - val_acc: 0.5236
+Epoch 9/10
+2s - loss: 0.6808 - acc: 0.5628 - val_loss: 0.6940 - val_acc: 0.5151
+Epoch 10/10
+2s - loss: 0.6781 - acc: 0.5718 - val_loss: 0.6959 - val_acc: 0.5222
+[[2440 1779]
+ [2195 1904]]
+Valid Label 0 Precision, 52.64%
+Valid Label 1 Precision, 51.70%
+Test on 9485 samples
+[[2494 2260]
+ [2401 2330]]
+Test Label 0 Precision, 50.95%
+Test Label 1 Precision, 50.76%
+('Trial:', 20)
+Train on 33275 samples, validate on 8318 samples
+Epoch 1/10
+3s - loss: 0.6960 - acc: 0.5024 - val_loss: 0.6931 - val_acc: 0.5018
+Epoch 2/10
+2s - loss: 0.6933 - acc: 0.5054 - val_loss: 0.6929 - val_acc: 0.5114
+Epoch 3/10
+2s - loss: 0.6925 - acc: 0.5101 - val_loss: 0.6927 - val_acc: 0.5141
+Epoch 4/10
+2s - loss: 0.6915 - acc: 0.5230 - val_loss: 0.6926 - val_acc: 0.5142
+Epoch 5/10
+2s - loss: 0.6906 - acc: 0.5263 - val_loss: 0.6925 - val_acc: 0.5167
+Epoch 6/10
+2s - loss: 0.6886 - acc: 0.5400 - val_loss: 0.6926 - val_acc: 0.5226
+Epoch 7/10
+2s - loss: 0.6865 - acc: 0.5461 - val_loss: 0.6926 - val_acc: 0.5222
+Epoch 8/10
+2s - loss: 0.6839 - acc: 0.5525 - val_loss: 0.6937 - val_acc: 0.5240
+Epoch 9/10
+2s - loss: 0.6804 - acc: 0.5621 - val_loss: 0.6939 - val_acc: 0.5219
+Epoch 10/10
+2s - loss: 0.6758 - acc: 0.5708 - val_loss: 0.6955 - val_acc: 0.5213
+[[3162 1057]
+ [2925 1174]]
+Valid Label 0 Precision, 51.95%
+Valid Label 1 Precision, 52.62%
+Test on 9485 samples
+[[3420 1334]
+ [3290 1441]]
+Test Label 0 Precision, 50.97%
+Test Label 1 Precision, 51.93%
+('Trial:', 21)
+Train on 33275 samples, validate on 8318 samples
+Epoch 1/10
+3s - loss: 0.6968 - acc: 0.4982 - val_loss: 0.6931 - val_acc: 0.5034
+Epoch 2/10
+2s - loss: 0.6936 - acc: 0.5013 - val_loss: 0.6931 - val_acc: 0.4998
+Epoch 3/10
+2s - loss: 0.6930 - acc: 0.5099 - val_loss: 0.6930 - val_acc: 0.5144
+Epoch 4/10
+2s - loss: 0.6922 - acc: 0.5136 - val_loss: 0.6929 - val_acc: 0.5034
+Epoch 5/10
+2s - loss: 0.6916 - acc: 0.5224 - val_loss: 0.6928 - val_acc: 0.5013
+Epoch 6/10
+2s - loss: 0.6907 - acc: 0.5257 - val_loss: 0.6922 - val_acc: 0.5162
+Epoch 7/10
+2s - loss: 0.6891 - acc: 0.5356 - val_loss: 0.6923 - val_acc: 0.5172
+Epoch 8/10
+2s - loss: 0.6875 - acc: 0.5438 - val_loss: 0.6929 - val_acc: 0.5102
+Epoch 9/10
+3s - loss: 0.6846 - acc: 0.5519 - val_loss: 0.6934 - val_acc: 0.5216
+Epoch 10/10
+2s - loss: 0.6805 - acc: 0.5625 - val_loss: 0.6956 - val_acc: 0.5135
+[[1653 2566]
+ [1481 2618]]
+Valid Label 0 Precision, 52.74%
+Valid Label 1 Precision, 50.50%
+Test on 9485 samples
+[[1617 3137]
+ [1520 3211]]
+Test Label 0 Precision, 51.55%
+Test Label 1 Precision, 50.58%
+('Trial:', 22)
+Train on 33275 samples, validate on 8318 samples
+Epoch 1/10
+3s - loss: 0.6962 - acc: 0.4980 - val_loss: 0.6932 - val_acc: 0.4994
+Epoch 2/10
+2s - loss: 0.6933 - acc: 0.5037 - val_loss: 0.6931 - val_acc: 0.5005
+Epoch 3/10
+2s - loss: 0.6933 - acc: 0.5049 - val_loss: 0.6931 - val_acc: 0.4970
+Epoch 4/10
+2s - loss: 0.6928 - acc: 0.5095 - val_loss: 0.6930 - val_acc: 0.5019
+Epoch 5/10
+2s - loss: 0.6917 - acc: 0.5202 - val_loss: 0.6928 - val_acc: 0.5075
+Epoch 6/10
+2s - loss: 0.6907 - acc: 0.5254 - val_loss: 0.6923 - val_acc: 0.5139
+Epoch 7/10
+2s - loss: 0.6894 - acc: 0.5356 - val_loss: 0.6916 - val_acc: 0.5272
+Epoch 8/10
+2s - loss: 0.6877 - acc: 0.5406 - val_loss: 0.6921 - val_acc: 0.5240
+Epoch 9/10
+2s - loss: 0.6847 - acc: 0.5526 - val_loss: 0.6918 - val_acc: 0.5219
+Epoch 10/10
+2s - loss: 0.6811 - acc: 0.5581 - val_loss: 0.6926 - val_acc: 0.5191
+[[2266 1953]
+ [2047 2052]]
+Valid Label 0 Precision, 52.54%
+Valid Label 1 Precision, 51.24%
+Test on 9485 samples
+[[2295 2459]
+ [2166 2565]]
+Test Label 0 Precision, 51.45%
+Test Label 1 Precision, 51.05%
+('Trial:', 23)
+Train on 33275 samples, validate on 8318 samples
+Epoch 1/10
+3s - loss: 0.6982 - acc: 0.4982 - val_loss: 0.6933 - val_acc: 0.4983
+Epoch 2/10
+2s - loss: 0.6934 - acc: 0.5031 - val_loss: 0.6929 - val_acc: 0.5141
+Epoch 3/10
+2s - loss: 0.6926 - acc: 0.5098 - val_loss: 0.6927 - val_acc: 0.5144
+Epoch 4/10
+2s - loss: 0.6922 - acc: 0.5165 - val_loss: 0.6926 - val_acc: 0.5166
+Epoch 5/10
+2s - loss: 0.6911 - acc: 0.5244 - val_loss: 0.6926 - val_acc: 0.5126
+Epoch 6/10
+2s - loss: 0.6907 - acc: 0.5289 - val_loss: 0.6921 - val_acc: 0.5191
+Epoch 7/10
+2s - loss: 0.6888 - acc: 0.5384 - val_loss: 0.6921 - val_acc: 0.5191
+Epoch 8/10
+2s - loss: 0.6862 - acc: 0.5461 - val_loss: 0.6924 - val_acc: 0.5270
+Epoch 9/10
+2s - loss: 0.6834 - acc: 0.5538 - val_loss: 0.6934 - val_acc: 0.5232
+Epoch 10/10
+2s - loss: 0.6810 - acc: 0.5627 - val_loss: 0.6924 - val_acc: 0.5225
+[[2625 1594]
+ [2378 1721]]
+Valid Label 0 Precision, 52.47%
+Valid Label 1 Precision, 51.92%
+Test on 9485 samples
+[[2898 1856]
+ [2738 1993]]
+Test Label 0 Precision, 51.42%
+Test Label 1 Precision, 51.78%
+('Trial:', 24)
+Train on 33275 samples, validate on 8318 samples
+Epoch 1/10
+3s - loss: 0.6950 - acc: 0.5027 - val_loss: 0.6926 - val_acc: 0.5194
+Epoch 2/10
+2s - loss: 0.6932 - acc: 0.5043 - val_loss: 0.6929 - val_acc: 0.5013
+Epoch 3/10
+2s - loss: 0.6924 - acc: 0.5139 - val_loss: 0.6924 - val_acc: 0.5166
+Epoch 4/10
+2s - loss: 0.6916 - acc: 0.5236 - val_loss: 0.6918 - val_acc: 0.5184
+Epoch 5/10
+2s - loss: 0.6904 - acc: 0.5300 - val_loss: 0.6923 - val_acc: 0.5192
+Epoch 6/10
+2s - loss: 0.6888 - acc: 0.5367 - val_loss: 0.6925 - val_acc: 0.5162
+Epoch 7/10
+2s - loss: 0.6864 - acc: 0.5469 - val_loss: 0.6931 - val_acc: 0.5240
+Epoch 8/10
+2s - loss: 0.6829 - acc: 0.5557 - val_loss: 0.6939 - val_acc: 0.5201
+Epoch 9/10
+2s - loss: 0.6800 - acc: 0.5684 - val_loss: 0.6945 - val_acc: 0.5208
+Epoch 10/10
+2s - loss: 0.6781 - acc: 0.5709 - val_loss: 0.6951 - val_acc: 0.5237
+[[3089 1130]
+ [2832 1267]]
+Valid Label 0 Precision, 52.17%
+Valid Label 1 Precision, 52.86%
+Test on 9485 samples
+[[3332 1422]
+ [3235 1496]]
+Test Label 0 Precision, 50.74%
+Test Label 1 Precision, 51.27%
+('Trial:', 25)
+Train on 33275 samples, validate on 8318 samples
+Epoch 1/10
+3s - loss: 0.6959 - acc: 0.5009 - val_loss: 0.6929 - val_acc: 0.5069
+Epoch 2/10
+2s - loss: 0.6932 - acc: 0.5062 - val_loss: 0.6928 - val_acc: 0.5155
+Epoch 3/10
+2s - loss: 0.6929 - acc: 0.5065 - val_loss: 0.6930 - val_acc: 0.5048
+Epoch 4/10
+2s - loss: 0.6924 - acc: 0.5153 - val_loss: 0.6928 - val_acc: 0.5072
+Epoch 5/10
+2s - loss: 0.6923 - acc: 0.5170 - val_loss: 0.6930 - val_acc: 0.5047
+Epoch 6/10
+2s - loss: 0.6909 - acc: 0.5247 - val_loss: 0.6929 - val_acc: 0.5111
+Epoch 7/10
+2s - loss: 0.6904 - acc: 0.5311 - val_loss: 0.6931 - val_acc: 0.5081
+Epoch 8/10
+2s - loss: 0.6883 - acc: 0.5419 - val_loss: 0.6935 - val_acc: 0.5078
+Epoch 9/10
+2s - loss: 0.6862 - acc: 0.5482 - val_loss: 0.6924 - val_acc: 0.5176
+Epoch 10/10
+2s - loss: 0.6827 - acc: 0.5580 - val_loss: 0.6936 - val_acc: 0.5124
+[[2240 1979]
+ [2077 2022]]
+Valid Label 0 Precision, 51.89%
+Valid Label 1 Precision, 50.54%
+Test on 9485 samples
+[[2381 2373]
+ [2213 2518]]
+Test Label 0 Precision, 51.83%
+Test Label 1 Precision, 51.48%
+('Trial:', 26)
+Train on 33275 samples, validate on 8318 samples
+Epoch 1/10
+3s - loss: 0.6951 - acc: 0.5018 - val_loss: 0.6935 - val_acc: 0.4998
+Epoch 2/10
+2s - loss: 0.6933 - acc: 0.5021 - val_loss: 0.6928 - val_acc: 0.5082
+Epoch 3/10
+2s - loss: 0.6927 - acc: 0.5120 - val_loss: 0.6928 - val_acc: 0.5054
+Epoch 4/10
+2s - loss: 0.6917 - acc: 0.5215 - val_loss: 0.6927 - val_acc: 0.5103
+Epoch 5/10
+2s - loss: 0.6916 - acc: 0.5234 - val_loss: 0.6922 - val_acc: 0.5207
+Epoch 6/10
+2s - loss: 0.6906 - acc: 0.5271 - val_loss: 0.6927 - val_acc: 0.5131
+Epoch 7/10
+2s - loss: 0.6881 - acc: 0.5404 - val_loss: 0.6920 - val_acc: 0.5225
+Epoch 8/10
+2s - loss: 0.6857 - acc: 0.5467 - val_loss: 0.6928 - val_acc: 0.5240
+Epoch 9/10
+2s - loss: 0.6833 - acc: 0.5531 - val_loss: 0.6932 - val_acc: 0.5230
+Epoch 10/10
+2s - loss: 0.6783 - acc: 0.5687 - val_loss: 0.6962 - val_acc: 0.5148
+[[1648 2571]
+ [1465 2634]]
+Valid Label 0 Precision, 52.94%
+Valid Label 1 Precision, 50.61%
+Test on 9485 samples
+[[1751 3003]
+ [1677 3054]]
+Test Label 0 Precision, 51.08%
+Test Label 1 Precision, 50.42%
+('Trial:', 27)
+Train on 33275 samples, validate on 8318 samples
+Epoch 1/10
+3s - loss: 0.6962 - acc: 0.5068 - val_loss: 0.6934 - val_acc: 0.4984
+Epoch 2/10
+2s - loss: 0.6935 - acc: 0.5071 - val_loss: 0.6931 - val_acc: 0.5082
+Epoch 3/10
+2s - loss: 0.6930 - acc: 0.5107 - val_loss: 0.6928 - val_acc: 0.5114
+Epoch 4/10
+2s - loss: 0.6916 - acc: 0.5205 - val_loss: 0.6925 - val_acc: 0.5132
+Epoch 5/10
+2s - loss: 0.6903 - acc: 0.5261 - val_loss: 0.6922 - val_acc: 0.5168
+Epoch 6/10
+2s - loss: 0.6893 - acc: 0.5349 - val_loss: 0.6921 - val_acc: 0.5234
+Epoch 7/10
+2s - loss: 0.6871 - acc: 0.5463 - val_loss: 0.6937 - val_acc: 0.5144
+Epoch 8/10
+2s - loss: 0.6863 - acc: 0.5454 - val_loss: 0.6928 - val_acc: 0.5214
+Epoch 9/10
+2s - loss: 0.6829 - acc: 0.5596 - val_loss: 0.6928 - val_acc: 0.5228
+Epoch 10/10
+2s - loss: 0.6792 - acc: 0.5665 - val_loss: 0.6946 - val_acc: 0.5189
+[[2169 2050]
+ [1952 2147]]
+Valid Label 0 Precision, 52.63%
+Valid Label 1 Precision, 51.16%
+Test on 9485 samples
+[[2333 2421]
+ [2160 2571]]
+Test Label 0 Precision, 51.93%
+Test Label 1 Precision, 51.50%
+('Trial:', 28)
+Train on 33275 samples, validate on 8318 samples
+Epoch 1/10
+3s - loss: 0.6946 - acc: 0.5064 - val_loss: 0.6930 - val_acc: 0.5100
+Epoch 2/10
+2s - loss: 0.6933 - acc: 0.5036 - val_loss: 0.6929 - val_acc: 0.5090
+Epoch 3/10
+2s - loss: 0.6922 - acc: 0.5179 - val_loss: 0.6927 - val_acc: 0.5123
+Epoch 4/10
+2s - loss: 0.6922 - acc: 0.5197 - val_loss: 0.6926 - val_acc: 0.5091
+Epoch 5/10
+2s - loss: 0.6904 - acc: 0.5296 - val_loss: 0.6923 - val_acc: 0.5162
+Epoch 6/10
+2s - loss: 0.6894 - acc: 0.5351 - val_loss: 0.6921 - val_acc: 0.5194
+Epoch 7/10
+2s - loss: 0.6878 - acc: 0.5421 - val_loss: 0.6920 - val_acc: 0.5189
+Epoch 8/10
+2s - loss: 0.6842 - acc: 0.5545 - val_loss: 0.6957 - val_acc: 0.5112
+Epoch 9/10
+2s - loss: 0.6821 - acc: 0.5577 - val_loss: 0.6935 - val_acc: 0.5157
+Epoch 10/10
+2s - loss: 0.6784 - acc: 0.5681 - val_loss: 0.6956 - val_acc: 0.5182
+[[2579 1640]
+ [2368 1731]]
+Valid Label 0 Precision, 52.13%
+Valid Label 1 Precision, 51.35%
+Test on 9485 samples
+[[2800 1954]
+ [2707 2024]]
+Test Label 0 Precision, 50.84%
+Test Label 1 Precision, 50.88%
+('Trial:', 29)
+Train on 33275 samples, validate on 8318 samples
+Epoch 1/10
+3s - loss: 0.6964 - acc: 0.4994 - val_loss: 0.6929 - val_acc: 0.5111
+Epoch 2/10
+2s - loss: 0.6930 - acc: 0.5080 - val_loss: 0.6928 - val_acc: 0.5093
+Epoch 3/10
+2s - loss: 0.6929 - acc: 0.5104 - val_loss: 0.6928 - val_acc: 0.5108
+Epoch 4/10
+2s - loss: 0.6924 - acc: 0.5163 - val_loss: 0.6929 - val_acc: 0.5070
+Epoch 5/10
+2s - loss: 0.6912 - acc: 0.5244 - val_loss: 0.6927 - val_acc: 0.5168
+Epoch 6/10
+2s - loss: 0.6892 - acc: 0.5348 - val_loss: 0.6930 - val_acc: 0.5111
+Epoch 7/10
+2s - loss: 0.6872 - acc: 0.5415 - val_loss: 0.6927 - val_acc: 0.5182
+Epoch 8/10
+2s - loss: 0.6847 - acc: 0.5532 - val_loss: 0.6936 - val_acc: 0.5111
+Epoch 9/10
+2s - loss: 0.6824 - acc: 0.5619 - val_loss: 0.6942 - val_acc: 0.5189
+Epoch 10/10
+2s - loss: 0.6783 - acc: 0.5687 - val_loss: 0.6958 - val_acc: 0.5135
+[[2230 1989]
+ [2058 2041]]
+Valid Label 0 Precision, 52.01%
+Valid Label 1 Precision, 50.65%
+Test on 9485 samples
+[[2549 2205]
+ [2393 2338]]
+Test Label 0 Precision, 51.58%
+Test Label 1 Precision, 51.46%
+[Finished in 862.7s]
+
+Test Label 0 Precision, 49.62%
+Test Label 0 Precision, 49.88%
+Test Label 0 Precision, 50.41%
+Test Label 0 Precision, 50.43%
+Test Label 0 Precision, 50.74%
+Test Label 0 Precision, 50.84%
+Test Label 0 Precision, 50.91%
+Test Label 0 Precision, 50.92%
+Test Label 0 Precision, 50.95%
+Test Label 0 Precision, 50.96%
+Test Label 0 Precision, 50.97%
+Test Label 0 Precision, 51.00%
+Test Label 0 Precision, 51.04%
+Test Label 0 Precision, 51.08%
+Test Label 0 Precision, 51.09%
+Test Label 0 Precision, 51.16%
+Test Label 0 Precision, 51.17%
+Test Label 0 Precision, 51.31%
+Test Label 0 Precision, 51.42%
+Test Label 0 Precision, 51.45%
+Test Label 0 Precision, 51.55%
+Test Label 0 Precision, 51.56%
+Test Label 0 Precision, 51.58%
+Test Label 0 Precision, 51.63%
+Test Label 0 Precision, 51.69%
+Test Label 0 Precision, 51.83%
+Test Label 0 Precision, 51.92%
+Test Label 0 Precision, 51.93%
+Test Label 0 Precision, 51.95%
+Test Label 0 Precision, 52.64%
+
+
+Test Label 1 Precision, 49.36%
+Test Label 1 Precision, 49.74%
+Test Label 1 Precision, 50.20%
+Test Label 1 Precision, 50.37%
+Test Label 1 Precision, 50.42%
+Test Label 1 Precision, 50.43%
+Test Label 1 Precision, 50.58%
+Test Label 1 Precision, 50.58%
+Test Label 1 Precision, 50.60%
+Test Label 1 Precision, 50.61%
+Test Label 1 Precision, 50.76%
+Test Label 1 Precision, 50.88%
+Test Label 1 Precision, 50.89%
+Test Label 1 Precision, 50.92%
+Test Label 1 Precision, 51.05%
+Test Label 1 Precision, 51.07%
+Test Label 1 Precision, 51.21%
+Test Label 1 Precision, 51.27%
+Test Label 1 Precision, 51.28%
+Test Label 1 Precision, 51.37%
+Test Label 1 Precision, 51.38%
+Test Label 1 Precision, 51.44%
+Test Label 1 Precision, 51.46%
+Test Label 1 Precision, 51.46%
+Test Label 1 Precision, 51.48%
+Test Label 1 Precision, 51.50%
+Test Label 1 Precision, 51.75%
+Test Label 1 Precision, 51.78%
+Test Label 1 Precision, 51.93%
+Test Label 1 Precision, 52.52%
