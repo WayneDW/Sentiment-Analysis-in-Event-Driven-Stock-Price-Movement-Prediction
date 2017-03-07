@@ -11,7 +11,7 @@ import random
 import json
 from math import log
 
-# file name: stockPrices_raw.json
+# output file name: input/stockPrices_raw.json
 # json structure: crawl daily price data from yahoo finance
 #          ticker
 #         /  |   \       
