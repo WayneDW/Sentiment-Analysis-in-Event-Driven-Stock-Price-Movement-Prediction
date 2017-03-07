@@ -1,10 +1,10 @@
 # Sentiment Analysis for Event-Driven Stock Prediction
-Use NLP to predict stock price movement based on news from Reuters, we need the following 5 steps to implement this project.
+Use NLP to predict stock price movement based on news from Reuters, we need the following 5 steps:
 
 1. Data Collection
 
   1.1 get the whole ticker list
-  
+
   1.2 crawl news from Reuters using BeautifulSoup
   
   1.3 crawl prices using urllib2 (Yahoo Finance API is outdated)
@@ -36,7 +36,7 @@ Use NLP to predict stock price movement based on news from Reuters, we need the 
 ./crawler_allTickers.py 20  # keep the top e.g. 20% marketcap companies
 ```
 
-#### 1.2 Use BeautifulSoup to crawl news headlines from [Bloomberg](http://www.bloomberg.com/search?query=goog&sort=time:desc) and [Reuters](http://www.reuters.com/finance/stocks/overview?symbol=FB.O)
+#### 1.2 Use BeautifulSoup to crawl news headlines from [Reuters](http://www.reuters.com/finance/stocks/overview?symbol=FB.O)
 
 Suppose we find a news about Facebook on Dec.13, 2016 at reuters.com
 
@@ -45,7 +45,7 @@ Suppose we find a news about Facebook on Dec.13, 2016 at reuters.com
 We can use the following script to crawl it and format it to our local file
 
 ```python
-./crawler_reuters.py # more precise than Bloomberg News
+./crawler_reuters.py # we can relate the news with company and date, this is more precise than Bloomberg News
 ```
 
 ![](./imgs/tar2.PNG)

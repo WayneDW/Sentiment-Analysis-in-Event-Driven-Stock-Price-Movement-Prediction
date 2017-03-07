@@ -11,12 +11,13 @@ import random
 import json
 from math import log
 
+# output file name: input/stockPrices_raw.json
 # json structure: crawl daily price data from yahoo finance
 #          ticker
-#        /   |    \       \
-#    open  close   adjust ...
-#    / |    / \      | \
-# day1/2   day1/2   day1/2 ...
+#         /  |   \       
+#     open close adjust ...
+#       /    |     \
+#    dates dates  dates ...
 
 def calc_finished_ticker():
     os.system("awk -F',' '{print $1}' ./input/news_reuters.csv | sort | uniq > ./input/finished.reuters")
@@ -26,8 +27,8 @@ def get_stock_Prices():
     output = './input/stockPrices_raw.json'
 
     # exit if the output already existed
-    # if os.path.isfile(output):
-    #     sys.exit("Prices data already existed!")
+    if os.path.isfile(output):
+        sys.exit("Prices data already existed!")
 
     priceSet = {}
     priceSet['^GSPC'] = repeatDownload('^GSPC') # download S&P 500
@@ -35,7 +36,7 @@ def get_stock_Prices():
         ticker = line.strip()
         print(num, ticker)
         priceSet[ticker] = repeatDownload(ticker)
-        # if num > 10: break
+        # if num > 10: break # for testing purpose
 
     with open(output, 'w') as outfile:
         json.dump(priceSet, outfile, indent=4)

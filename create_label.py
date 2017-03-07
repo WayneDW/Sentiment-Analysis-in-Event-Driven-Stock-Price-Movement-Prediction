@@ -4,6 +4,17 @@ import json
 import datetime
 from math import log
 
+# input file name: ./input/stockPrices_raw.json
+# output file name: ./input/stockReturns.json
+# json structure: crawl daily price data from yahoo finance
+#          term (short/mid/long)
+#         /         |         \
+#   ticker A   ticker B   ticker C
+#      /   \      /   \      /   \
+#  date1 date2 date1 date2 date1 date2
+# 
+# Note: short: 1 day return, mid: 7 day return, long 28 day return
+
 
 # calc long/mid term influence
 def calc_mid_long_return(ticker, date, delta, priceSet): 

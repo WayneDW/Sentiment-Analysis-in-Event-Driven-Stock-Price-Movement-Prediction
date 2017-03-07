@@ -10,18 +10,10 @@ import datetime
 import numpy as np
 from bs4 import BeautifulSoup
 
-'''
-Other useful crawler can be found in 
-https://doc.scrapy.org/en/latest/
-github.com/qolina/ScrapyFinanceNews/tree/master/ScrapyNews/spiders
-'''
 
 class news_Reuters:
     def __init__(self):
         fin = open('./input/tickerList.csv')
-        # exit if the output already existed
-        #if os.path.isfile('./input/news_reuters_part2.csv'):
-        #    sys.exit("Reuters news already existed!")
 
         filterList = set()
         try: # this is used when we restart a task
@@ -30,7 +22,7 @@ class news_Reuters:
                 filterList.add(l.strip())
         except: pass
 
-        dateList = self.dateGenerator(3000) # look back on the past 1000 days
+        dateList = self.dateGenerator(3000) # look back on the past X days
         for line in fin:
             line = line.strip().split(',')
             ticker, name, exchange, MarketCap = line
@@ -40,10 +32,10 @@ class news_Reuters:
     def content(self, ticker, name, line, dateList):
         url = "http://www.reuters.com/finance/stocks/companyNews?symbol=" + ticker
 
-        # some company even doesn't have a single news, stop bothering iterating dates if so
+        # some company even doesn't have a single news, stop iterating dates if we found it doesn't have data for like 40 consecutive days
         has_Content = 0
         repeat_times = 4
-        for _ in range(repeat_times): # in case of crawling failure
+        for _ in range(repeat_times): # repeat in case of http failure
             try:
                 time.sleep(np.random.poisson(3))
                 response = urllib2.urlopen(url)
