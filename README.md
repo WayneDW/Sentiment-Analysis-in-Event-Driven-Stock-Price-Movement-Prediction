@@ -6,9 +6,8 @@ Use NLP to predict stock price movement based on news from Reuters, we need the 
     1.1 get the whole ticker list
 
     1.2 crawl news from Reuters using BeautifulSoup
-  
-    1.3 crawl prices using urllib2 (Yahoo Finance API is outdated)
-
+    
+    1.2 crawl prices using urllib2 (Yahoo Finance API is outdated)
 
 2. Applied GloVe to train a dense word vector from Reuters corpus in NLTK
 
