@@ -11,17 +11,17 @@ Use NLP to predict stock price movement based on news from Reuters, we need the 
   
 2. Applied GloVe to train a dense word vector from Reuters corpus in NLTK
 
-  2.1 build the word-word co-occurrence matrix
+    2.1 build the word-word co-occurrence matrix
   
-  2.2 factorizing the weighted log of the co-occurrence matrix
+    2.2 factorizing the weighted log of the co-occurrence matrix
   
 3. Feature Engineering
   
-  3.2 Unify word format: unify tense, singular & plural, remove punctuations & stop words
+    3.2 Unify word format: unify tense, singular & plural, remove punctuations & stop words
   
-  3.2 Extract feature using feature hashing based on the trained word vector (step 2)
+    3.2 Extract feature using feature hashing based on the trained word vector (step 2)
   
-  3.3 Pad word senquence (essentially a matrix) to keep the same dimension
+    3.3 Pad word senquence (essentially a matrix) to keep the same dimension
   
 4. Trained a ConvNet to predict the stock price movement based on a reasonable parameter selection
 5. The result shows a significant 1-2% improve on the test set
