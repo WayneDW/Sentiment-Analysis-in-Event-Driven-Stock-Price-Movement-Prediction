@@ -38,7 +38,7 @@ Use NLP to predict stock price movement based on news from Reuters, we need the 
 
 #### 1.2 Use BeautifulSoup to crawl news headlines from [Reuters](http://www.reuters.com/finance/stocks/overview?symbol=FB.O)
 
-Note: you may need over one month to fetch the news you want.
+*Note: you may need over one month to fetch the news you want.*
 
 Suppose we find a news about Facebook on Dec.13, 2016 at reuters.com
 
