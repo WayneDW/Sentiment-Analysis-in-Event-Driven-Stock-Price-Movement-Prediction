@@ -3,25 +3,25 @@ Use NLP to predict stock price movement based on news from Reuters, we need the 
 
 1. Data Collection
 
-  1.1 get the whole ticker list
+    1.1 get the whole ticker list
 
-  1.2 crawl news from Reuters using BeautifulSoup
-  
-  1.3 crawl prices using urllib2 (Yahoo Finance API is outdated)
-  
+    1.2 crawl news from Reuters using BeautifulSoup
+    
+    1.3 crawl prices using urllib2 (Yahoo Finance API is outdated)
+
 2. Applied GloVe to train a dense word vector from Reuters corpus in NLTK
 
-  2.1 build the word-word co-occurrence matrix
+    2.1 build the word-word co-occurrence matrix
   
-  2.2 factorizing the weighted log of the co-occurrence matrix
+    2.2 factorizing the weighted log of the co-occurrence matrix
   
 3. Feature Engineering
   
-  3.2 Unify word format: unify tense, singular & plural, remove punctuations & stop words
+    3.2 Unify word format: unify tense, singular & plural, remove punctuations & stop words
   
-  3.2 Extract feature using feature hashing based on the trained word vector (step 2)
+    3.2 Extract feature using feature hashing based on the trained word vector (step 2)
   
-  3.3 Pad word senquence (essentially a matrix) to keep the same dimension
+    3.3 Pad word senquence (essentially a matrix) to keep the same dimension
   
 4. Trained a ConvNet to predict the stock price movement based on a reasonable parameter selection
 5. The result shows a significant 1-2% improve on the test set
@@ -37,6 +37,8 @@ Use NLP to predict stock price movement based on news from Reuters, we need the 
 ```
 
 #### 1.2 Use BeautifulSoup to crawl news headlines from [Reuters](http://www.reuters.com/finance/stocks/overview?symbol=FB.O)
+
+*Note: you may need over one month to fetch the news you want.*
 
 Suppose we find a news about Facebook on Dec.13, 2016 at reuters.com
 
