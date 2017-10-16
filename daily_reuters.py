@@ -38,7 +38,7 @@ class news_Reuters:
 
 
     def iterate_by_day(self, fin, filterList):
-        dateList = self.dateGenerator(1000) # look back on the past X days
+        dateList = self.dateGenerator(1) # look back on the past X days
         for timestamp in dateList: # iterate all possible days
             print("%s%s%s" % (''.join(['-'] * 50), timestamp, ''.join(['-'] * 50)))
             self.iterate_by_ticker(fin, filterList, timestamp)
@@ -49,10 +49,10 @@ class news_Reuters:
             ticker, name, exchange, MarketCap = line
             if ticker in filterList: continue
             print("%s - %s - %s - %s" % (ticker, name, exchange, MarketCap))
-            url = "http://www.reuters.com/finance/stocks/companyNews/" + ticker + self.suffix[exchange]
-            self.repeatDownload(ticker, line, url, timestamp)
+            self.repeatDownload(ticker, line, timestamp, exchange)
 
-    def repeatDownload(self, ticker, line, url, timestamp): 
+    def repeatDownload(self, ticker, line, timestamp, exchange): 
+        url = "https://www.reuters.com/finance/stocks/company-news/" + ticker + self.suffix[exchange]
         new_time = timestamp[4:] + timestamp[:4] # change 20151231 to 12312015 to match reuters format
         for _ in range(self.repeat_times): 
             try:
