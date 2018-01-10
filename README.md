@@ -33,7 +33,7 @@ Use NLP to predict stock price movement based on news from Reuters, we need the 
 #### 1.1 Download the ticker list from [NASDAQ](http://www.nasdaq.com/screening/companies-by-industry.aspx)
 
 ```python
-./crawler_allTickers.py 20  # keep the top e.g. 20% marketcap companies
+$ ./crawler_all_tickers.py 20  # keep the top e.g. 20% marketcap companies
 ```
 
 #### 1.2 Use BeautifulSoup to crawl news headlines from [Reuters](http://www.reuters.com/finance/stocks/overview?symbol=FB.O)

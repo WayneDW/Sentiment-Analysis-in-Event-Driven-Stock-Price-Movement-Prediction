@@ -1,10 +1,13 @@
-#!/usr/bin/python
-import urllib2
+#!/usr/bin/env python3
+from urllib.request import urlopen
 import csv
 import sys
 import numpy as np
 
-def getTickers(percent):
+def get_tickers(percent):
+    """Keep the top percent market-cap companies."""
+    assert type(percent) is int
+
     file = open('./input/tickerList.csv', 'w')
     writer = csv.writer(file, delimiter=',')
     capStat, output = np.array([]), []
@@ -13,9 +16,9 @@ def getTickers(percent):
         repeat_times = 10 # repeat downloading in case of http error
         for _ in range(repeat_times): 
             try:
-                print "Download tickers from " + exchange
-                response = urllib2.urlopen(url + exchange + '&render=download')
-                content = response.read().split('\n')
+                print("Downloading tickers from {}...".format(exchange))
+                response = urlopen(url + exchange + '&render=download')
+                content = response.read().decode('utf-8').split('\n')
                 for num, line in enumerate(content):
                     line = line.strip().strip('"').split('","')
                     if num == 0 or len(line) != 9: continue # filter unmatched format
@@ -24,7 +27,8 @@ def getTickers(percent):
                     capStat = np.append(capStat, float(MarketCap))
                     output.append([ticker, name.replace(',', '').replace('.', ''), exchange, MarketCap])
                 break
-            except:
+            except Exception as e:
+                print(e)
                 continue
 
     for data in output:
@@ -34,8 +38,8 @@ def getTickers(percent):
 
 
 def main():
-    arg = sys.argv[1]
-    s = getTickers(int(arg)) # keep the top N% market-cap companies
+    top_n = sys.argv[1]
+    s = get_tickers(int(top_n)) # keep the top N% market-cap companies
 
 
 if __name__ == "__main__":
