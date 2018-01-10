@@ -29,7 +29,7 @@ def readGlove(we_file, w2i_file, concat=True):
     V = len(word2idx)
     if concat:
         We = np.hstack([W1, W2.T])
-        print "We.shape:", We.shape
+        print("We.shape:", We.shape)
         assert(V == We.shape[0])
     else:
         We = (W1 + W2.T) / 2
@@ -91,15 +91,10 @@ def build(wordEmbedding, w2i_file, max_words=60):
     
     gen_FeatureMatrix(wordEmbedding, word2idx, priceDt, max_words, "train")
     gen_FeatureMatrix(wordEmbedding, word2idx, priceDt, max_words, "test")
-    
-                
                     
-def main(we, w2i_file):
-    wordEmbedding = readGlove(we, w2i_file)
-    build(wordEmbedding, w2i_file, 30)
-
 
 if __name__ == "__main__":
     we = './input/glove_model_50.npz'
     w2i_file = "./input/word2idx.json"
-    main(we, w2i_file)
+    wordEmbedding = readGlove(we, w2i_file)
+    build(wordEmbedding, w2i_file, 30)

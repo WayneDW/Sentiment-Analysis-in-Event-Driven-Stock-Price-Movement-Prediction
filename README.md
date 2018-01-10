@@ -33,7 +33,7 @@ Use NLP to predict stock price movement based on news from Reuters, we need the 
 #### 1.1 Download the ticker list from [NASDAQ](http://www.nasdaq.com/screening/companies-by-industry.aspx)
 
 ```bash
-$ ./crawler_all_tickers.py 20  # keep the top e.g. 20% marketcap companies
+$ ./crawler/all_tickers.py 20  # keep the top e.g. 20% marketcap companies
 ```
 
 #### 1.2 Use BeautifulSoup to crawl news headlines from [Reuters](http://www.reuters.com/finance/stocks/overview?symbol=FB.O)
@@ -47,7 +47,7 @@ Suppose we find a news about Facebook on Dec.13, 2016 at reuters.com
 We can use the following script to crawl it and format it to our local file
 
 ```bash
-$ ./crawler_reuters.py # we can relate the news with company and date, this is more precise than Bloomberg News
+$ ./crawler/reuters.py # we can relate the news with company and date, this is more precise than Bloomberg News
 ```
 
 ![](./imgs/tar2.PNG)
@@ -59,7 +59,7 @@ By brute-force iterating company tickers and dates, we can get the dataset with 
 Improvement here, use normalized return [4] over S&P 500 instead of return.
 
 ```bash
-$ ./crawler_yahoo_finance.py # generate stock price raw data: stockPrices_raw.json, containing open, close, ..., adjClose
+$ ./crawler/yahoo_finance.py # generate stock price raw data: stockPrices_raw.json, containing open, close, ..., adjClose
 $ ./create_label.py # use raw price data to generate stockReturns.json
 ```
 
@@ -67,8 +67,8 @@ $ ./create_label.py # use raw price data to generate stockReturns.json
 
 To use our customized word vector, apply GloVe to train word vector from Reuters corpus in NLTK
 
-```python
-./embeddingWord.py
+```bash
+$ ./embeddingWord.py
 ```
 
 Read the detail of the method [here](http://www-nlp.stanford.edu/pubs/glove.pdf), implementation [here](https://github.com/lazyprogrammer/machine_learning_examples/blob/master/nlp_class2/glove.py)
@@ -83,16 +83,16 @@ Detail about unifying word format are: lower case, remove punctuation, get rid o
 
 Seperate test set away from training+validation test, otherwise we would get a too optimistic result.
 
-```python
-./genFeatureMatrix.py
+```bash
+$ ./genFeatureMatrix.py
 ```
 
-### 4. Train a ConvoNet to predict the stock price movement. 
+### 4. Train a ConvNet to predict the stock price movement. 
 
 For the sake of simplicity, I just applied a ConvoNet in [Keras](http://machinelearningmastery.com/handwritten-digit-recognition-using-convolutional-neural-networks-python-keras/), the detail operations in text data is slighly differnt from the image, we can use the architecture from [FIgure 1 in Yoon Kim's paper](http://www.aclweb.org/anthology/D14-1181)
 
-```python
-./model_cnn.py
+```bash
+$ ./model_cnn.py
 ```
 
 ### 5. Prediction and analysis
