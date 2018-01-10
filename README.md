@@ -32,7 +32,7 @@ Use NLP to predict stock price movement based on news from Reuters, we need the 
 
 #### 1.1 Download the ticker list from [NASDAQ](http://www.nasdaq.com/screening/companies-by-industry.aspx)
 
-```python
+```bash
 $ ./crawler_all_tickers.py 20  # keep the top e.g. 20% marketcap companies
 ```
 
@@ -46,21 +46,21 @@ Suppose we find a news about Facebook on Dec.13, 2016 at reuters.com
 
 We can use the following script to crawl it and format it to our local file
 
-```python
-./crawler_reuters.py # we can relate the news with company and date, this is more precise than Bloomberg News
+```bash
+$ ./crawler_reuters.py # we can relate the news with company and date, this is more precise than Bloomberg News
 ```
 
 ![](./imgs/tar2.PNG)
 
 By brute-force iterating company tickers and dates, we can get the dataset with about 30,000 ~ 200,000 news in the end. Since a company may have multiple news in a single day, the current version will only deal with topStory and ignore the others.
 
-#### 1.3 Use urllib2 to crawl historical stock prices
+#### 1.3 Use urllib to crawl historical stock prices
  
 Improvement here, use normalized return [4] over S&P 500 instead of return.
 
-```python
-./crawler_yahoo_finance.py # generate stock price raw data: stockPrices_raw.json, containing open, close, ..., adjClose
-./create_label.py # use raw price data to generate stockReturns.json
+```bash
+$ ./crawler_yahoo_finance.py # generate stock price raw data: stockPrices_raw.json, containing open, close, ..., adjClose
+$ ./create_label.py # use raw price data to generate stockReturns.json
 ```
 
 ### 2. Word Embedding
