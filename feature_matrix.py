@@ -1,25 +1,17 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 import json
 import os
-import en
 import datetime
-import nltk
 import numpy as np
 
-def dateGenerator(numdays): # generate N days until now, eg [20151231, 20151230]
-    base = datetime.datetime.today()
-    date_list = [base - datetime.timedelta(days=x) for x in range(0, numdays)]
-    for i in range(len(date_list)): date_list[i] = date_list[i].strftime("%Y%m%d")
-    return set(date_list)
+import nltk
 
-def unify_word(word): # went -> go, apples -> apple, BIG -> big
-    try: word = en.verb.present(word) # unify tense
-    except: pass
-    try: word = en.noun.singular(word) # unify noun
-    except: pass
-    return word.lower()
+from utils import generate_past_n_days, unify_word
 
-def readGlove(we_file, w2i_file, concat=True):
+
+
+
+def read_glove(we_file, w2i_file, concat=True):
     npz = np.load(we_file)
     W1 = npz['arr_0']
     W2 = npz['arr_1']
@@ -43,15 +35,15 @@ def padding(sentencesVec, keepNum):
     else:
         return sentencesVec[:, -keepNum:].flatten()
 
-def gen_FeatureMatrix(wordEmbedding, word2idx, priceDt, max_words=60, mtype="test"):
+def gen_feature_matrix(word_embedding, word2idx, priceDt, max_words=60, mtype="test"):
     # step 2, build feature matrix for training data
     loc = './input/'
     input_files = [f for f in os.listdir(loc) if f.startswith('news_reuters.csv')]
     current_idx = 2
     dp = {} # only consider one news for a company everyday
     cnt = 0
-    testDates = dateGenerator(100)
-    shape = wordEmbedding.shape[1]
+    testDates = generate_past_n_days(100)
+    shape = word_embedding.shape[1]
     features = np.zeros([0, max_words * shape])
     labels = []
     for file in input_files:
@@ -74,7 +66,7 @@ def gen_FeatureMatrix(wordEmbedding, word2idx, priceDt, max_words=60, mtype="tes
             sentencesVec = np.zeros([shape, 0])
             for t in tokens:
                 if t not in word2idx: continue
-                sentencesVec = np.hstack((sentencesVec, np.matrix(wordEmbedding[word2idx[t]]).T))
+                sentencesVec = np.hstack((sentencesVec, np.matrix(word_embedding[word2idx[t]]).T))
             features = np.vstack((features, padding(sentencesVec, max_words)))
             labels.append(round(priceDt[ticker][day], 6))
     features = np.array(features)
@@ -83,18 +75,18 @@ def gen_FeatureMatrix(wordEmbedding, word2idx, priceDt, max_words=60, mtype="tes
     fileName = './input/featureMatrix_' + mtype + '.csv'
     np.savetxt(fileName, featureMatrix, fmt="%s")
 
-def build(wordEmbedding, w2i_file, max_words=60):
+def build(word_embedding, w2i_file, max_words=60):
     with open('./input/stockPrices.json') as data_file:    
         priceDt = json.load(data_file)
     with open(w2i_file) as data_file:    
         word2idx = json.load(data_file)
     
-    gen_FeatureMatrix(wordEmbedding, word2idx, priceDt, max_words, "train")
-    gen_FeatureMatrix(wordEmbedding, word2idx, priceDt, max_words, "test")
-                    
+    gen_feature_matrix(word_embedding, word2idx, priceDt, max_words, "train")
+    gen_feature_matrix(word_embedding, word2idx, priceDt, max_words, "test")
+
 
 if __name__ == "__main__":
     we = './input/glove_model_50.npz'
     w2i_file = "./input/word2idx.json"
-    wordEmbedding = readGlove(we, w2i_file)
-    build(wordEmbedding, w2i_file, 30)
+    word_embedding = read_glove(we, w2i_file)
+    build(word_embedding, w2i_file, 30)

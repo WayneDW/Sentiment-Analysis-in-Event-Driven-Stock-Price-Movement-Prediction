@@ -1,11 +1,19 @@
 #!/usr/bin/env python3
+import os
+import sys
+import inspect
 import time
-import datetime
 from urllib.request import urlopen
 
 import numpy as np
 from bs4 import BeautifulSoup
 
+# import utils from parent directory
+# credit: https://stackoverflow.com/a/11158224/4246348
+currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+parentdir = os.path.dirname(currentdir)
+sys.path.insert(0, parentdir)
+import utils
 
 class ReutersCrawler(object):
     def __init__(self):
@@ -103,15 +111,9 @@ class ReutersCrawler(object):
         fout.close()
         return 1
 
-    def generate_past_n_days(self, numdays):
-        """Generate N days until now"""
-        base = datetime.datetime.today()
-        date_list = [base - datetime.timedelta(days=x) for x in range(0, numdays)]
-        return [x.strftime("%Y%m%d") for x in date_list]
-
     def run(self, numdays=1000):
         """Start crawler back to numdays"""
-        date_list = self.generate_past_n_days(numdays) # look back on the past X days
+        date_list = utils.generate_past_n_days(numdays) # look back on the past X days
         for line in self.ticker_list: # iterate all possible tickers
             line = line.strip().split(',')
             ticker, name, exchange, market_cap = line

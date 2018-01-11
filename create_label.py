@@ -1,5 +1,4 @@
 #!/usr/bin/python
-import util
 import json
 import datetime
 from math import log
@@ -12,12 +11,12 @@ from math import log
 #   ticker A   ticker B   ticker C
 #      /   \      /   \      /   \
 #  date1 date2 date1 date2 date1 date2
-# 
+#
 # Note: short: 1 day return, mid: 7 day return, long 28 day return
 
 
 # calc long/mid term influence
-def calc_mid_long_return(ticker, date, delta, priceSet): 
+def calc_mid_long_return(ticker, date, delta, priceSet):
     baseDate = datetime.datetime.strptime(date, "%Y-%m-%d")
     prevDate = (baseDate - datetime.timedelta(days=1)).strftime("%Y-%m-%d")
     nextDate = (baseDate + datetime.timedelta(days=delta)).strftime("%Y-%m-%d")

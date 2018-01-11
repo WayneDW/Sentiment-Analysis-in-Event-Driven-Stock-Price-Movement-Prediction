@@ -68,7 +68,7 @@ $ ./create_label.py # use raw price data to generate stockReturns.json
 To use our customized word vector, apply GloVe to train word vector from Reuters corpus in NLTK
 
 ```bash
-$ ./embeddingWord.py
+$ ./word_embedding.py
 ```
 
 Read the detail of the method [here](http://www-nlp.stanford.edu/pubs/glove.pdf), implementation [here](https://github.com/lazyprogrammer/machine_learning_examples/blob/master/nlp_class2/glove.py)
@@ -84,7 +84,7 @@ Detail about unifying word format are: lower case, remove punctuation, get rid o
 Seperate test set away from training+validation test, otherwise we would get a too optimistic result.
 
 ```bash
-$ ./genFeatureMatrix.py
+$ ./feature_matrix.py
 ```
 
 ### 4. Train a ConvNet to predict the stock price movement. 

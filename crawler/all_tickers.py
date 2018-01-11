@@ -47,7 +47,7 @@ def get_tickers(percent):
 
 def main():
     if len(sys.argv) < 2:
-        print('Usage: ./crawler_all_tickers.py <int_num>')
+        print('Usage: ./all_tickers.py <int_percent>')
         return
     top_n = sys.argv[1]
     get_tickers(int(top_n)) # keep the top N% market-cap companies

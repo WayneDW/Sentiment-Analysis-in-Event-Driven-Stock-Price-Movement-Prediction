@@ -5,16 +5,17 @@ import numpy as np
 import theano
 import theano.tensor as T
 import matplotlib.pyplot as plt
-import en
 import operator
 from datetime import datetime
 from sklearn.utils import shuffle
 from nltk.corpus import reuters
 
+from utils import generate_past_n_days, unify_word
+
 
 # reference https://github.com/lazyprogrammer/machine_learning_examples/blob/master/nlp_class2/glove.py
 
-class Glove:
+class Glove(object):
     def __init__(self, D, V, context_sz):
         self.D = D
         self.V = V
@@ -201,13 +202,6 @@ class Glove:
         # function word_analogies expects a (V,D) matrx and a (D,V) matrix
         arrays = [self.W, self.U.T]
         np.savez(fn, *arrays)
-
-def unify_word(word): # went -> go, apples -> apple, BIG -> big
-    try: word = en.verb.present(word) # unify tense
-    except: pass
-    try: word = en.noun.singular(word) # unify noun
-    except: pass
-    return word.lower()
 
 def get_reuters_data(n_vocab):
     # return variables
