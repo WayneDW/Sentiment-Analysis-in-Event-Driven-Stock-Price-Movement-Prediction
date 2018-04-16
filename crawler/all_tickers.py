@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """
 Download the ticker list from NASDAQ and save as csv.
+Output filename: ./input/tickerList.csv
 """
 import csv
 import sys
