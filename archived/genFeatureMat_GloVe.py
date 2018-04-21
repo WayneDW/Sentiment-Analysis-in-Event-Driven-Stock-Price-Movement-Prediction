@@ -12,7 +12,7 @@ import util
 # ./input/stopWords
 # ./input/stockReturns.json
 # ./input/news_reuters.csv
-# ./input/featureMatrix
+# ./input/featureMatrix.csv
 
 # output file name: 
 # input/featureMatrix_train
