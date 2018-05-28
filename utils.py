@@ -5,7 +5,24 @@ import numpy as np
 from urllib.request import urlopen
 
 from nltk.stem.wordnet import WordNetLemmatizer
-from bs4 import BeautifulSoup
+#from bs4 import BeautifulSoup
+
+
+def padding(sentencesVec, keepNum):
+    shape = sentencesVec.shape[0]
+    ownLen = sentencesVec.shape[1]
+    if ownLen < keepNum:
+        return np.hstack((np.zeros([shape, keepNum-ownLen]), sentencesVec)).flatten()
+    else:
+        return sentencesVec[:, -keepNum:].flatten()
+
+
+def dateGenerator(numdays): # generate N days until now, eg [20151231, 20151230]
+    base = datetime.datetime.today()
+    date_list = [base - datetime.timedelta(days=x) for x in range(0, numdays)]
+    for i in range(len(date_list)):
+        date_list[i] = date_list[i].strftime("%Y%m%d")
+    return set(date_list)
 
 
 def generate_past_n_days(numdays):

@@ -2,3 +2,4 @@
 __pycache__/
 *.pyc
 input/glove.*
+input/news_reuters.csv
