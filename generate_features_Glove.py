@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 import json
 import os
 import en
@@ -13,7 +13,6 @@ Required input data:
 ./input/stopWords
 ./input/stockReturns.json
 ./input/news_reuters.csv
-./input/featureMatrix
 
 Output file name: 
 input/featureMatrix_train
