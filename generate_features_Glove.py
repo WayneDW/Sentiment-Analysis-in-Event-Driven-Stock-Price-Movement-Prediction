@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import json
 import os
-import en
+#import en
 import nltk
 import numpy as np
 import util
@@ -25,7 +25,7 @@ def wordVec(glove_file):
         print("Loading word vector ...")
         for line in f:
             line = line.strip().split(' ')
-            key, values = line[0], map(float, line[1:])
+            key, values = line[0], list(map(float, line[1:]))
             wordDict[key] = values
     return wordDict, len(values) # return word vector and word vector dimension
 
