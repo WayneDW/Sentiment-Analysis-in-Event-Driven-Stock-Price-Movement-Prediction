@@ -2,6 +2,7 @@ import os
 import sys
 import torch
 import torch.autograd as autograd
+import torch.nn as nn
 import torch.nn.functional as F
 
 
@@ -20,6 +21,12 @@ def train(X_train, y_train, X_valid, y_valid, model, args):
 
             optimizer.zero_grad()
             logit = model(feature)
+            '''
+            # my new part
+            myforward = F.log_softmax(feature, dim=1)
+            nllloss = nn.NLLLoss(size_average = False)
+            loss = nllloss.forward(myforward, target)
+            '''
             loss = F.cross_entropy(logit, target)
             loss.backward()
             optimizer.step()
@@ -41,6 +48,7 @@ def train(X_train, y_train, X_valid, y_valid, model, args):
 def eval(X, y, model, args):
     model.eval()
     corrects, avg_loss = 0, 0
+    correct_part, total_part = 0, 0
     batch = args.batch_size
     for idx in range(int(X.shape[0]/batch)):
         feature = torch.LongTensor(X[(idx*batch):(idx*batch+batch),])
@@ -49,16 +57,36 @@ def eval(X, y, model, args):
             feature, target = feature.cuda(), target.cuda()
 
         logit = model(feature)
+        '''
+        # my new part
+        logit = F.log_softmax(feature, dim=1)
+        nllloss = nn.NLLLoss(size_average = False)
+        loss = nllloss.forward(logit, target)
+        '''
         loss = F.cross_entropy(logit, target, size_average=False)
-
+        #print(logit)
         avg_loss += loss.data.item()
-        corrects += (torch.max(logit, 1)
-                     [1].view(target.size()).data == target.data).sum().item()
+        predictor = torch.exp(logit[:, 1]) / (torch.exp(logit[:, 0]) + torch.exp(logit[:, 1]))
+        thres = 0.1
+        idx_thres = (predictor > 0.5 + thres) + (predictor < 0.5 - thres)
+        #print(predictor)
+        #print(torch.max(logit, 1)[1])
+        #print(if_condition)
+        #print(torch.max(logit, 1)[1].view(target.size()).data)
+
+        corrects += (torch.max(logit, 1)[1] == target.data).sum().item()
+        correct_part += (torch.max(logit, 1)[1][idx_thres] == target.data[idx_thres]).sum().item()
+        total_part += idx_thres.sum().item()
+
+        
+        #corrects += (torch.max(logit, 1)[1].view(target.size()).data == target.data).sum().item()
 
     size = y.shape[0]
     avg_loss /= size
     accuracy = 100.0 * corrects / size
-    print('\n         Evaluations - loss: {:.4f}  acc: {:.2f}%({}/{}) \n'.format(avg_loss, accuracy, corrects, size))
+    print('\n')
+    print(100.0 * correct_part / total_part, correct_part, total_part)
+    print('\n         Evaluation - loss: {:.4f}  acc: {:.2f}%({}/{}) \n'.format(avg_loss, accuracy, corrects, size))
     return accuracy
 
 

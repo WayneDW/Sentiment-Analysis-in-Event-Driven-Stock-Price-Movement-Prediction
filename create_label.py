@@ -42,12 +42,15 @@ def main():
             returns[term][ticker] = {} # 2-depth dictionary
         for day in dateSet:
             date = datetime.datetime.strptime(day, "%Y-%m-%d").strftime("%Y%m%d") # change date 2014-01-01 to 20140101
-            tag_short, return_short = calc_mid_long_return(ticker, day, 0, priceSet)
-            tag_mid, return_mid = calc_mid_long_return(ticker, day, 6, priceSet)
-            tag_long, return_long = calc_mid_long_return(ticker, day, 27, priceSet)
-            if tag_short: returns['short'][ticker][date] = return_short
-            if tag_mid: returns['mid'][ticker][date] = return_mid
-            if tag_long: returns['long'][ticker][date] = return_long
+            tag_short, return_short = calc_mid_long_return(ticker, day, 1, priceSet)
+            tag_mid, return_mid = calc_mid_long_return(ticker, day, 7, priceSet)
+            tag_long, return_long = calc_mid_long_return(ticker, day, 28, priceSet)
+            if tag_short:
+                returns['short'][ticker][date] = return_short
+            if tag_mid:
+                returns['mid'][ticker][date] = return_mid
+            if tag_long:
+                returns['long'][ticker][date] = return_long
 
     with open('./input/stockReturns.json', 'w') as outfile:
         json.dump(returns, outfile, indent=4)

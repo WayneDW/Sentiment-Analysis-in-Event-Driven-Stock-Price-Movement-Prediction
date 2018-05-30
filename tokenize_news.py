@@ -29,7 +29,7 @@ def tokenize(news_file, price_file, stopWords_file, output, sentense_len, term_t
         print("Loading price info ...")
         priceDt = json.load(file)[term_type]
 
-    testDates = util.dateGenerator(100) # the most recent days are used for testing
+    testDates = util.dateGenerator(200) # the most recent days are used for testing
     os.system('rm ' + output + mtype)
 
     # load stop words
@@ -50,10 +50,10 @@ def tokenize(news_file, price_file, stopWords_file, output, sentense_len, term_t
             if len(line) != 6:
                 continue
             ticker, name, day, headline, body, newsType = line
-            '''
+            
             if newsType != 'topStory': # newsType: [topStory, normal]
                 continue # skip normal news
-            '''
+            
             if ticker not in priceDt: 
                 continue # skip if no corresponding company found
             if day not in priceDt[ticker]: 
@@ -123,7 +123,8 @@ def main():
     output = './input/featureMatrix_'
 
     n_vocab = 2000
-    sentense_len = 30
+    sentense_len = 20
+    # you can choose short mid long
     term_type = 'short'
     tokenize(news_file, price_file, stopWords_file, output, sentense_len, term_type, n_vocab, 'train')
     tokenize(news_file, price_file, stopWords_file, output, sentense_len, term_type, n_vocab, 'test')
