@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 
 import time
 import datetime
@@ -5,6 +6,7 @@ import numpy as np
 from urllib.request import urlopen
 
 from nltk.stem.wordnet import WordNetLemmatizer
+from nltk.stem.porter import PorterStemmer
 #from bs4 import BeautifulSoup
 
 
@@ -12,7 +14,7 @@ def padding(sentencesVec, keepNum):
     shape = sentencesVec.shape[0]
     ownLen = sentencesVec.shape[1]
     if ownLen < keepNum:
-        return np.hstack((np.zeros([shape, keepNum-ownLen]), sentencesVec)).flatten()
+        return np.hstack((np.ones([shape, keepNum-ownLen]), sentencesVec)).flatten()
     else:
         return sentencesVec[:, -keepNum:].flatten()
 
@@ -34,15 +36,13 @@ def generate_past_n_days(numdays):
 wordnet = WordNetLemmatizer()
 def unify_word(word):  # went -> go, apples -> apple, BIG -> big
     """unify verb tense and noun singular"""
-    try:
-        word = wordnet.lemmatize(word, 'v') # unify tense
-    except:
-        pass
-    try:
-        word = wordnet.lemmatize(word) # unify noun
-    except:
-        pass
-    return word
+    ADJ, ADJ_SAT, ADV, NOUN, VERB = 'a', 's', 'r', 'n', 'v'
+    for wt in [ADJ, ADJ_SAT, ADV, NOUN, VERB]:
+        try:
+            word = wordnet.lemmatize(word, pos=wt)
+        except:
+            pass
+    return word.lower()
 
 def get_soup_with_repeat(url, repeat_times=3, verbose=True):
     for i in range(repeat_times): # repeat in case of http failure
@@ -57,3 +57,32 @@ def get_soup_with_repeat(url, repeat_times=3, verbose=True):
             if verbose:
                 print('retry...')
             continue
+
+
+
+def value2int(y, clusters=2):
+    label = np.copy(y)
+    label[y < np.percentile(y, 100 / clusters)] = 0
+    for i in range(1, clusters):
+        label[y > np.percentile(y, 100 * i / clusters)] = i
+    return label
+
+def value2int_simple(y):
+    label = np.copy(y)
+    label[y < 0] = 0
+    label[y >= 0] = 1
+    return label
+
+
+def model_eval(net, data_loader, if_print=1):
+    net.eval()
+    correct = 0
+    total = 0
+    for cnt, (images, labels) in enumerate(data_loader):
+        images, labels = Variable(images), Variable(labels)
+        if torch.cuda.is_available():
+            images, labels = images.cuda(), labels.cuda()
+        outputs = net.forward(images)
+        prediction = outputs.data.max(1)[1]
+        correct += prediction.eq(labels.data).sum().item()
+    print('\nTest set: Accuracy: {:0.2f}%'.format(100.0 * correct / len(data_loader.dataset)))

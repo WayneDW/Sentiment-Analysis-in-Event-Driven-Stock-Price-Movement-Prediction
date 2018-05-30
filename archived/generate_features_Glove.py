@@ -83,7 +83,8 @@ def gen_FeatureMatrix(news_file, price_file, stopWords_file, output, wordDict, d
                 np.savetxt(file, np.hstack((feature, np.matrix(label))), fmt='%.5f')
 
 def main():
-    glove_file = "./input/glove.6B.100d.txt"
+    #glove_file = "./input/glove.6B.100d.txt"
+    glove_file = "./input/glove.42B.300d.txt"
     news_file = "./input/news_reuters.csv"
     stopWords_file = "./input/stopWords"
     price_file = "./input/stockReturns.json"

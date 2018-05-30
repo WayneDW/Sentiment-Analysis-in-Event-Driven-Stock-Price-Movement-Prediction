@@ -86,5 +86,5 @@ def get_price_from_yahoo(ticker):
     return ticker_price
 
 if __name__ == "__main__":
-    # calc_finished_ticker()
+    calc_finished_ticker()
     get_stock_prices()
