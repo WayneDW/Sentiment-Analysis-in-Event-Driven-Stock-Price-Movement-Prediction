@@ -58,7 +58,7 @@ We can use the following script to crawl it and format it to our local file
 $ ./crawler/reuters.py # we can relate the news with company and date, this is more precise than Bloomberg News
 ```
 
-![](./imgs/tar2.PNG)
+![](./imgs/111.png)
 
 By brute-force iterating company tickers and dates, we can get the dataset with about 30,000 ~ 200,000 news in the end. Since a company may have multiple news in a single day, the current version will only deal with topStory and ignore the others.
 
