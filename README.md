@@ -33,7 +33,7 @@ Use NLP to predict stock price movement based on news from Reuters, we need the 
 * [NLTK](https://www.nltk.org/install.html)
 
 
-
+## Usage
 
 ### 1. Data Collection
 
