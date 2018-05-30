@@ -10,7 +10,7 @@ import numpy as np
 
 import util
 
-parser = argparse.ArgumentParser(description='CNN text classificer')
+parser = argparse.ArgumentParser(description='CNN-based Financial News Classifier')
 # learning
 parser.add_argument('-lr', type=float, default=0.001, help='initial learning rate [default: 0.001]')
 parser.add_argument('-epochs', type=int, default=2, help='number of epochs for train [default: 2]')
