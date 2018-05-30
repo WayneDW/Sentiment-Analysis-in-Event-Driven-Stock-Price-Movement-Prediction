@@ -3,13 +3,13 @@ Use NLP to predict stock price movement based on news from Reuters, we need the 
 
 1. Data Collection
 
-    1.1 get the whole ticker list
+    1.1 get the whole ticker list to obtain the details about public companies
 
     1.2 crawl news from Reuters using BeautifulSoup
     
     1.3 crawl prices using urllib2 (Yahoo Finance API is outdated)
 
-2. Applied GloVe to train a dense word vector from Reuters corpus in NLTK
+2. Apply GloVe to train a dense word vector from Reuters corpus in NLTK (optional, PyTorch can handle it directly)
 
     2.1 build the word-word co-occurrence matrix
   
@@ -23,7 +23,7 @@ Use NLP to predict stock price movement based on news from Reuters, we need the 
   
     3.3 Pad word senquence (essentially a matrix) to keep the same dimension
   
-4. Trained a ConvNet to predict the stock price movement based on a reasonable parameter selection
+4. Train a ConvNet to predict the stock price movement based on a reasonable parameter selection
 5. The result shows a significant 1-2% improve on the test set
 
 ## Requirement
