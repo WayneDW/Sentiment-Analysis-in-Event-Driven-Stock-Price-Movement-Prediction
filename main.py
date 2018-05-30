@@ -13,7 +13,7 @@ import util
 parser = argparse.ArgumentParser(description='CNN-based Financial News Classifier')
 # learning
 parser.add_argument('-lr', type=float, default=0.001, help='initial learning rate [default: 0.001]')
-parser.add_argument('-epochs', type=int, default=2, help='number of epochs for train [default: 2]')
+parser.add_argument('-epochs', type=int, default=10, help='number of epochs for train [default: 10]')
 parser.add_argument('-batch-size', type=int, default=256, help='batch size for training [default: 256]')
 parser.add_argument('-save-dir', type=str, default='snapshot', help='where to save the snapshot')
 parser.add_argument('-early-stop', type=int, default=1000, help='iteration numbers to stop without performance increasing')
@@ -55,7 +55,7 @@ y_test = util.value2int_simple(y_test).astype("int")
 
 
 # update args and print
-args.embed_num = 2001
+args.embed_num = 10001
 args.class_num = 2
 args.cuda = (not args.no_cuda) and torch.cuda.is_available(); del args.no_cuda
 args.kernel_sizes = [int(k) for k in args.kernel_sizes.split(',')]
@@ -89,7 +89,8 @@ elif args.test:
 else:
     print()
     try:
-        train.train(X_train, y_train, X_valid, y_valid, cnn, args)
+        #train.train(X_train, y_train, X_valid, y_valid, cnn, args)
+        train.train(X_train, y_train, X_test, y_test, cnn, args)
         train.eval(X_test, y_test, cnn, args)
     except KeyboardInterrupt:
         print('\n' + '-' * 89)

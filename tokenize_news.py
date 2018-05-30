@@ -10,8 +10,7 @@ from nltk.corpus import reuters
 import util
 
 
-"""
-Use pretrained word vector to generate our target features
+""" Use pretrained word vector to generate our target features
 Required input data:
 ./input/stopWords
 ./input/stockReturns.json
@@ -29,7 +28,7 @@ def tokenize(news_file, price_file, stopWords_file, output, sentense_len, term_t
         print("Loading price info ...")
         priceDt = json.load(file)[term_type]
 
-    testDates = util.dateGenerator(200) # the most recent days are used for testing
+    testDates = util.dateGenerator(1) # the most recent days are used for testing
     os.system('rm ' + output + mtype)
 
     # load stop words
@@ -66,7 +65,8 @@ def tokenize(news_file, price_file, stopWords_file, output, sentense_len, term_t
             if mtype == "train" and day in testDates: 
                 continue
 
-            tokens = nltk.word_tokenize(headline) # + nltk.word_tokenize(body)
+            tokens = nltk.word_tokenize(headline) + nltk.word_tokenize(body)
+            tokens = list(map(util.unify_word, tokens))
             tokens = list(map(util.unify_word, tokens))
 
             for t in tokens:
@@ -122,8 +122,8 @@ def main():
     price_file = "./input/stockReturns.json"
     output = './input/featureMatrix_'
 
-    n_vocab = 2000
-    sentense_len = 20
+    n_vocab = 10000
+    sentense_len = 30
     # you can choose short mid long
     term_type = 'short'
     tokenize(news_file, price_file, stopWords_file, output, sentense_len, term_type, n_vocab, 'train')

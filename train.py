@@ -13,6 +13,7 @@ def train(X_train, y_train, X_valid, y_valid, model, args):
     model.train()
     batch = args.batch_size
     for epoch in range(1, args.epochs+1):
+        corrects = 0
         for idx in range(int(X_train.shape[0]/batch)):
             feature = torch.LongTensor(X_train[(idx*batch):(idx*batch+batch),])
             target = torch.LongTensor(y_train[(idx*batch):(idx*batch+batch)])
@@ -31,11 +32,10 @@ def train(X_train, y_train, X_valid, y_valid, model, args):
             loss.backward()
             optimizer.step()
 
-            if idx % 10 == 0:
-                corrects = (torch.max(logit, 1)[1].view(target.size()).data == target.data).sum().item()
-                accuracy = 100.0 * corrects / batch
-                sys.stdout.write('\rEpoch[{}] Batch[{}] - loss: {:.4f}  acc: {:.2f}%({}/{})'.format(
-                                 epoch, idx, loss.item(), accuracy, corrects, batch))
+            corrects += (torch.max(logit, 1)[1].view(target.size()).data == target.data).sum().item()
+            accuracy = 100.0 * corrects / batch / (idx + 1)
+            sys.stdout.write('\rEpoch[{}] Batch[{}] - loss: {:.4f}  acc: {:.2f}%({}/{})'.format(
+                             epoch, idx, loss.item(), accuracy, corrects, batch * (idx + 1)))
         dev_acc = eval(X_valid, y_valid, model, args)
         if dev_acc > best_acc:
             best_acc = dev_acc
@@ -48,7 +48,7 @@ def train(X_train, y_train, X_valid, y_valid, model, args):
 def eval(X, y, model, args):
     model.eval()
     corrects, avg_loss = 0, 0
-    correct_part, total_part = 0, 0
+    correct_part, total_part = 0, 1e-16
     batch = args.batch_size
     for idx in range(int(X.shape[0]/batch)):
         feature = torch.LongTensor(X[(idx*batch):(idx*batch+batch),])
@@ -67,7 +67,7 @@ def eval(X, y, model, args):
         #print(logit)
         avg_loss += loss.data.item()
         predictor = torch.exp(logit[:, 1]) / (torch.exp(logit[:, 0]) + torch.exp(logit[:, 1]))
-        thres = 0.1
+        thres = 0.2
         idx_thres = (predictor > 0.5 + thres) + (predictor < 0.5 - thres)
         #print(predictor)
         #print(torch.max(logit, 1)[1])
@@ -84,9 +84,8 @@ def eval(X, y, model, args):
     size = y.shape[0]
     avg_loss /= size
     accuracy = 100.0 * corrects / size
-    print('\n')
-    print(100.0 * correct_part / total_part, correct_part, total_part)
-    print('\n         Evaluation - loss: {:.4f}  acc: {:.2f}%({}/{}) \n'.format(avg_loss, accuracy, corrects, size))
+    print('\n         Evaluation - loss: {:.4f}  acc: {:.2f}%({}/{})  target acc: {:.2f}%({}/{}) \n'.format(
+          avg_loss, accuracy, corrects, size, 100.0 * correct_part / total_part, correct_part, total_part))
     return accuracy
 
 

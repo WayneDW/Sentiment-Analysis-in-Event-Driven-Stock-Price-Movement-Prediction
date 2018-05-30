@@ -1,5 +1,5 @@
 # Sentiment Analysis for Event-Driven Stock Prediction
-Use NLP to predict stock price movement based on news from Reuters, we need the following 5 steps:
+Use natural-language processing (NLP) to predict stock price movement based on Reuters News, we need the following 5 steps:
 
 1. Data Collection
 
@@ -67,7 +67,7 @@ By brute-force iterating company tickers and dates, we can get the dataset with 
 Improvement here, use normalized return [4] over S&P 500 instead of return.
 
 ```bash
-$ ./crawler/yahoo_finance.py # generate stock price raw data: stockPrices_raw.json, containing open, close, ..., adjClose
+$ ./crawler/yahoo_finance.py # generate raw data: stockPrices_raw.json, containing open, close, ..., adjClose
 $ ./create_label.py # use raw price data to generate stockReturns.json
 ```
 

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import re
 import time
 import datetime
 import numpy as np
@@ -7,7 +8,6 @@ from urllib.request import urlopen
 
 from nltk.stem.wordnet import WordNetLemmatizer
 from nltk.stem.porter import PorterStemmer
-#from bs4 import BeautifulSoup
 
 
 def padding(sentencesVec, keepNum):
@@ -43,6 +43,13 @@ def unify_word(word):  # went -> go, apples -> apple, BIG -> big
         except:
             pass
     return word.lower()
+
+def digit_filter(word):
+    check = re.match(r'\d*\.?\d*', word).group()
+    if check == "":
+        return word
+    else:
+        return ""
 
 def get_soup_with_repeat(url, repeat_times=3, verbose=True):
     for i in range(repeat_times): # repeat in case of http failure
