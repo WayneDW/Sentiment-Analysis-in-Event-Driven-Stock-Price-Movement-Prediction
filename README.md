@@ -26,6 +26,14 @@ Use NLP to predict stock price movement based on news from Reuters, we need the 
 4. Trained a ConvNet to predict the stock price movement based on a reasonable parameter selection
 5. The result shows a significant 1-2% improve on the test set
 
+## Requirement
+* Python 3
+* [PyTorch > 0.4](https://pytorch.org/)
+* numpy
+* [NLTK](https://www.nltk.org/install.html)
+
+
+
 
 ### 1. Data Collection
 
