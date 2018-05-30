@@ -50,7 +50,7 @@ $ ./crawler/all_tickers.py 20  # keep the top e.g. 20% marketcap companies
 
 Suppose we find a news about Facebook on Dec.13, 2016 at reuters.com
 
-![](./imgs/tar1.PNG)
+![](./.imgs/Baidu.png)
 
 We can use the following script to crawl it and format it to our local file
 
