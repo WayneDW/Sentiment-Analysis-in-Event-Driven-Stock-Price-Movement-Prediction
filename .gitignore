@@ -4,3 +4,5 @@ __pycache__/
 input/glove.*
 input/news_reuters.csv
 input/stockPrices_raw.json
+input/stockReturns.json
+snapshot/*
