@@ -6,3 +6,4 @@ input/news_reuters.csv
 input/stockPrices_raw.json
 input/stockReturns.json
 snapshot/*
+SGHMC_Bayesian.py

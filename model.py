@@ -52,3 +52,11 @@ class CNN_Text(nn.Module):
         x = self.dropout(x)  # (N, len(Ks)*Co)
         logit = self.fc1(x)  # (N, C)
         return logit
+
+    def cal_nlpos(self, logit, y):
+        loss = F.cross_entropy(logit, y)
+            
+        for num, name in enumerate(self.state_dict()):
+            param = self.state_dict()[name]
+            loss += 0.5 * param.pow(2).sum()
+        return(loss)

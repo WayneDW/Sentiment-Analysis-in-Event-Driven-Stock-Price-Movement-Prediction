@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import os
 import operator
+import argparse
 
 import json
 import numpy as np
@@ -28,7 +29,7 @@ def tokenize(news_file, price_file, stopWords_file, output, sentense_len, term_t
         print("Loading price info ...")
         priceDt = json.load(file)[term_type]
 
-    testDates = util.dateGenerator(1) # the most recent days are used for testing
+    testDates = util.dateGenerator(7) # the most recent days are used for testing
     os.system('rm ' + output + mtype)
 
     # load stop words
@@ -65,13 +66,16 @@ def tokenize(news_file, price_file, stopWords_file, output, sentense_len, term_t
             if mtype == "train" and day in testDates: 
                 continue
 
-            tokens = nltk.word_tokenize(headline) + nltk.word_tokenize(body)
+            tokens = nltk.word_tokenize(headline) #+ nltk.word_tokenize(body)
             tokens = list(map(util.unify_word, tokens))
-            tokens = list(map(util.unify_word, tokens))
+            tokens = list(map(util.unify_word, tokens)) # some words fail filtering in the 1st time
+            tokens = list(map(util.digit_filter, tokens)) 
+            tokens = list(map(util.unify_word_meaning, tokens))
+            tokens = [t for t in tokens if t not in stopWords and t != ""]
 
             for t in tokens:
-                if t in stopWords:
-                    continue
+                #if t in stopWords or t == "":
+                #    continue
                 if t not in word2idx:
                     word2idx[t] = current_idx
                     idx2word.append(t)
@@ -122,12 +126,14 @@ def main():
     price_file = "./input/stockReturns.json"
     output = './input/featureMatrix_'
 
-    n_vocab = 10000
-    sentense_len = 30
-    # you can choose short mid long
-    term_type = 'short'
-    tokenize(news_file, price_file, stopWords_file, output, sentense_len, term_type, n_vocab, 'train')
-    tokenize(news_file, price_file, stopWords_file, output, sentense_len, term_type, n_vocab, 'test')
+    parser = argparse.ArgumentParser(description='Tokenize Reuters news')
+    parser.add_argument('-vocabs', type=int, default=1000, help='total number of vocabularies [default: 1000]')
+    parser.add_argument('-words', type=int, default=20, help='max number of words in a sentence [default: 20]')
+    parser.add_argument('-term', type=str, default='short', help='return type [short mid long] [default: short]')
+    args = parser.parse_args()
+
+    tokenize(news_file, price_file, stopWords_file, output, args.words, args.term, args.vocabs, 'train')
+    tokenize(news_file, price_file, stopWords_file, output, args.words, args.term, args.vocabs, 'test')
 
 
 if __name__ == "__main__":

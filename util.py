@@ -51,6 +51,16 @@ def digit_filter(word):
     else:
         return ""
 
+def unify_word_meaning(word):
+    if word in ["bigger-than-expected", "higher-than-expected", "better-than-expected", "stronger-than-expected"]:
+        return "better"
+    elif word in ["smaller-than-expected", "lower-than-expected", "weaker-than-expected", "worse-than-expected"]:
+        return "lower"
+    elif word in ["no", "not", "n't"]:
+        return "not"
+    else:
+        return word
+
 def get_soup_with_repeat(url, repeat_times=3, verbose=True):
     for i in range(repeat_times): # repeat in case of http failure
         try:
