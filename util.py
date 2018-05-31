@@ -1,15 +1,202 @@
 #!/usr/bin/env python3
-
+import os
+import sys
+import copy
 import re
 import time
 import datetime
-import numpy as np
+
 from urllib.request import urlopen
+
+import numpy as np
 
 import nltk
 from nltk.stem.wordnet import WordNetLemmatizer
 from nltk.stem.porter import PorterStemmer
 
+import json
+import torch
+import torch.autograd as autograd
+import torch.nn as nn
+import torch.nn.functional as F
+
+
+def train(X_train, y_train, X_valid, y_valid, X_test, y_test, model, args):
+    model.train()
+    batch = args.batch_size
+
+    parameters = [parameter for parameter in model.parameters()]
+    for epoch in range(1, args.epochs+1):
+        corrects = 0
+        for idx in range(int(X_train.shape[0]/batch) + 1):
+            feature = torch.LongTensor(X_train[(idx*batch):(idx*batch+batch),])
+            target = torch.LongTensor(y_train[(idx*batch):(idx*batch+batch)])
+            if args.cuda:
+                feature, target = feature.cuda(), target.cuda()
+            logit = model(feature)
+            loss = F.cross_entropy(logit, target)
+            model.zero_grad()
+            loss.backward()
+
+            for layer_no, param in enumerate(model.parameters()):
+                if args.static and layer_no == 0: # fixed embedding layer cannot update
+                    continue
+                noise = torch.cuda.FloatTensor(param.data.size()).normal_() * np.sqrt(args.lr / args.t)
+                parameters[layer_no].data += (- args.lr / 2 * param.grad + noise)
+
+            corrects += (torch.max(logit, 1)[1].view(target.size()).data == target.data).sum().item()
+            accuracy = 100.0 * corrects / batch / (idx + 1)
+            sys.stdout.write('\rEpoch[{}] Batch[{}] - loss: {:.4f}  acc: {:.2f}%({}/{})'.format(
+                             epoch, idx, loss.item(), accuracy, corrects, batch * (idx + 1)))
+        if epoch % 4 != 0:
+            continue
+        save(model, args.save_dir, epoch)
+        print()
+        eval(X_valid, y_valid, model, 'Validation', args)
+        eval(X_test, y_test, model, 'Testing   ', args)
+
+
+def eval(X, y, model, term, args):
+    model.eval()
+    corrects, avg_loss = 0, 0
+    correct_part, total_part = {0.1:0, 0.2:0, 0.3:0, 0.4:0}, {0.1:1e-16, 0.2:1e-16, 0.3:1e-16, 0.4:1e-16}
+    batch = args.batch_size
+
+    for idx in range(int(X.shape[0]/batch) + 1):
+        feature = torch.LongTensor(X[(idx*batch):(idx*batch+batch),])
+        target = torch.LongTensor(y[(idx*batch):(idx*batch+batch)])
+        if args.cuda:
+            feature, target = feature.cuda(), target.cuda()
+
+        logit = model(feature)
+        loss = F.cross_entropy(logit, target, size_average=False)
+        avg_loss += loss.data.item()
+        predictor = torch.exp(logit[:, 1]) / (torch.exp(logit[:, 0]) + torch.exp(logit[:, 1]))
+        for xnum in range(1, 5):
+            thres = round(0.1 * xnum, 1)
+            idx_thres = (predictor > 0.5 + thres) + (predictor < 0.5 - thres)
+            correct_part[thres] += (torch.max(logit, 1)[1][idx_thres] == target.data[idx_thres]).sum().item()
+            total_part[thres] += idx_thres.sum().item()
+
+        corrects += (torch.max(logit, 1)[1] == target.data).sum().item()
+
+    size = y.shape[0]
+    avg_loss /= size
+    accuracy = 100.0 * corrects / size
+    print('         {} - loss: {:.4f}  acc: {:.2f}%({}/{}) {:.2f}%({}/{}) {:.2f}%({}/{}) {:.2f}%({}/{}) {:.2f}%({}/{}) \n'.format(term,
+          avg_loss, accuracy, corrects, size, 100.0 * correct_part[0.1] / total_part[0.1], correct_part[0.1], int(total_part[0.1]), 
+          100.0 * correct_part[0.2] / total_part[0.2], correct_part[0.2], int(total_part[0.2]), 100.0 * correct_part[0.3] / total_part[0.3], 
+          correct_part[0.3], int(total_part[0.3]), 100.0 * correct_part[0.4] / total_part[0.4], correct_part[0.4], int(total_part[0.4])))
+    return accuracy
+
+def bma_eval(X, y, mymodels, term, args):
+    
+    corrects, avg_loss = 0, 0
+    correct_part, total_part = {0.1:0, 0.2:0, 0.3:0, 0.4:0}, {0.1:1e-16, 0.2:1e-16, 0.3:1e-16, 0.4:1e-16}
+    batch = args.batch_size
+
+    for model in mymodels:
+        model.eval()
+        for idx in range(int(X.shape[0]/batch) + 1):
+            feature = torch.LongTensor(X[(idx*batch):(idx*batch+batch),])
+            target = torch.LongTensor(y[(idx*batch):(idx*batch+batch)])
+            if args.cuda:
+                feature, target = feature.cuda(), target.cuda()
+
+            logit = model(feature)
+            loss = F.cross_entropy(logit, target, size_average=False)
+            avg_loss += loss.data.item()
+            predictor = torch.exp(logit[:, 1]) / (torch.exp(logit[:, 0]) + torch.exp(logit[:, 1]))
+            for xnum in range(1, 5):
+                thres = round(0.1 * xnum, 1)
+                idx_thres = (predictor > 0.5 + thres) + (predictor < 0.5 - thres)
+                correct_part[thres] += (torch.max(logit, 1)[1][idx_thres] == target.data[idx_thres]).sum().item() / (len(mymodels) * 1.0)
+                total_part[thres] += idx_thres.sum().item() / (len(mymodels) * 1.0)
+            corrects += (torch.max(logit, 1)[1] == target.data).sum().item() / (len(mymodels) * 1.0)
+
+    size = y.shape[0]
+    avg_loss /= size
+    accuracy = 100.0 * corrects / size
+    print('         {} - loss: {:.4f}  acc: {:.2f}%({}/{}) {:.2f}%({}/{}) {:.2f}%({}/{}) {:.2f}%({}/{}) {:.2f}%({}/{}) \n'.format(
+        term, avg_loss, accuracy, corrects, size, 100.0 * correct_part[0.1] / total_part[0.1], int(correct_part[0.1]), 
+        int(total_part[0.1]), 100.0 * correct_part[0.2] / total_part[0.2], int(correct_part[0.2]), int(total_part[0.2]), 
+        100.0 * correct_part[0.3] / total_part[0.3], int(correct_part[0.3]), int(total_part[0.3]), 
+        100.0 * correct_part[0.4] / total_part[0.4], int(correct_part[0.4]), int(total_part[0.4])))
+    return accuracy
+
+def predictor_preprocess(cnn, args):
+    # load trained thinning samples (Bayesian CNN models) from input/models/
+    mymodels = []
+    for each_model in os.listdir(args.save_dir):
+        print(args.save_dir + each_model)
+        cnn.load_state_dict(torch.load(args.save_dir + each_model))
+        mymodels.append(copy.deepcopy(cnn))
+
+    with open('./input/word2idx', 'r') as file:
+        word2idx = json.load(file)
+
+    stopWords = set()
+    with open('./input/stopWords') as file:
+        for word in file:
+            stopWords.add(word.strip())
+    return(mymodels, word2idx, stopWords)
+
+def predict(sentence, mymodels, word2idx, stopWords, args):
+    tokens = tokenize_news(sentence, stopWords)
+    tokens = [word2idx[t] if t in word2idx else word2idx['UNKNOWN'] for t in tokens]
+    if len(tokens) < 5 or tokens == [word2idx['UNKNOWN']] * len(tokens): # tokens cannot be too short or unknown
+        signal = 'Unknown'
+    else:
+        feature = torch.LongTensor([tokens])
+        logits = []
+        for model in mymodels:
+            model.eval()
+            if args.cuda:
+                feature = feature.cuda()
+            logit = model(feature)
+            predictor = torch.exp(logit[:, 1]) / (torch.exp(logit[:, 0]) + torch.exp(logit[:, 1]))
+            logits.append(predictor.item())
+        signal = signals(np.mean(logits))
+    return(signal)
+
+
+def daily_predict(cnn, args):
+    mymodels, word2idx, stopWords = predictor_preprocess(cnn, args)
+    with open('./input/news/' + args.date[:4] + '/news_' + args.date + '.csv', 'r+') as f:
+        for num, line in enumerate(f):
+            line = line.strip().split(',')
+            if len(line) == 6:
+                ticker, name, day, headline, body, newsType = line
+            elif len(line) == 7:
+                ticker, name, day, headline, body, newsType, signal = line
+            else:
+                continue
+
+            if newsType != 'topStory': # newsType: [topStory, normal]
+                continue # skip normal news
+            signal = predict(headline, mymodels, word2idx, stopWords, args)
+            f.write(','.join([ticker, name, day, headline, body, newsType, signal]) + '\n')
+
+
+def save(model, save_dir, steps):
+    if not os.path.isdir(save_dir):
+        os.makedirs(save_dir)
+    save_path = '{}/model_{}.pt'.format(save_dir,steps)
+    torch.save(model.state_dict(), save_path)
+
+def signals(digit):
+    strong_signal = 0.3
+    unknown_thres = 0.05
+    if digit > 0.5 + strong_signal:
+        return('Strong Buy')
+    elif digit > 0.5 + unknown_thres:
+        return('Strong Buy')
+    elif digit > 0.5 - unknown_thres:
+        return('Unknown')
+    elif digit > 0.5 - strong_signal:
+        return('Sell')
+    else:
+        return('Strong Sell')
 
 def padding(sentencesVec, keepNum):
     shape = sentencesVec.shape[0]

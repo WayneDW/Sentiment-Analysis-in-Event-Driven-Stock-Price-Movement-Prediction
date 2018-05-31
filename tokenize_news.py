@@ -14,12 +14,12 @@ import util
 Required input data:
 ./input/stopWords
 ./input/stockReturns.json
-./input/news_reuters.csv
+./input/news/*/*
 
 Output file name: 
 input/featureMatrix_train
 input/featureMatrix_test 
-input/word2idx_smal"""
+input/word2idx"""
 
 # credit: https://github.com/lazyprogrammer/machine_learning_examples/tree/master/nlp_class2
 
@@ -44,6 +44,7 @@ def tokenize(news_file, price_file, stopWords_file, output, output_wd2idx, sen_l
     current_idx = 2
     word_idx_count = {0: float('inf'), 1: float('inf')}
     sentences, labels = [], []
+    os.system('cat ./input/news/*/* > ./input/news_reuters.csv')
     with open(news_file) as f:
         for num, line in enumerate(f):
             line = line.strip().split(',')

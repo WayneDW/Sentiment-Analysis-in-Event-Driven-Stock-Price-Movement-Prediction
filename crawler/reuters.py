@@ -157,7 +157,7 @@ class ReutersCrawler(object):
 
 def main():
     reuter_crawler = ReutersCrawler()
-    reuter_crawler.run(50)
+    reuter_crawler.run(1)
 
 if __name__ == "__main__":
     main()
