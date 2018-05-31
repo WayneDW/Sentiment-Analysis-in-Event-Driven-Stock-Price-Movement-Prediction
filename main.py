@@ -9,6 +9,7 @@ import train
 import numpy as np
 
 import util
+import json
 from SGHMC_Bayesian import sghmc
 
 parser = argparse.ArgumentParser(description='CNN-based Financial News Classifier')
@@ -79,7 +80,15 @@ if args.cuda:
 
 # train or predict
 if args.predict is not None:
-    label = train.predict(args.predict, cnn, text_field, label_field, args.cuda)
+    with open('./input/word2idx_small', 'r') as file:
+        word2idx = json.load(file)
+
+    stopWords = set()
+    with open(stopWords_file) as file:
+        for word in file:
+            stopWords.add(word.strip())
+
+    label = train.predict(args.predict, cnn, news, word2idx, stopWords, args.cuda)
     print('\n[Text]  {}\n[Label] {}\n'.format(args.predict, label))
 elif args.test:
     try:
@@ -90,6 +99,16 @@ else:
     print()
     try:
         train.train(X_train, y_train, X_valid, y_valid, X_test, y_test, cnn, args)
+        print("..........................................................................")
+        with open('./input/word2idx_small', 'r') as file:
+            word2idx = json.load(file)
+
+        stopWords = set()
+        with open('./input/stopWords') as file:
+            for word in file:
+                stopWords.add(word.strip())
+
+        train.predict(cnn, "Top executive behind Baidu's artificial intelligence drive stepping down", word2idx, stopWords, args.cuda)
     except KeyboardInterrupt:
         print('\n' + '-' * 89)
         print('Exiting from training early')

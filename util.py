@@ -6,6 +6,7 @@ import datetime
 import numpy as np
 from urllib.request import urlopen
 
+import nltk
 from nltk.stem.wordnet import WordNetLemmatizer
 from nltk.stem.porter import PorterStemmer
 
@@ -33,13 +34,12 @@ def generate_past_n_days(numdays):
     date_range = [base - datetime.timedelta(days=x) for x in range(0, numdays)]
     return [x.strftime("%Y%m%d") for x in date_range]
 
-wordnet = WordNetLemmatizer()
 def unify_word(word):  # went -> go, apples -> apple, BIG -> big
     """unify verb tense and noun singular"""
     ADJ, ADJ_SAT, ADV, NOUN, VERB = 'a', 's', 'r', 'n', 'v'
     for wt in [ADJ, ADJ_SAT, ADV, NOUN, VERB]:
         try:
-            word = wordnet.lemmatize(word, pos=wt)
+            word = WordNetLemmatizer().lemmatize(word, pos=wt)
         except:
             pass
     return word.lower()
@@ -75,6 +75,14 @@ def get_soup_with_repeat(url, repeat_times=3, verbose=True):
                 print('retry...')
             continue
 
+def tokenize_news(headline, stopWords):
+    tokens = nltk.word_tokenize(headline) #+ nltk.word_tokenize(body)
+    tokens = list(map(unify_word, tokens))
+    tokens = list(map(unify_word, tokens)) # some words fail filtering in the 1st time
+    tokens = list(map(digit_filter, tokens)) 
+    tokens = list(map(unify_word_meaning, tokens))
+    tokens = [t for t in tokens if t not in stopWords and t != ""]
+    return(tokens)
 
 
 def value2int(y, clusters=2):
