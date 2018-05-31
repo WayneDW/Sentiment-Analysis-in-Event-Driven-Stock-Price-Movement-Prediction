@@ -90,6 +90,7 @@ def tokenize(news_file, price_file, stopWords_file, output, output_wd2idx, sen_l
         word2idx_small[word] = new_idx
         idx_new_idx_map[idx] = new_idx
         new_idx += 1
+
     # let 'unknown' be the last token
     word2idx_small['UNKNOWN'] = new_idx 
     unknown = new_idx
@@ -121,8 +122,10 @@ def main():
     news_file = "./input/news_reuters.csv"
     stopWords_file = "./input/stopWords"
     price_file = "./input/stockReturns.json"
+
+    
     output = './input/featureMatrix_'
-    output_wd2idx = "./input/word2idx_small"
+    output_wd2idx = "./input/word2idx"
 
     parser = argparse.ArgumentParser(description='Tokenize Reuters news')
     parser.add_argument('-vocabs', type=int, default=1000, help='total number of vocabularies [default: 1000]')

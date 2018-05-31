@@ -35,6 +35,11 @@ parser.add_argument('-no-cuda', action='store_true', default=False, help='disabl
 parser.add_argument('-snapshot', type=str, default=None, help='filename of model snapshot [default: None]')
 parser.add_argument('-predict', type=str, default=None, help='predict the sentence given')
 parser.add_argument('-test', action='store_true', default=False, help='train or test')
+parser.add_argument('-vocabs', type=int, default=1000, help='total number of vocabularies [default: 1000]')
+parser.add_argument('-words', type=int, default=20, help='max number of words in a sentence [default: 20]')
+parser.add_argument('-date', type=str, default="20180525", help='date to be tested')
+
+
 args = parser.parse_args()
 
 # load tokenized features
@@ -56,7 +61,6 @@ y_test = util.value2int_simple(y_test).astype("int")
 
 
 # update args and print
-args.embed_num = 5001
 args.class_num = 2
 args.cuda = (not args.no_cuda) and torch.cuda.is_available(); del args.no_cuda
 args.kernel_sizes = [int(k) for k in args.kernel_sizes.split(',')]
@@ -71,7 +75,7 @@ for attr, value in sorted(args.__dict__.items()):
 cnn = model.CNN_Text(args)
 if args.snapshot is not None:
     print('\nLoading model from {}...'.format(args.snapshot))
-    cnn.load_state_dict(torch.load(args.snapshot))
+    cnn.load_state_dict(torch.load("./snapshot/" + args.snapshot))
 
 
 if args.cuda:
@@ -80,16 +84,29 @@ if args.cuda:
 
 # train or predict
 if args.predict is not None:
-    with open('./input/word2idx_small', 'r') as file:
+    with open('./input/word2idx', 'r') as file:
         word2idx = json.load(file)
 
     stopWords = set()
-    with open(stopWords_file) as file:
+    with open('./input/stopWords') as file:
         for word in file:
             stopWords.add(word.strip())
 
-    label = train.predict(args.predict, cnn, news, word2idx, stopWords, args.cuda)
-    print('\n[Text]  {}\n[Label] {}\n'.format(args.predict, label))
+    with open('./news/2018/news_' + args.date + '.csv') as f:
+        for num, line in enumerate(f):
+            line = line.strip().split(',')
+            if len(line) != 6:
+                continue
+            ticker, name, day, headline, body, newsType = line
+            if newsType != 'topStory': # newsType: [topStory, normal]
+                continue # skip normal news
+            tokens = util.tokenize_news(headline, stopWords)
+            tokens = [word2idx[t] if t in word2idx else word2idx['UNKNOWN'] for t in tokens]
+            if len(tokens) < 5 or tokens == [word2idx['UNKNOWN']] * len(tokens): # tokens cannot be too short or unknown
+                continue
+            feature = torch.LongTensor([tokens])
+            predictor = train.predict(cnn, feature, args.words, word2idx, stopWords, args.cuda)
+            print(name, headline, predictor)
 elif args.test:
     try:
         train.eval(test_iter, cnn, args) 
@@ -99,16 +116,6 @@ else:
     print()
     try:
         train.train(X_train, y_train, X_valid, y_valid, X_test, y_test, cnn, args)
-        print("..........................................................................")
-        with open('./input/word2idx_small', 'r') as file:
-            word2idx = json.load(file)
-
-        stopWords = set()
-        with open('./input/stopWords') as file:
-            for word in file:
-                stopWords.add(word.strip())
-
-        train.predict(cnn, "Top executive behind Baidu's artificial intelligence drive stepping down", word2idx, stopWords, args.cuda)
     except KeyboardInterrupt:
         print('\n' + '-' * 89)
         print('Exiting from training early')

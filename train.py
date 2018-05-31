@@ -80,25 +80,13 @@ def eval(X, y, model, term, args):
     return accuracy
 
 
-def predict(model, news, word2idx, stopWords, cuda_flag):
+def predict(model, feature, sen_len, word2idx, stopWords, cuda_flag):
     model.eval()
-    
-    tokens = util.tokenize_news(news, stopWords)
-    tokens = [word2idx[t] if t in word2idx else  word2idx['UNKNOWN'] for t in tokens]
-    
-    return(tokens)
-
-    # text = [[text_field.vocab.stoi[x] for x in text]]
-    # x = text_field.tensor_type(text)
-    # x = autograd.Variable(x, volatile=True)
-    # if cuda_flag:
-    #     x = x.cuda()
-    # print(x)
-    # output = model(x)
-    # _, predicted = torch.max(output, 1)
-    # #return label_feild.vocab.itos[predicted.data[0][0]+1]
-    # return label_feild.vocab.itos[predicted.data[0]+1]
-
+    if cuda_flag:
+        feature = feature.cuda()
+    logit = model(feature)
+    predictor = torch.exp(logit[:, 1]) / (torch.exp(logit[:, 0]) + torch.exp(logit[:, 1]))
+    return(predictor.item())
 
 def save(model, save_dir, save_prefix, steps):
     if not os.path.isdir(save_dir):
