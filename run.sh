@@ -1,3 +1,5 @@
+#!/bin/sh
+
 vocabs=10000
 #./tokenize_news.py -vocabs $vocabs
 #./main.py -vocabs $vocabs -epochs 5
