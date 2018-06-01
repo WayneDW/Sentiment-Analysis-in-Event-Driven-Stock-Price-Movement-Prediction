@@ -93,16 +93,16 @@ $ ./main.py -epochs 500 -static False
 Test the performance on the most recent news in two weeks.
 ```bash
 $ ./main.py -eval True
+>>> Testing    - loss: 67.6102  acc: 58.07%(41.8/72) 83.50%(3/3) 100.00%(0/0) 0.00%(0/0) 0.00%(0/0)
 ```
-Testing    - loss: 67.6102  acc: 58.07%(41.8/72) 83.50%(3/3) 100.00%(0/0) 0.00%(0/0) 0.00%(0/0)
 Note: the predictions are averaged (therefore some numbers, like 41.8, are rounded). From left to right, the predictions are more and more confident.
 
 ### 4. Prediction and analysis
 
 ```bash
 $ ./main.py -predict "Top executive behind Baidu's artificial intelligence drive steps aside"
+>>> Sell
 ```
-Sell
 
 ### 5. Future work
 
