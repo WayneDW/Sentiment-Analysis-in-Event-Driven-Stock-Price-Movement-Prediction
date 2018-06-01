@@ -75,7 +75,7 @@ $ ./create_label.py # use raw price data to generate stockReturns.json
 
 Unify the word format, project word to a word vector, so every sentence results in a matrix.
 
-Detail about unifying word format are: lower case, remove punctuation, get rid of stop words, unify tense and singular & plural using [en](https://www.nodebox.net/code/index.php/Linguistics#verb_conjugation)
+Detail about unifying word format are: lower case, remove punctuation, get rid of stop words, unify tense and singular & plural.
 
 Seperate test set away from training+validation test, otherwise we would get a too optimistic result.
 
@@ -85,10 +85,12 @@ $ ./tokenize_news.py
 
 ### 3. Train a ConvNet to predict the stock price movement. 
 
+Type the following to train a set of robust Bayesian models.
 ```bash
 $ ./main.py -epochs 500 -static False
 ```
 
+Test the performance on the most recent news in two weeks.
 ```bash
 $ ./main.py -eval True
 ```
@@ -106,7 +108,9 @@ Sell
 
 From the [work](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1331573) by Tim Loughran and Bill McDonald, some words have strong indication of positive and negative effects in finance, we may need to dig into these words to find more information. A very simple but interest example can be found in [Financial Sentiment Analysis part1](http://francescopochetti.com/scrapying-around-web/), [part2](http://francescopochetti.com/financial-blogs-sentiment-analysis-part-crawling-web/)
 
-As suggested by H Lee, we may consider to include features of earnings surprise due to its great value
+As suggested by H Lee, we may consider to include features of earnings surprise due to its great value.
+
+You are welcome to send a better stopword list.
 
 
 ## Issues
