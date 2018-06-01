@@ -7,7 +7,7 @@ Use natural-language processing (NLP) to predict stock price movement based on R
 
     1.2 crawl news from Reuters using BeautifulSoup
     
-    1.3 crawl prices using urllib2 (Yahoo Finance API is outdated)
+    1.3 crawl prices using urllib(2) (Yahoo Finance API is outdated)
 
 2. Feature Engineering (Tokenization)
   
