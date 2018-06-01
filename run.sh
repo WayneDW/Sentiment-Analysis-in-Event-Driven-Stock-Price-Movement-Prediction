@@ -1,11 +1,11 @@
 #!/bin/sh
 
-vocabs=10000
+vocabs=30000
 
 
 ./crawler/daily_reuters.py
 
-./main.py -vocabs 10000 -epochs 100 -t 100000
-./main.py -vocabs 10000 -eval True
-./main.py -vocabs 10000 -predict "disaster trump some scandal happens"
+./main.py -vocabs ${vocabs} -epochs 500 -static False
+./main.py -vocabs ${vocabs} -eval True
+./main.py -vocabs ${vocabs} -predict "Top executive behind Baidu's artificial intelligence drive steps aside"
 

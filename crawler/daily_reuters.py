@@ -38,7 +38,7 @@ class news_Reuters:
 
 
     def iterate_by_day(self, fin, filterList):
-        dateList = self.dateGenerator(2) # look back on the past X days
+        dateList = self.dateGenerator(1) # look back on the past X days
         for timestamp in dateList: # iterate all possible days
             print("%s%s%s" % (''.join(['-'] * 50), timestamp, ''.join(['-'] * 50)))
             self.iterate_by_ticker(fin, filterList, timestamp)
@@ -48,8 +48,8 @@ class news_Reuters:
             print(line)
             line = line.strip().split(',')
             ticker, name, exchange, MarketCap = line
-            if ticker in filterList:
-                continue
+            #if ticker in filterList:
+            #    continue
             print("%s - %s - %s - %s" % (ticker, name, exchange, MarketCap))
             self.repeatDownload(ticker, line, timestamp, exchange)
 
@@ -57,25 +57,25 @@ class news_Reuters:
         url = "https://www.reuters.com/finance/stocks/company-news/" + ticker + self.suffix[exchange]
         new_time = timestamp[4:] + timestamp[:4] # change 20151231 to 12312015 to match reuters format
         for _ in range(self.repeat_times): 
-
-            if 1:
+            try:
                 time.sleep(np.random.poisson(self.sleep_times))
-                #response = urllib2.urlopen(url + "?date=" + new_time)
-                response = urllib.request.urlopen(url + "?date=" + new_time)
+                #response = urllib2.urlopen(url + "?date=" + new_time) # python2.7
+                response = urllib.request.urlopen(url + "?date=" + new_time) # python3.5
                 data = response.read()
                 soup = BeautifulSoup(data, "lxml")
                 hasNews = self.parser(soup, line, ticker, timestamp)
                 if hasNews:
                     return 1 # return if we get the news
                 break # stop looping if the content is empty (no error)
-            #except: # repeat if http error appears
-                #print('Http error')
-                #continue
+            except: # repeat if http error appears
+                print('Http error')
+                continue
         return 0
   
     def parser(self, soup, line, ticker, timestamp):
         content = soup.find_all("div", {'class': ['topStory', 'feature']})
-        if len(content) == 0: return 0
+        if len(content) == 0:
+            return 0
         fout = open('./input/news/' + timestamp[:4] + '/news_' + timestamp + '.csv', 'a+')
         for i in range(len(content)):
             title = content[i].h2.get_text().replace(",", " ").replace("\n", " ")

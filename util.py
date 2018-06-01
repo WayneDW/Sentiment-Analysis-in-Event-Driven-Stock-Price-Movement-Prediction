@@ -28,6 +28,7 @@ def train(X_train, y_train, X_valid, y_valid, X_test, y_test, model, args):
     parameters = [parameter for parameter in model.parameters()]
     for epoch in range(1, args.epochs+1):
         corrects = 0
+        epsilon = args.lr * ((epoch * 1.0) ** (-0.333)) # optimal decay rate
         for idx in range(int(X_train.shape[0]/batch) + 1):
             feature = torch.LongTensor(X_train[(idx*batch):(idx*batch+batch),])
             target = torch.LongTensor(y_train[(idx*batch):(idx*batch+batch)])
@@ -41,14 +42,15 @@ def train(X_train, y_train, X_valid, y_valid, X_test, y_test, model, args):
             for layer_no, param in enumerate(model.parameters()):
                 if args.static and layer_no == 0: # fixed embedding layer cannot update
                     continue
-                noise = torch.cuda.FloatTensor(param.data.size()).normal_() * np.sqrt(args.lr / args.t)
-                parameters[layer_no].data += (- args.lr / 2 * param.grad + noise)
+                noise = torch.cuda.FloatTensor(param.data.size()).normal_() * np.sqrt(epsilon / args.t)
+                parameters[layer_no].data += (- epsilon / 2 * param.grad + noise)
 
             corrects += (torch.max(logit, 1)[1].view(target.size()).data == target.data).sum().item()
             accuracy = 100.0 * corrects / batch / (idx + 1)
-            sys.stdout.write('\rEpoch[{}] Batch[{}] - loss: {:.4f}  acc: {:.2f}%({}/{})'.format(
-                             epoch, idx, loss.item(), accuracy, corrects, batch * (idx + 1)))
-        if epoch % 4 != 0:
+            sys.stdout.write('\rEpoch[{}] Batch[{}] - loss: {:.4f}  acc: {:.2f}%({}/{}) tempreture: {}'.format(
+                             epoch, idx, loss.item(), accuracy, corrects, batch * (idx + 1), int(args.t)))
+            args.t = args.t + 1 # annealing
+        if epoch % 5 != 0:
             continue
         save(model, args.save_dir, epoch)
         print()
