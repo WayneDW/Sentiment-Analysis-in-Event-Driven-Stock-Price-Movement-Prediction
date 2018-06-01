@@ -13,7 +13,7 @@ Use natural-language processing (NLP) to predict stock price movement based on R
   
     2.1 Unify word format: unify tense, singular & plural, remove punctuations & stop words
   
-    2.2 Extract feature using feature hashing based on the trained word vector (step 2)
+    2.2 Implement one-hot encoding
   
     2.3 Pad word senquence (essentially a matrix) to keep the same dimension
   
