@@ -3,11 +3,11 @@ Use natural-language processing (NLP) to predict stock price movement based on R
 
 1. Data Collection and Preprocessing
 
-    1.1 get the whole ticker list to obtain the details about public companies
+    1.1 get the whole ticker list to obtain the details of public companies
 
     1.2 crawl news from Reuters using BeautifulSoup
     
-    1.3 crawl prices using urllib(2) (Yahoo Finance API is outdated)
+    1.3 crawl prices using urllib
 
 2. Feature Engineering (Tokenization)
   
@@ -54,11 +54,11 @@ $ ./crawler/reuters.py # we can relate the news with company and date, this is m
 
 ![](./imgs/111.png)
 
-By brute-force iterating company tickers and dates, we can get the dataset with about 30,000 ~ 200,000 news in the end. Since a company may have multiple news in a single day, the current version will only deal with topStory and ignore the others.
+By brute-force iterating company tickers and dates, we can get the dataset with roughly 400,000 news in the end. Since a company may have multiple news in a single day, the current version will only use topStory news to train our models and ignore the others.
 
 #### 1.3 Use urllib to crawl historical stock prices
  
-Improvement here, use normalized return [4] over S&P 500 instead of return.
+Improvement here, use normalized return [5] over S&P 500 instead of return.
 
 ```bash
 $ ./crawler/yahoo_finance.py # generate raw data: stockPrices_raw.json, containing open, close, ..., adjClose
@@ -70,8 +70,6 @@ $ ./create_label.py # use raw price data to generate stockReturns.json
 Unify the word format, project word to a word vector, so every sentence results in a matrix.
 
 Detail about unifying word format are: lower case, remove punctuation, get rid of stop words, unify tense and singular & plural.
-
-Seperate test set away from training+validation test, otherwise we would get a too optimistic result.
 
 ```bash
 $ ./tokenize_news.py
@@ -104,7 +102,7 @@ From the [work](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1331573) by 
 
 As suggested by H Lee, we may consider to include features of earnings surprise due to its great value.
 
-You are welcome to send a better stopword list.
+You are welcome to build a better stopword list and share it.
 
 
 ## Issues

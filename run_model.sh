@@ -2,7 +2,7 @@
 
 vocabs=30000
 
-target_date=`date -d '-1 day' '+%Y%m%d'`
+target_date=`date -d '-0 day' '+%Y%m%d'`
 
 ./crawler/daily_reuters.py
 
