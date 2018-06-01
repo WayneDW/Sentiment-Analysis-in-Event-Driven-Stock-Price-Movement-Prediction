@@ -29,7 +29,7 @@ Use natural-language processing (NLP) to predict stock price movement based on R
 
 ## Usage
 
-### 1. Data Collection
+### 1. Data collection
 
 
 #### 1.1 Download the ticker list from [NASDAQ](http://www.nasdaq.com/screening/companies-by-industry.aspx)
@@ -65,7 +65,7 @@ $ ./crawler/yahoo_finance.py # generate raw data: stockPrices_raw.json, containi
 $ ./create_label.py # use raw price data to generate stockReturns.json
 ```
 
-### 2. Feature Engineering (Tokenization)
+### 2. Feature engineering (Tokenization)
 
 Unify the word format, project word to a word vector, so every sentence results in a matrix.
 
@@ -75,11 +75,18 @@ Detail about unifying word format are: lower case, remove punctuation, get rid o
 $ ./tokenize_news.py
 ```
 
-### 3. Train a ConvNet to predict the stock price movement. 
+### 3. Train a Bayesian ConvNet to predict the stock price movement. 
 
 Type the following to train a set of robust Bayesian models.
 ```bash
 $ ./main.py -epochs 500 -static False
+```
+
+### 4. Prediction and analysis
+
+```bash
+$ ./main.py -predict "Top executive behind Baidu's artificial intelligence drive steps aside"
+>>> Sell
 ```
 
 Test the performance on the most recent news in two weeks.
@@ -89,12 +96,6 @@ $ ./main.py -eval True
 ```
 Note: the predictions are averaged (therefore some numbers, like 3/3, may be rounded to integers). From left to right, the predictions are more and more confident.
 
-### 4. Prediction and analysis
-
-```bash
-$ ./main.py -predict "Top executive behind Baidu's artificial intelligence drive steps aside"
->>> Sell
-```
 
 ### 5. Future work
 
