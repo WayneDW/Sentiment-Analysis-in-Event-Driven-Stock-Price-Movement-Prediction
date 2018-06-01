@@ -9,21 +9,15 @@ Use natural-language processing (NLP) to predict stock price movement based on R
     
     1.3 crawl prices using urllib2 (Yahoo Finance API is outdated)
 
-    1.4. Apply GloVe to train a dense word vector from Reuters corpus in NLTK (optional, PyTorch can handle it directly)
-
-        1.4.1 build the word-word co-occurrence matrix
-  
-        1.4.2 factorizing the weighted log of the co-occurrence matrix
-  
 2. Feature Engineering (Tokenization)
   
-    3.2 Unify word format: unify tense, singular & plural, remove punctuations & stop words
+    2.1 Unify word format: unify tense, singular & plural, remove punctuations & stop words
   
-    3.2 Extract feature using feature hashing based on the trained word vector (step 2)
+    2.2 Extract feature using feature hashing based on the trained word vector (step 2)
   
-    3.3 Pad word senquence (essentially a matrix) to keep the same dimension
+    2.3 Pad word senquence (essentially a matrix) to keep the same dimension
   
-3. Train a Bayesian Convolutional Neural Network using Stochastic Gradient Langevin Dynamics
+3. Train a set of Bayesian Convolutional Neural Networks using Stochastic Gradient Langevin Dynamics to obtain more robustness
 4. Use thinning models to predict future news
 
 ## Requirement
