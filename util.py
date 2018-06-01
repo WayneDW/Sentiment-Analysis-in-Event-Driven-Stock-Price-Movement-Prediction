@@ -107,7 +107,7 @@ def bma_eval(X, y, mymodels, term, args):
 
             logit = model(feature)
             loss = F.cross_entropy(logit, target, size_average=False)
-            avg_loss += loss.data.item()
+            avg_loss += loss.data.item() / (len(mymodels) * 1.0)
             predictor = torch.exp(logit[:, 1]) / (torch.exp(logit[:, 0]) + torch.exp(logit[:, 1]))
             for xnum in range(1, 5):
                 thres = round(0.1 * xnum, 1)
@@ -119,11 +119,10 @@ def bma_eval(X, y, mymodels, term, args):
     size = y.shape[0]
     avg_loss /= size
     accuracy = 100.0 * corrects / size
-    print('         {} - loss: {:.4f}  acc: {:.2f}%({}/{}) {:.2f}%({}/{}) {:.2f}%({}/{}) {:.2f}%({}/{}) {:.2f}%({}/{}) \n'.format(
-        term, avg_loss, accuracy, corrects, size, 100.0 * correct_part[0.1] / total_part[0.1], int(correct_part[0.1]), 
-        int(total_part[0.1]), 100.0 * correct_part[0.2] / total_part[0.2], int(correct_part[0.2]), int(total_part[0.2]), 
-        100.0 * correct_part[0.3] / total_part[0.3], int(correct_part[0.3]), int(total_part[0.3]), 
-        100.0 * correct_part[0.4] / total_part[0.4], int(correct_part[0.4]), int(total_part[0.4])))
+    print('{} - loss: {:.4f}  acc: {:.2f}%({:.1f}/{:.1f}) {:.2f}%({:.1f}/{:.1f}) {:.2f}%({:.1f}/{:.1f}) {:.2f}%({:.1f}/{:.1f}) \n'.format(
+        term, avg_loss, accuracy, corrects, size, 100.0 * correct_part[0.1] / total_part[0.1], correct_part[0.1], total_part[0.1], 
+        100.0 * correct_part[0.2] / total_part[0.2], correct_part[0.2], total_part[0.2], 
+        100.0 * correct_part[0.3] / total_part[0.3], correct_part[0.3], total_part[0.3]))
     return accuracy
 
 def predictor_preprocess(cnn, args):

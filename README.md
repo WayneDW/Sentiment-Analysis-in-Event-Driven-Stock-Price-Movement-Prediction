@@ -92,9 +92,10 @@ $ ./main.py -predict "Top executive behind Baidu's artificial intelligence drive
 Test the performance on the most recent news in two weeks.
 ```bash
 $ ./main.py -eval True
+>> Testing    - loss: 0.6761  acc: 58.07%(41.8/72.0) 83.50%(3.3/3.9) 100.00%(0.0/0.0) 0.00%(0.0/0.0) 
 >>> Testing    - loss: 67.6102  acc: 58.07%(41.8/72) 83.50%(3/3) 100.00%(0/0) 0.00%(0/0) 0.00%(0/0)
 ```
-Note: the predictions are averaged (therefore some numbers, like 3/3, may be rounded to integers). From left to right, the predictions are more and more confident.
+Note: the predictions are averaged (therefore we have float numbers). From left to right, the predictions are more and more confident.
 
 
 ### 5. Future work
