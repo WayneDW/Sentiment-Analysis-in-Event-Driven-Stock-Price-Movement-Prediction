@@ -1,7 +1,7 @@
 # Sentiment Analysis for Event-Driven Stock Prediction
-Use natural-language processing (NLP) to predict stock price movement based on Reuters News, we need the following 5 steps:
+Use natural-language processing (NLP) to predict stock price movement based on Reuters News, we need the following four steps:
 
-1. Data Collection
+1. Data Collection and Preprocessing
 
     1.1 get the whole ticker list to obtain the details about public companies
 
@@ -9,13 +9,13 @@ Use natural-language processing (NLP) to predict stock price movement based on R
     
     1.3 crawl prices using urllib2 (Yahoo Finance API is outdated)
 
-2. Apply GloVe to train a dense word vector from Reuters corpus in NLTK (optional, PyTorch can handle it directly)
+    1.4. Apply GloVe to train a dense word vector from Reuters corpus in NLTK (optional, PyTorch can handle it directly)
 
-    2.1 build the word-word co-occurrence matrix
+        1.4.1 build the word-word co-occurrence matrix
   
-    2.2 factorizing the weighted log of the co-occurrence matrix
+        1.4.2 factorizing the weighted log of the co-occurrence matrix
   
-3. Feature Engineering
+2. Feature Engineering (Tokenization)
   
     3.2 Unify word format: unify tense, singular & plural, remove punctuations & stop words
   
@@ -23,8 +23,8 @@ Use natural-language processing (NLP) to predict stock price movement based on R
   
     3.3 Pad word senquence (essentially a matrix) to keep the same dimension
   
-4. Train a ConvNet to predict the stock price movement based on a reasonable parameter selection
-5. The result shows a significant 1-2% improve on the test set
+3. Train a Bayesian Convolutional Neural Network using Stochastic Gradient Langevin Dynamics
+4. Use thinning models to predict future news
 
 ## Requirement
 * Python 3
@@ -71,19 +71,7 @@ $ ./crawler/yahoo_finance.py # generate raw data: stockPrices_raw.json, containi
 $ ./create_label.py # use raw price data to generate stockReturns.json
 ```
 
-### 2. Word Embedding
-
-To use our customized word vector, apply GloVe to train word vector from Reuters corpus in NLTK
-
-```bash
-$ ./word_embedding.py
-```
-
-Read the detail of the method [here](http://www-nlp.stanford.edu/pubs/glove.pdf), implementation [here](https://github.com/lazyprogrammer/machine_learning_examples/blob/master/nlp_class2/glove.py)
-
-We can also directly use a pretrained GloVe word vector from [here](http://nlp.stanford.edu/projects/glove/)
-
-### 3. Feature Engineering
+### 2. Feature Engineering (Tokenization)
 
 Unify the word format, project word to a word vector, so every sentence results in a matrix.
 
@@ -92,22 +80,29 @@ Detail about unifying word format are: lower case, remove punctuation, get rid o
 Seperate test set away from training+validation test, otherwise we would get a too optimistic result.
 
 ```bash
-$ ./feature_matrix.py
+$ ./tokenize_news.py
 ```
 
-### 4. Train a ConvNet to predict the stock price movement. 
-
-For the sake of simplicity, I just applied a ConvoNet in [Keras](http://machinelearningmastery.com/handwritten-digit-recognition-using-convolutional-neural-networks-python-keras/), the detail operations in text data is slighly differnt from the image, we can use the architecture from [FIgure 1 in Yoon Kim's paper](http://www.aclweb.org/anthology/D14-1181)
+### 3. Train a ConvNet to predict the stock price movement. 
 
 ```bash
-$ ./model_cnn.py
+$ ./main.py -epochs 500 -static False
 ```
 
-### 5. Prediction and analysis
+```bash
+$ ./main.py -eval True
+```
+Testing    - loss: 67.6102  acc: 58.07%(41.8/72) 83.50%(3/3) 100.00%(0/0) 0.00%(0/0) 0.00%(0/0)
+Note: the predictions are averaged (therefore some numbers, like 41.8, are rounded). From left to right, the predictions are more and more confident.
 
-As shown in the result, the prediction accuracy signifinantly improves around 1% - 2% compared to random pick.
+### 4. Prediction and analysis
 
-### 6. Future work
+```bash
+$ ./main.py -predict "Top executive behind Baidu's artificial intelligence drive steps aside"
+```
+Sell
+
+### 5. Future work
 
 From the [work](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1331573) by Tim Loughran and Bill McDonald, some words have strong indication of positive and negative effects in finance, we may need to dig into these words to find more information. A very simple but interest example can be found in [Financial Sentiment Analysis part1](http://francescopochetti.com/scrapying-around-web/), [part2](http://francescopochetti.com/financial-blogs-sentiment-analysis-part-crawling-web/)
 

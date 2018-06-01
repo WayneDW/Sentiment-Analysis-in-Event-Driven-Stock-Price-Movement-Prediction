@@ -164,7 +164,9 @@ def predict(sentence, mymodels, word2idx, stopWords, args):
 
 def daily_predict(cnn, args):
     mymodels, word2idx, stopWords = predictor_preprocess(cnn, args)
-    with open('./input/news/' + args.date[:4] + '/news_' + args.date + '.csv', 'r+') as f:
+    output = './input/news/' + args.date[:4] + '/news_' + args.date + '.csv'
+    fout = open(output + '_bak', 'w')
+    with open(output) as f:
         for num, line in enumerate(f):
             line = line.strip().split(',')
             if len(line) == 6:
@@ -174,10 +176,11 @@ def daily_predict(cnn, args):
             else:
                 continue
 
-            if newsType != 'topStory': # newsType: [topStory, normal]
-                continue # skip normal news
+            #if newsType != 'topStory': # newsType: [topStory, normal]
+            #    signal = 'Unknown'
             signal = predict(headline, mymodels, word2idx, stopWords, args)
-            f.write(','.join([ticker, name, day, headline, body, newsType, signal]) + '\n')
+            fout.write(','.join([ticker, name, day, headline, body, newsType, signal]) + '\n')
+    os.system('mv ' + output + '_bak ' + output)
 
 
 def save(model, save_dir, steps):

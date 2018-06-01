@@ -30,7 +30,7 @@ parser.add_argument('-no-cuda', action='store_true', default=False, help='disabl
 # option
 parser.add_argument('-predict', type=str, default=None, help='predict the sentence given')
 parser.add_argument('-eval', type=bool, default=False, help='evaluate testing set')
-parser.add_argument('-vocabs', type=int, default=1000, help='total number of vocabularies [default: 1000]')
+parser.add_argument('-vocabs', type=int, default=30000, help='total number of vocabularies [default: 30000]')
 parser.add_argument('-words', type=int, default=20, help='max number of words in a sentence [default: 20]')
 parser.add_argument('-date', type=str, default='', help='date to be tested')
 
