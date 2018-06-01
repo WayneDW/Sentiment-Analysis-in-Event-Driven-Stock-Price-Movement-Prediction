@@ -1,5 +1,5 @@
 # Sentiment Analysis for Event-Driven Stock Prediction
-Use natural-language processing (NLP) to predict stock price movement based on Reuters News, we need the following four steps:
+Use natural-language processing (NLP) to predict stock price movement based on Reuters News
 
 1. Data Collection and Preprocessing
 
