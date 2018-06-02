@@ -97,6 +97,10 @@ $ ./main.py -predict "2-Lilly gets U.S. nod for arthritis drug  sets price well 
 ```
 
 ```bash
+# Eli Lilly and Co (LLY.N)
+# FRI, JUN 1 2018
+# UPDATE 2-Lilly gets U.S. nod for arthritis drug, sets price well below rivals
+# * Drug priced at $25,000/year, 60 pct lower to AbbVie's Humira
 $ ./main.py -predict "Deutsche Bank CEO: Our financial strength is beyond doubt"
 >> Strong Buy
 ```
