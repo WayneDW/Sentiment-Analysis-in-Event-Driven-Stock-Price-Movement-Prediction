@@ -44,7 +44,7 @@ $ ./crawler/all_tickers.py 20  # keep the top e.g. 20% marketcap companies
 
 *Note: you may need over one month to fetch the news you want.*
 
-Suppose we find a piece of news about COO Qi Lu Resignation on May.18, 2018 at reuters.com
+Suppose we find a piece of news about COO Lu Qi Resignation on May.18, 2018 at reuters.com
 
 ![](./imgs/baidu.PNG)
 
