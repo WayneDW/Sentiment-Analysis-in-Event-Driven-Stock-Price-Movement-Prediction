@@ -86,21 +86,24 @@ $ ./main.py -epochs 500 -static False
 
 ### 4. Prediction and analysis
 
+Let's show one example how the thinning models react to Baidu Lu Qi's resignation
 ```bash
 $ ./main.py -predict "Top executive behind Baidu's artificial intelligence drive steps aside"
 >> Sell
 ```
+The result makes sence, let's find another one.
 
+
+Eli Lilly and Co (LLY.N)
+FRI, JUN 1 2018
+UPDATE 2-Lilly gets U.S. nod for arthritis drug, sets price well below rivals
+* Drug priced at $25,000/year, 60 pct lower to AbbVie's Humira
 ```bash
-$ ./main.py -predict "2-Lilly gets U.S. nod for arthritis drug  sets price well below rivals"
+$ ./main.py -predict "UPDATE 2-Lilly gets U.S. nod for arthritis drug  sets price well below rivals"
 >> Sell
 ```
 
 ```bash
-# Eli Lilly and Co (LLY.N)
-# FRI, JUN 1 2018
-# UPDATE 2-Lilly gets U.S. nod for arthritis drug, sets price well below rivals
-# * Drug priced at $25,000/year, 60 pct lower to AbbVie's Humira
 $ ./main.py -predict "Deutsche Bank CEO: Our financial strength is beyond doubt"
 >> Strong Buy
 ```
