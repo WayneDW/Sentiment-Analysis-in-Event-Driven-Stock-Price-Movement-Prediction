@@ -105,8 +105,19 @@ $ ./main.py -predict "UPDATE 2-Lilly gets U.S. nod for arthritis drug  sets pric
 >> Sell
 ```
 
+Lowering down drug prices looks helpful to gain market share in business, however, they didn't mention too much about the updates of technology, we are inclined to regard it as the virulent price competition, which does no help to the company earnings. Thus it is not a bad decision to sell Eli Lilly stocks.
+
+Next, let's see what the buy options look like:
+
+```
+Alphabet Inc (GOOG.O)
+WED, MAY 30 2018
+Google launches second app in China, woos top smartphone market
+* BEIJING Alphabet Inc's Google has launched a file managing tool in several Chinese app stores as it looks for fresh inroads into the world's biggest smartphone market, where most of the internet giant's top products remain banned.
+```
+
 ```bash
-$ ./main.py -predict "Deutsche Bank CEO: Our financial strength is beyond doubt"
+$ ./main.py -predict "Google launches second app in China  woos top smartphone market"
 >> Strong Buy
 ```
 
