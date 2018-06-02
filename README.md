@@ -121,12 +121,12 @@ $ ./main.py -predict "Google launches second app in China  woos top smartphone m
 >> Strong Buy
 ```
 
-Test the performance on the most recent news in two weeks.
+By now, you have basically understood how the models work, let's use backtesting to examine the performance on the news in the past two weeks.
 ```bash
 $ ./main.py -eval True
 >> Testing    - loss: 0.6761  acc: 58.07%(41.8/72.0) 83.50%(3.3/3.9) 100.00%(0.0/0.0) 0.00%(0.0/0.0) 
 ```
-Note: the predictions are averaged (therefore we have float numbers). From left to right, the predictions are more and more confident.
+Note: the predictions are averaged, therefore we have float numbers. From left to right, the predictions are more and more confident. 58% is actually much high than my expectation, I believe when tested on a longer time horizon, the performance gets worse. However, as long as the predictions are better than random guesses (50%), you will be rich (just kidding), because no matter how hard you try, you can't lose money betting on a submartingale [Durrett].
 
 
 ### 5. Future work
