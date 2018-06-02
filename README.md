@@ -113,7 +113,9 @@ Next, let's see what the buy options look like:
 Alphabet Inc (GOOG.O)
 WED, MAY 30 2018
 Google launches second app in China, woos top smartphone market
-* BEIJING Alphabet Inc's Google has launched a file managing tool in several Chinese app stores as it looks for fresh inroads into the world's biggest smartphone market, where most of the internet giant's top products remain banned.
+* BEIJING Alphabet Inc's Google has launched a file managing tool in several Chinese app stores as it 
+* looks for fresh inroads into the world's biggest smartphone market, where most of the internet 
+* giant's top products remain banned.
 ```
 
 ```bash
