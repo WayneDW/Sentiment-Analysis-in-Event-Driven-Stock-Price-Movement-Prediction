@@ -91,6 +91,16 @@ $ ./main.py -predict "Top executive behind Baidu's artificial intelligence drive
 >> Sell
 ```
 
+```bash
+$ ./main.py -predict "2-Lilly gets U.S. nod for arthritis drug  sets price well below rivals"
+>> Sell
+```
+
+```bash
+$ ./main.py -predict "Deutsche Bank CEO: Our financial strength is beyond doubt"
+>> Strong Buy
+```
+
 Test the performance on the most recent news in two weeks.
 ```bash
 $ ./main.py -eval True

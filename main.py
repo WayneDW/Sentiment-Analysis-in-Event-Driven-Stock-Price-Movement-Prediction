@@ -50,7 +50,7 @@ D = int(data.shape[0] * validation_ratio)  # total number of validation data
 X_train, y_train, X_valid, y_valid = X[:-D], label[:-D], X[-D:], label[-D:]
 X_test, y_test = test[:, :-1], test[:, -1]
 
-print("Positive News Ratio", sum(y_test > 0) * 1. / (sum(y_test > 0) + sum(y_test < 0)))
+#print("Positive News Ratio", sum(y_test > 0) * 1. / (sum(y_test > 0) + sum(y_test < 0)))
 X_test = X_test.astype('float32')
 y_test = util.value2int_simple(y_test).astype("int")
 
