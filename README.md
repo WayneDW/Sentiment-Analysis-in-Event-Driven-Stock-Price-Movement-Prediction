@@ -157,3 +157,4 @@ You are welcome to build a better stopword list and share it.
 10. [tf-idf + t-sne](https://github.com/lazyprogrammer/machine_learning_examples/blob/master/nlp_class2/tfidf_tsne.py)
 11. [Implementation of CNN in sequence classification](https://github.com/dennybritz/cnn-text-classification-tf)
 12. [Getting Started with Word2Vec and GloVe in Python](http://textminingonline.com/getting-started-with-word2vec-and-glove-in-python)
+13. [PyTorch Implementation of Kim's Convolutional Neural Networks for Sentence Classification](https://github.com/Shawn1993/cnn-text-classification-pytorch)
