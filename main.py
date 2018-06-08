@@ -10,6 +10,8 @@ import numpy as np
 import util
 import json
 
+# credit to: https://github.com/Shawn1993/cnn-text-classification-pytorch/blob/master/main.py
+
 parser = argparse.ArgumentParser(description='CNN-based Financial News Classifier')
 # learning
 parser.add_argument('-lr', type=float, default=0.001, help='initial learning rate [default: 0.001]')
