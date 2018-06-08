@@ -3,7 +3,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch.autograd import Variable
 
-
+# credit to: https://github.com/Shawn1993/cnn-text-classification-pytorch/blob/master/model.py
 class CNN_Text(nn.Module):
     
     def __init__(self, args):
