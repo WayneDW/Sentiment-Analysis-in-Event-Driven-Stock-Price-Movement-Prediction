@@ -128,7 +128,7 @@ By now, you have basically understood how the models work, let's use backtesting
 $ ./main.py -eval True
 >> Testing    - loss: 0.6761  acc: 58.07%(41.8/72.0) 83.50%(3.3/3.9) 100.00%(0.0/0.0) 0.00%(0.0/0.0) 
 ```
-Note: the predictions are averaged, which explains why we have float numbers. From left to right, the predictions become more and more confident. 58% is actually much higher than my expectation, I believe when tested on a longer time horizon, the performance gets worse. However, as long as the predictions are better than random guesses (50%), you will be rich (just kidding), because no matter how hard you try, you can't lose money betting on a favorable game (submartingale, Durrett).
+Note: the predictions are averaged, which explains why we have float numbers. From left to right, the predictions become more and more confident. 58% is actually much higher than my expectation, I believe when tested on a longer time horizon, the performance gets worse. However, as long as the predictions are better than random guesses (50%), you can't lose money betting on a favorable game (assume no trading cost and liquidity issue).
 
 
 ### 5. Future work
@@ -157,3 +157,4 @@ You are welcome to build a better stopword list and share it.
 10. [tf-idf + t-sne](https://github.com/lazyprogrammer/machine_learning_examples/blob/master/nlp_class2/tfidf_tsne.py)
 11. [Implementation of CNN in sequence classification](https://github.com/dennybritz/cnn-text-classification-tf)
 12. [Getting Started with Word2Vec and GloVe in Python](http://textminingonline.com/getting-started-with-word2vec-and-glove-in-python)
+13. [PyTorch Implementation of Kim's Convolutional Neural Networks for Sentence Classification](https://github.com/Shawn1993/cnn-text-classification-pytorch)
