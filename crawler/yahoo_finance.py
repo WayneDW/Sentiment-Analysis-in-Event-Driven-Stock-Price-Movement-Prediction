@@ -47,12 +47,12 @@ def get_stock_prices():
         json.dump(price_set, outfile, indent=4)
 
 
-def repeat_download(ticker):
+def repeat_download(ticker, start_date='20040101', end_date='29991201'):
     repeat_times = 3 # repeat download for N times
     for i in range(repeat_times):
         try:
-            time.sleep(random.uniform(2, 3))
-            price_str = get_price_from_yahoo(ticker)
+            time.sleep(random.uniform(3, 5))
+            price_str = get_price_from_yahoo(ticker, start_date, end_date)
             if price_str: # skip loop if data is not empty
                 return price_str
         except Exception as e:
@@ -60,10 +60,7 @@ def repeat_download(ticker):
             if i == 0:
                 print(ticker, "Http error!")
 
-def get_price_from_yahoo(ticker):
-
-    start_date = '20040101'
-    end_date = '29991201'  # until now
+def get_price_from_yahoo(ticker, start_date, end_date):
     quote = load_yahoo_quote(ticker, start_date, end_date)
 
     # get historical price
