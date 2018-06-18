@@ -1,0 +1,39 @@
+{
+  "name": "cross-spawn",
+  "version": "0.2.9",
+  "description": "Cross platform child_process#spawn",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --bail -R spec"
+  },
+  "bugs": {
+    "url": "https://github.com/IndigoUnited/node-cross-spawn/issues/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/IndigoUnited/node-cross-spawn.git"
+  },
+  "keywords": [
+    "spawn",
+    "windows",
+    "cross",
+    "platform",
+    "path",
+    "ext",
+    "path-ext",
+    "path_ext",
+    "shebang",
+    "hashbang",
+    "cmd",
+    "execute"
+  ],
+  "author": "IndigoUnited <hello@indigounited.com> (http://indigounited.com)",
+  "license": "MIT",
+  "dependencies": {
+    "lru-cache": "^2.5.0"
+  },
+  "devDependencies": {
+    "expect.js": "^0.3.0",
+    "mocha": "^1.20.1"
+  }
+}

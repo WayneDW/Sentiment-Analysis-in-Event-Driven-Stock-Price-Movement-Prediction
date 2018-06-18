@@ -1,0 +1,28 @@
+{
+    "name": "@types/babylon",
+    "version": "6.16.2",
+    "description": "TypeScript definitions for babylon",
+    "license": "MIT",
+    "contributors": [
+        {
+            "name": "Troy Gerwien",
+            "url": "https://github.com/yortus"
+        },
+        {
+            "name": "Marvin Hagemeister",
+            "url": "https://github.com/marvinhagemeister"
+        }
+    ],
+    "main": "",
+    "repository": {
+        "type": "git",
+        "url": "https://www.github.com/DefinitelyTyped/DefinitelyTyped.git"
+    },
+    "scripts": {},
+    "dependencies": {
+        "@types/babel-types": "*"
+    },
+    "peerDependencies": {},
+    "typesPublisherContentHash": "9db531ab1438202c176c2bf38211cdf5a4137d0e001bc1908e8ff3ee8317f237",
+    "typeScriptVersion": "2.3"
+}
