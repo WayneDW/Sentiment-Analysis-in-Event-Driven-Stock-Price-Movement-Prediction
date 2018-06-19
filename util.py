@@ -130,6 +130,10 @@ def predictor_preprocess(cnn, args):
     mymodels = []
     for each_model in os.listdir(args.save_dir):
         print(args.save_dir + each_model)
+        if args.cuda:
+            cnn.load_state_dict(torch.load(args.save_dir + each_model))
+        else:
+            cnn.load_state_dict(torch.load(args.save_dir + each_model, map_location=lambda storage, loc: storage))
         cnn.load_state_dict(torch.load(args.save_dir + each_model))
         mymodels.append(copy.deepcopy(cnn))
 
