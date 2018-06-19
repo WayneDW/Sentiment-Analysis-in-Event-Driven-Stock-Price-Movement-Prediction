@@ -25,7 +25,8 @@ Use natural-language processing (NLP) to predict stock price movement based on R
 * [PyTorch > 0.4](https://pytorch.org/)
 * numpy
 * [NLTK](https://www.nltk.org/install.html)
-* - pip3 install lxml
+* Crawler tools
+  - pip3 install lxml
   - pip3 install bs4
   - pip3 install urllib
 
