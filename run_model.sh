@@ -11,3 +11,5 @@ target_date=`date -d '-0 day' '+%Y%m%d'`
 #./main.py -vocabs ${vocabs} -predict "Top executive behind Baidu's artificial intelligence drive steps aside"
 ./main.py -vocabs ${vocabs} -predict True -date ${target_date}
 ./crawler/daily_prices.py ${target_date}
+
+./del_repeat.py ${target_date}
