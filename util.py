@@ -135,7 +135,6 @@ def predictor_preprocess(cnn, args):
             cnn.load_state_dict(torch.load(args.save_dir + each_model))
         else:
             cnn.load_state_dict(torch.load(args.save_dir + each_model, map_location=lambda storage, loc: storage))
-        cnn.load_state_dict(torch.load(args.save_dir + each_model))
         mymodels.append(copy.deepcopy(cnn))
         if num > 50: # in case memory overloads
             break
