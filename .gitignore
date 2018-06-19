@@ -6,3 +6,10 @@ input/news_reuters.csv
 input/stockPrices_raw.json
 input/stockReturns.json
 __pycache__/
+input/news/2012
+input/news/2013
+input/news/2014
+input/news/2015
+input/news/2016
+input/news/2017
+input/news/2018/news_20180[1-5]*
