@@ -5,6 +5,7 @@ To deal with that, if a piece of news is published in two tickers, we only consi
 
 The logic is when a ticker is in the repeatedlist, but 
 """
+import os
 import sys
 import json
 
@@ -53,6 +54,9 @@ def modify_news(date, filterlist):
             fout.write(','.join([ticker, company, timestamp, title, body, news_type])+ '\n')
         elif len(l) == 7:
             fout.write(','.join([ticker, company, timestamp, title, body, news_type, suggestion])+ '\n')
+    fout.close()
+    f.close()
+    os.system('mv input/news/2018/news_' + date + '.csv_bak input/news/2018/news_' + date + '.csv')
 
     
 
