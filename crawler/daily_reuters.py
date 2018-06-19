@@ -10,7 +10,7 @@ import datetime
 
 import numpy as np
 from bs4 import BeautifulSoup
-
+from urllib import request
 
 # iterate all dates
 #   iterate all tickers
