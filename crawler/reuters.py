@@ -9,13 +9,13 @@ import sys
 import time
 import datetime
 
-# import utils from parent directory
+# import util from parent directory
 # credit: https://stackoverflow.com/a/11158224/4246348
 import inspect
 currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 parentdir = os.path.dirname(currentdir)
 sys.path.insert(0, parentdir)
-import utils
+import util
 
 
 class ReutersCrawler(object):
@@ -76,7 +76,7 @@ class ReutersCrawler(object):
     def get_news_num_whenever(self, url):
         # check the website to see if the ticker has any news
         # return the number of news
-        soup = utils.get_soup_with_repeat(url, repeat_times=4)
+        soup = util.get_soup_with_repeat(url, repeat_times=4)
         if soup:
             return len(soup.find_all("div", {'class': ['topStory', 'feature']}))
         return 0
@@ -90,7 +90,7 @@ class ReutersCrawler(object):
         for timestamp in date_range:
             print('trying '+timestamp, end='\r', flush=True)  # print timestamp on the same line
             new_time = timestamp[4:] + timestamp[:4] # change 20151231 to 12312015 to match reuters format
-            soup = utils.get_soup_with_repeat(url + "?date=" + new_time)
+            soup = util.get_soup_with_repeat(url + "?date=" + new_time)
             if soup and self.parse_and_save_news(soup, task, ticker, timestamp):
                 missing_days = 0 # if get news, reset missing_days as 0
                 has_content = True
@@ -131,7 +131,7 @@ class ReutersCrawler(object):
         """Start crawler back to numdays"""
         finished_tickers = self.load_finished_tickers()
         failed_tickers = self.load_failed_tickers()
-        date_range = utils.generate_past_n_days(numdays) # look back on the past X days
+        date_range = util.generate_past_n_days(numdays) # look back on the past X days
 
         # store low-priority task and run later
         delayed_tasks = {'LOWEST': set(), 'LOW': set()}
