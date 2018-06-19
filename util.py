@@ -42,6 +42,7 @@ def train(X_train, y_train, X_valid, y_valid, X_test, y_test, model, args):
             for layer_no, param in enumerate(model.parameters()):
                 if args.static and layer_no == 0: # fixed embedding layer cannot update
                     continue
+                # by default I assume you train the models using GPU
                 noise = torch.cuda.FloatTensor(param.data.size()).normal_() * np.sqrt(epsilon / args.t)
                 parameters[layer_no].data += (- epsilon / 2 * param.grad + noise)
 
