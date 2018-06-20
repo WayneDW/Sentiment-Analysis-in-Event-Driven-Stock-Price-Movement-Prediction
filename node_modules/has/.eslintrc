@@ -1,7 +1,0 @@
-{
-  "root": true,
-  "extends": "@ljharb",
-  "rules": {
-    "indent": [2, 2],
-  },
-}

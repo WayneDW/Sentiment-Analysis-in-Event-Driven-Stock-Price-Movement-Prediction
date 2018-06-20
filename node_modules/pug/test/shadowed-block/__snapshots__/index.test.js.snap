@@ -1,3 +1,0 @@
-exports[`test layout with shadowed block 1`] = `"<!-- layout.pug: root--><!-- index.pug: shadowed-->"`;
-
-exports[`test layout with shadowed block 2`] = `"<!-- layout.pug: root--><!-- index.pug: shadowed-->"`;
