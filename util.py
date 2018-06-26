@@ -136,7 +136,7 @@ def predictor_preprocess(cnn, args):
         else:
             cnn.load_state_dict(torch.load(args.save_dir + each_model, map_location=lambda storage, loc: storage))
         mymodels.append(copy.deepcopy(cnn))
-        if num > 50: # in case memory overloads
+        if num > 30: # in case memory overloads
             break
 
     with open('./input/word2idx', 'r') as file:
@@ -185,6 +185,9 @@ def daily_predict(cnn, args):
             #    signal = 'Unknown'
             signal = predict(headline, mymodels, word2idx, stopWords, args)
             fout.write(','.join([ticker, name, day, headline, body, newsType, signal]) + '\n')
+    fout.close()
+    print('change file name')
+    print('mv ' + output + '_bak ' + output)
     os.system('mv ' + output + '_bak ' + output)
 
 

@@ -77,6 +77,8 @@ if args.cuda:
 if args.predict is not None:
     if args.date != '':
         util.daily_predict(cnn, args)
+        output = './input/news/' + args.date[:4] + '/news_' + args.date + '.csv'
+        os.system('mv ' + output + '_bak ' + output)
     else:
         mymodels, word2idx, stopWords = util.predictor_preprocess(cnn, args)
         print(util.predict(args.predict, mymodels, word2idx, stopWords, args))
