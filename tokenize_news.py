@@ -26,10 +26,10 @@ input/word2idx"""
 def tokenize(news_file, price_file, stopWords_file, output, output_wd2idx, sen_len, term_type, n_vocab, mtype):
     # load price data
     with open(price_file) as file:
-        print("Loading price info ...")
+        print("Loading price info ... " + mtype)
         priceDt = json.load(file)[term_type]
 
-    testDates = util.dateGenerator(7) # the most recent days are used for testing
+    testDates = util.dateGenerator(90) # the most recent days are used for testing
     os.system('rm ' + output + mtype)
 
     # load stop words
@@ -48,10 +48,12 @@ def tokenize(news_file, price_file, stopWords_file, output, output_wd2idx, sen_l
     with open(news_file) as f:
         for num, line in enumerate(f):
             line = line.strip().split(',')
-            if len(line) != 6:
+            if len(line) not in [6, 7]:
                 continue
-            ticker, name, day, headline, body, newsType = line
-            
+            if len(line) == 6:
+                ticker, name, day, headline, body, newsType = line
+            else:
+                ticker, name, day, headline, body, newsType, suggestion = line
             if newsType != 'topStory': # newsType: [topStory, normal]
                 continue # skip normal news
             
@@ -66,8 +68,9 @@ def tokenize(news_file, price_file, stopWords_file, output, output_wd2idx, sen_l
                 continue
             if mtype == "train" and day in testDates: 
                 continue
-
-            tokens = util.tokenize_news(headline, stopWords)
+            content = headline + ' ' + body
+            content = content.replace("-", " ") 
+            tokens = util.tokenize_news(content, stopWords)
 
             for t in tokens:
                 if t not in word2idx:
@@ -85,9 +88,18 @@ def tokenize(news_file, price_file, stopWords_file, output, output_wd2idx, sen_l
     word2idx_small = {}
     new_idx = 0
     idx_new_idx_map = {}
+    total_num, cdf = 0.0, 0.0
+
+    for idx, count in sorted_word_idx_count[:n_vocab]:
+        if count == "inf" or count == float('inf'):
+            continue
+        total_num += count
     for idx, count in sorted_word_idx_count[:n_vocab]:
         word = idx2word[idx]
-        print(word, count)
+        if count == "inf" or count == float('inf'):
+            continue
+        cdf += (count * 1.0 / (total_num * 1.0))
+        print(word, count, str(cdf)[:5])
         word2idx_small[word] = new_idx
         idx_new_idx_map[idx] = new_idx
         new_idx += 1
@@ -129,8 +141,8 @@ def main():
     output_wd2idx = "./input/word2idx"
 
     parser = argparse.ArgumentParser(description='Tokenize Reuters news')
-    parser.add_argument('-vocabs', type=int, default=30000, help='total number of vocabularies [default: 1000]')
-    parser.add_argument('-words', type=int, default=20, help='max number of words in a sentence [default: 20]')
+    parser.add_argument('-vocabs', type=int, default=6000, help='total number of vocabularies [default: 1000]')
+    parser.add_argument('-words', type=int, default=40, help='max number of words in a sentence [default: 20]')
     parser.add_argument('-term', type=str, default='short', help='return type [short mid long] [default: short]')
     args = parser.parse_args()
 

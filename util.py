@@ -20,12 +20,16 @@ import torch.autograd as autograd
 import torch.nn as nn
 import torch.nn.functional as F
 
-
+# training with SGLD with annealing and save models
 def train(X_train, y_train, X_valid, y_valid, X_test, y_test, model, args):
     model.train()
     batch = args.batch_size
 
     parameters = [parameter for parameter in model.parameters()]
+
+
+    set_scale = [parameter.data.std().item() for parameter in model.parameters()]
+    set_scale = [scale / max(set_scale) for scale in set_scale] # normalize
     for epoch in range(1, args.epochs+1):
         corrects = 0
         epsilon = args.lr * ((epoch * 1.0) ** (-0.333)) # optimal decay rate
@@ -43,7 +47,8 @@ def train(X_train, y_train, X_valid, y_valid, X_test, y_test, model, args):
                 if args.static and layer_no == 0: # fixed embedding layer cannot update
                     continue
                 # by default I assume you train the models using GPU
-                noise = torch.cuda.FloatTensor(param.data.size()).normal_() * np.sqrt(epsilon / args.t)
+                #noise = torch.cuda.FloatTensor(param.data.size()).normal_() * np.sqrt(epsilon / args.t)
+                noise = torch.cuda.FloatTensor(param.data.size()).normal_() * set_scale[layer_no]
                 parameters[layer_no].data += (- epsilon / 2 * param.grad + noise)
 
             corrects += (torch.max(logit, 1)[1].view(target.size()).data == target.data).sum().item()
@@ -51,8 +56,16 @@ def train(X_train, y_train, X_valid, y_valid, X_test, y_test, model, args):
             sys.stdout.write('\rEpoch[{}] Batch[{}] - loss: {:.4f}  acc: {:.2f}%({}/{}) tempreture: {}'.format(
                              epoch, idx, loss.item(), accuracy, corrects, batch * (idx + 1), int(args.t)))
             args.t = args.t + 1 # annealing
-        if epoch % 5 != 0:
+        if epoch % 10 != 0:
             continue
+        
+        try:
+            set_scale = [parameter.grad.data.std().item() for parameter in model.parameters()]
+            set_scale = [scale / max(set_scale) for scale in set_scale] # normalize
+        except:
+            set_scale = [parameter.data.std().item() for parameter in model.parameters()]
+            set_scale = [scale / max(set_scale) for scale in set_scale] # normalize
+        
         save(model, args.save_dir, epoch)
         print()
         eval(X_valid, y_valid, model, 'Validation', args)
@@ -183,7 +196,8 @@ def daily_predict(cnn, args):
 
             #if newsType != 'topStory': # newsType: [topStory, normal]
             #    signal = 'Unknown'
-            signal = predict(headline, mymodels, word2idx, stopWords, args)
+            content = headline + ' ' + body
+            signal = predict(content, mymodels, word2idx, stopWords, args)
             fout.write(','.join([ticker, name, day, headline, body, newsType, signal]) + '\n')
     fout.close()
     print('change file name')

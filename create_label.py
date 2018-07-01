@@ -12,18 +12,38 @@ from math import log
 #      /   \      /   \      /   \
 #  date1 date2 date1 date2 date1 date2
 #
-# Note: short: 1 day return, mid: 7 day return, long 28 day return
+# Note: short return: adjClose/open - 1
+#       mid return: adjClose/adjClose(7 days ago) - 1
+#       long return: adjClose/adjClose(28 days ago) - 1
 
 
 # calc long/mid term influence
 def calc_mid_long_return(ticker, date, delta, priceSet):
     baseDate = datetime.datetime.strptime(date, "%Y-%m-%d")
-    prevDate = (baseDate - datetime.timedelta(days=1)).strftime("%Y-%m-%d")
-    nextDate = (baseDate + datetime.timedelta(days=delta)).strftime("%Y-%m-%d")
+    prevDate = (baseDate - datetime.timedelta(days=delta)).strftime("%Y-%m-%d")
+    nextDate = (baseDate + datetime.timedelta(days=1)).strftime("%Y-%m-%d")
+    if delta == 1:
+        wkday = baseDate.weekday()
+        if wkday == 0: # Monday
+            prevDate = (baseDate - datetime.timedelta(days=3)).strftime("%Y-%m-%d")
+        elif wkday == 4: # Friday
+            nextDate = (baseDate + datetime.timedelta(days=3)).strftime("%Y-%m-%d")
+        elif wkday == 5: # Saturday
+            prevDate = (baseDate - datetime.timedelta(days=1)).strftime("%Y-%m-%d")
+            nextDate = (baseDate + datetime.timedelta(days=2)).strftime("%Y-%m-%d")
+        elif wkday == 6: # Sunday
+            prevDate = (baseDate - datetime.timedelta(days=2)).strftime("%Y-%m-%d")
+            nextDate = (baseDate + datetime.timedelta(days=1)).strftime("%Y-%m-%d")
 
     try:
-        return_self = log(priceSet[ticker]['adjClose'][nextDate]) - log(priceSet[ticker]['adjClose'][prevDate])
-        return_sp500 = log(priceSet['^GSPC']['adjClose'][nextDate]) - log(priceSet['^GSPC']['adjClose'][prevDate])
+        if delta == 1:
+            return_self = log(priceSet[ticker]['adjClose'][date]) - log(priceSet[ticker]['open'][date])
+            return_sp500 = log(priceSet['^GSPC']['adjClose'][date]) - log(priceSet['^GSPC']['open'][date])
+            #return_self = log(priceSet[ticker]['adjClose'][nextDate]) - log(priceSet[ticker]['adjClose'][prevDate])
+            #return_sp500 = log(priceSet['^GSPC']['adjClose'][nextDate]) - log(priceSet['^GSPC']['adjClose'][prevDate])
+        else:
+            return_self = log(priceSet[ticker]['adjClose'][date]) - log(priceSet[ticker]['adjClose'][prevDate])
+            return_sp500 = log(priceSet['^GSPC']['adjClose'][date]) - log(priceSet['^GSPC']['adjClose'][prevDate])
         return True, round(return_self - return_sp500, 4) # relative return
     except:
         return False, 0
@@ -36,8 +56,8 @@ def main():
         dateSet = priceSet['^GSPC']['adjClose'].keys()
 
     returns = {'short': {}, 'mid': {}, 'long': {}} # 1-depth dictionary
-    for ticker in priceSet:
-        print(ticker)
+    for num, ticker in enumerate(priceSet):
+        print(num, ticker)
         for term in ['short', 'mid', 'long']:
             returns[term][ticker] = {} # 2-depth dictionary
         for day in dateSet:
