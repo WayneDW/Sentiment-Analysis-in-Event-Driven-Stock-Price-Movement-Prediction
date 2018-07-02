@@ -6,6 +6,8 @@ Use natural-language processing (NLP) to predict stock price movement based on R
 
 You are welcome to visit our website:[GolenRocks.me](http://goldenrocks.me/), it is not meant to make money (you can make it though, through endless feature engineering), just to show the applications of mathematics.
 
+## Methodology
+
 1. Data Collection and Preprocessing
 
     1.1 get the whole ticker list to obtain the details of public companies
