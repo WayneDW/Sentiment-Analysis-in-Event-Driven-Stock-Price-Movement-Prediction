@@ -29,6 +29,10 @@ Use natural-language processing (NLP) to predict stock price movement based on R
   - pip3 install lxml
   - pip3 install bs4
   - pip3 install urllib
+  
+## Website
+
+You are welcome to visit our [website](https://www.goldenrocks.me), it is not meant to make money, just to show the applications of mathematics.
 
 
 ## Usage
