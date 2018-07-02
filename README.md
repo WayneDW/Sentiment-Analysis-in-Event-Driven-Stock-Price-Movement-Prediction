@@ -1,6 +1,11 @@
 # Sentiment Analysis for Event-Driven Stock Prediction
 Use natural-language processing (NLP) to predict stock price movement based on Reuters News
 
+  
+## Website
+
+You are welcome to visit our website:[GolenRocks.me](http://goldenrocks.me/), it is not meant to make money (you can make it though, through endless feature engineering), just to show the applications of mathematics.
+
 1. Data Collection and Preprocessing
 
     1.1 get the whole ticker list to obtain the details of public companies
@@ -29,11 +34,6 @@ Use natural-language processing (NLP) to predict stock price movement based on R
   - pip3 install lxml
   - pip3 install bs4
   - pip3 install urllib
-  
-## Website
-
-You are welcome to visit our [website](https://www.goldenrocks.me), it is not meant to make money, just to show the applications of mathematics.
-
 
 ## Usage
 
