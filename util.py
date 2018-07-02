@@ -47,8 +47,8 @@ def train(X_train, y_train, X_valid, y_valid, X_test, y_test, model, args):
                 if args.static and layer_no == 0: # fixed embedding layer cannot update
                     continue
                 # by default I assume you train the models using GPU
-                #noise = torch.cuda.FloatTensor(param.data.size()).normal_() * np.sqrt(epsilon / args.t)
-                noise = torch.cuda.FloatTensor(param.data.size()).normal_() * set_scale[layer_no]
+                noise = torch.cuda.FloatTensor(param.data.size()).normal_() * np.sqrt(epsilon / args.t)
+                #noise = torch.cuda.FloatTensor(param.data.size()).normal_() * set_scale[layer_no]
                 parameters[layer_no].data += (- epsilon / 2 * param.grad + noise)
 
             corrects += (torch.max(logit, 1)[1].view(target.size()).data == target.data).sum().item()
@@ -58,14 +58,14 @@ def train(X_train, y_train, X_valid, y_valid, X_test, y_test, model, args):
             args.t = args.t + 1 # annealing
         if epoch % 10 != 0:
             continue
-        
+        '''
         try:
             set_scale = [parameter.grad.data.std().item() for parameter in model.parameters()]
             set_scale = [scale / max(set_scale) for scale in set_scale] # normalize
         except:
             set_scale = [parameter.data.std().item() for parameter in model.parameters()]
             set_scale = [scale / max(set_scale) for scale in set_scale] # normalize
-        
+        '''
         save(model, args.save_dir, epoch)
         print()
         eval(X_valid, y_valid, model, 'Validation', args)
@@ -212,12 +212,12 @@ def save(model, save_dir, steps):
     torch.save(model.state_dict(), save_path)
 
 def signals(digit):
-    strong_signal = 0.3
+    strong_signal = 0.2
     unknown_thres = 0.05
     if digit > 0.5 + strong_signal:
         return('Strong Buy')
     elif digit > 0.5 + unknown_thres:
-        return('Strong Buy')
+        return('Buy')
     elif digit > 0.5 - unknown_thres:
         return('Unknown')
     elif digit > 0.5 - strong_signal:
