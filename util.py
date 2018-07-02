@@ -56,7 +56,7 @@ def train(X_train, y_train, X_valid, y_valid, X_test, y_test, model, args):
             sys.stdout.write('\rEpoch[{}] Batch[{}] - loss: {:.4f}  acc: {:.2f}%({}/{}) tempreture: {}'.format(
                              epoch, idx, loss.item(), accuracy, corrects, batch * (idx + 1), int(args.t)))
             args.t = args.t + 1 # annealing
-        if epoch % 10 != 0:
+        if epoch % 5 != 0:
             continue
         '''
         try:
@@ -74,8 +74,8 @@ def train(X_train, y_train, X_valid, y_valid, X_test, y_test, model, args):
 
 def eval(X, y, model, term, args):
     model.eval()
-    corrects, avg_loss = 0, 0
-    correct_part, total_part = {0.1:0, 0.2:0, 0.3:0, 0.4:0}, {0.1:1e-16, 0.2:1e-16, 0.3:1e-16, 0.4:1e-16}
+    corrects, TP, avg_loss = 0, 0, 0
+    correct_part, total_part = {0.2:0, 0.4:0}, {0.2:1e-16, 0.4:1e-16}
     batch = args.batch_size
 
     for idx in range(int(X.shape[0]/batch) + 1):
@@ -88,27 +88,28 @@ def eval(X, y, model, term, args):
         loss = F.cross_entropy(logit, target, size_average=False)
         avg_loss += loss.data.item()
         predictor = torch.exp(logit[:, 1]) / (torch.exp(logit[:, 0]) + torch.exp(logit[:, 1]))
-        for xnum in range(1, 5):
-            thres = round(0.1 * xnum, 1)
+        for xnum in range(1, 3):
+            thres = round(0.2 * xnum, 1)
             idx_thres = (predictor > 0.5 + thres) + (predictor < 0.5 - thres)
             correct_part[thres] += (torch.max(logit, 1)[1][idx_thres] == target.data[idx_thres]).sum().item()
             total_part[thres] += idx_thres.sum().item()
 
         corrects += (torch.max(logit, 1)[1] == target.data).sum().item()
+        TP += (((torch.max(logit, 1)[1] == target.data).int() + (torch.max(logit, 1)[1]).int()) == 2).sum().item()
 
     size = y.shape[0]
     avg_loss /= size
     accuracy = 100.0 * corrects / size
-    print('         {} - loss: {:.4f}  acc: {:.2f}%({}/{}) {:.2f}%({}/{}) {:.2f}%({}/{}) {:.2f}%({}/{}) {:.2f}%({}/{}) \n'.format(term,
-          avg_loss, accuracy, corrects, size, 100.0 * correct_part[0.1] / total_part[0.1], correct_part[0.1], int(total_part[0.1]), 
-          100.0 * correct_part[0.2] / total_part[0.2], correct_part[0.2], int(total_part[0.2]), 100.0 * correct_part[0.3] / total_part[0.3], 
-          correct_part[0.3], int(total_part[0.3]), 100.0 * correct_part[0.4] / total_part[0.4], correct_part[0.4], int(total_part[0.4])))
+    # TP, TN: True Positive/True Negative
+    print('         {} - loss: {:.4f} acc: {:.2f}%({}/{}) {:.2f}%({}/{}) {:.2f}%({}/{}) TP/TN: ({}/{}) \n'.format(term,
+          avg_loss, accuracy, corrects, size, 100.0 * correct_part[0.2] / total_part[0.2], correct_part[0.2], int(total_part[0.2]), 
+          100.0 * correct_part[0.4] / total_part[0.4], correct_part[0.4], int(total_part[0.4]), TP, corrects - TP))
     return accuracy
 
 def bma_eval(X, y, mymodels, term, args):
     
-    corrects, avg_loss = 0, 0
-    correct_part, total_part = {0.1:0, 0.2:0, 0.3:0, 0.4:0}, {0.1:1e-16, 0.2:1e-16, 0.3:1e-16, 0.4:1e-16}
+    corrects, TP, avg_loss = 0, 0, 0
+    correct_part, total_part = {0.2:0, 0.4:0}, {0.2:1e-16,0.4:1e-16}
     batch = args.batch_size
 
     for model in mymodels:
@@ -123,20 +124,21 @@ def bma_eval(X, y, mymodels, term, args):
             loss = F.cross_entropy(logit, target, size_average=False)
             avg_loss += loss.data.item() / (len(mymodels) * 1.0)
             predictor = torch.exp(logit[:, 1]) / (torch.exp(logit[:, 0]) + torch.exp(logit[:, 1]))
-            for xnum in range(1, 5):
-                thres = round(0.1 * xnum, 1)
+            for xnum in range(1, 3):
+                thres = round(0.2 * xnum, 1)
                 idx_thres = (predictor > 0.5 + thres) + (predictor < 0.5 - thres)
                 correct_part[thres] += (torch.max(logit, 1)[1][idx_thres] == target.data[idx_thres]).sum().item() / (len(mymodels) * 1.0)
                 total_part[thres] += idx_thres.sum().item() / (len(mymodels) * 1.0)
             corrects += (torch.max(logit, 1)[1] == target.data).sum().item() / (len(mymodels) * 1.0)
+            TP += (((torch.max(logit, 1)[1] == target.data).int() + (torch.max(logit, 1)[1]).int()) == 2).sum().item()
 
     size = y.shape[0]
     avg_loss /= size
     accuracy = 100.0 * corrects / size
-    print('{} - loss: {:.4f}  acc: {:.2f}%({:.1f}/{:.1f}) {:.2f}%({:.1f}/{:.1f}) {:.2f}%({:.1f}/{:.1f}) {:.2f}%({:.1f}/{:.1f}) \n'.format(
-        term, avg_loss, accuracy, corrects, size, 100.0 * correct_part[0.1] / total_part[0.1], correct_part[0.1], total_part[0.1], 
-        100.0 * correct_part[0.2] / total_part[0.2], correct_part[0.2], total_part[0.2], 
-        100.0 * correct_part[0.3] / total_part[0.3], correct_part[0.3], total_part[0.3]))
+    TP = TP * 1.0 / (len(mymodels) * 1.0)
+    print('         {} - loss: {:.4f} acc: {:.2f}%({}/{}) {:.2f}%({}/{}) {:.2f}%({}/{}) TP/TN: ({}/{}) \n'.format(term,
+            avg_loss, accuracy, corrects, size, 100.0 * correct_part[0.2] / total_part[0.2], correct_part[0.2], int(total_part[0.2]), 
+            100.0 * correct_part[0.4] / total_part[0.4], correct_part[0.4], int(total_part[0.4]), TP, corrects - TP))
     return accuracy
 
 def predictor_preprocess(cnn, args):
@@ -212,7 +214,7 @@ def save(model, save_dir, steps):
     torch.save(model.state_dict(), save_path)
 
 def signals(digit):
-    strong_signal = 0.2
+    strong_signal = 0.4
     unknown_thres = 0.05
     if digit > 0.5 + strong_signal:
         return('Strong Buy')
