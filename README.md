@@ -150,9 +150,6 @@ As suggested by H Lee, we may consider to include features of earnings surprise 
 You are welcome to build a better stopword list and share it.
 
 
-## Issues
-1. remove_punctuation() handles middle name (e.g., P.F -> pf)
-
 ## References:
 
 1. Yoon Kim, [Convolutional Neural Networks for Sentence Classification](http://www.aclweb.org/anthology/D14-1181), EMNLP, 2014
