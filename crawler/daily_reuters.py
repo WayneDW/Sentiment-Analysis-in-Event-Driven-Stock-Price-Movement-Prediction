@@ -48,6 +48,8 @@ class news_Reuters:
             ticker, name, exchange, MarketCap = line
             #if ticker in filterList:
             #    continue
+            if MarketCap == '0':
+                continue
             print("%s - %s - %s - %s" % (ticker, name, exchange, MarketCap))
             self.repeatDownload(ticker, line, timestamp, exchange)
 
