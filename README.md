@@ -4,7 +4,7 @@ Use natural-language processing (NLP) to predict stock price movement based on R
   
 ## Website
 
-You are welcome to visit our website, [GolenRocks.me](http://goldenrocks.me/), it is not meant to make money (you can make it though, through endless feature engineering), just to show the applications of mathematics.
+You are welcome to visit our website: [GolenRocks.me](http://goldenrocks.me/). The main purpose of this project is to build the connection between Bayesian DNN and stock price prediction based on News headline. 
 
 ## Methodology
 
@@ -141,9 +141,9 @@ $ ./main.py -eval True
 Note: the predictions are averaged, which explains why we have float numbers. From left to right, the predictions become more and more confident. 58% is actually much higher than my expectation, I believe when tested on a longer time horizon, the performance gets worse. However, as long as the predictions are better than random guesses (50%), you can't lose money betting on a favorable game (assume no trading cost and liquidity issue).
 
 
-### 5. Future work
+### 5. Future works
 
-From the [work](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1331573) by Tim Loughran and Bill McDonald, some words have strong indication of positive and negative effects in finance, we may need to dig into these words to find more information. A very simple but interest example can be found in [Financial Sentiment Analysis part1](http://francescopochetti.com/scrapying-around-web/), [part2](http://francescopochetti.com/financial-blogs-sentiment-analysis-part-crawling-web/)
+From the [work](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1331573) by Tim Loughran and Bill McDonald, some words have strong indication of positive and negative effects in finance, e.g. company merger and acquisition, we may need to dig into these words to find more information. A very simple but interest example can be found in [Financial Sentiment Analysis part1](http://francescopochetti.com/scrapying-around-web/), [part2](http://francescopochetti.com/financial-blogs-sentiment-analysis-part-crawling-web/). In addition, detailed analysis and comparison in each industry is also useful.
 
 As suggested by H Lee, we may consider to include features of earnings surprise due to its great value.
 
