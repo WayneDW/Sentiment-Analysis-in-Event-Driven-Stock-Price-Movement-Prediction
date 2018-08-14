@@ -143,11 +143,11 @@ Note: the predictions are averaged, which explains why we have float numbers. Fr
 
 ### 5. Future works
 
-From the [work](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1331573) by Tim Loughran and Bill McDonald, some words have strong indication of positive and negative effects in finance, e.g. company merger and acquisition, we may need to dig into these words to find more information. A very simple but interest example can be found in [Financial Sentiment Analysis part1](http://francescopochetti.com/scrapying-around-web/), [part2](http://francescopochetti.com/financial-blogs-sentiment-analysis-part-crawling-web/). In addition, detailed analysis and comparison in each industry is also useful.
+From the [work](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1331573) by Tim Loughran and Bill McDonald, some words have strong indication of positive and negative effects in finance, e.g. company merger and acquisition, we may need to dig into these words to find more information. In addition, detailed analysis and comparison in each industry is also useful.
 
-As suggested by H Lee, we may consider to include features of earnings surprise due to its great value.
+Another simple but interesting example can be found in [Financial Sentiment Analysis part1](http://francescopochetti.com/scrapying-around-web/), [part2](http://francescopochetti.com/financial-blogs-sentiment-analysis-part-crawling-web/). 
 
-You are welcome to build a better stopword list and share it.
+Since a comprehensive stopword list is quite helpful in improving the prediction power, you are very welcome to build a better stopword list and share it.
 
 
 ## References:
