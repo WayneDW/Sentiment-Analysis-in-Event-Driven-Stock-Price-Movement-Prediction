@@ -10,7 +10,7 @@ You are welcome to visit our website: [GolenRocks.me](http://goldenrocks.me/). T
 
 1. Data Collection and Preprocessing
 
-    1.1 get the whole ticker list to obtain the details of public companies
+    1.1 crawl a ticker list to obtain the details of public companies
 
     1.2 crawl news from Reuters using BeautifulSoup
     
@@ -22,7 +22,7 @@ You are welcome to visit our website: [GolenRocks.me](http://goldenrocks.me/). T
   
     2.2 Implement one-hot encoding
   
-    2.3 Pad word senquence (essentially a matrix) to keep the same dimension
+    2.3 Pad word sequence (essentially a matrix) to keep the same dimension
   
 3. Train a set of Bayesian Convolutional Neural Networks using Stochastic Gradient Langevin Dynamics to obtain more robustness
 4. Use thinning models to predict future news
@@ -101,7 +101,7 @@ Let's show one example how the thinning models react to Baidu Lu Qi's resignatio
 $ ./main.py -predict "Top executive behind Baidu's artificial intelligence drive steps aside"
 >> Sell
 ```
-The prediction makes sence, let's find another one.
+The prediction makes sense, let's find another one.
 
 ```
 Eli Lilly and Co (LLY.N)
@@ -115,21 +115,21 @@ $ ./main.py -predict "UPDATE 2-Lilly gets U.S. nod for arthritis drug  sets pric
 >> Sell
 ```
 
-Lowering down drug prices looks helpful to gain market share in business, however, they didn't mention too much about the updates of technology, we are inclined to regard it as the virulent price competition, which does no help to the company earnings. Thus it is not a bad decision to sell Eli Lilly stocks.
+Lowering down drug prices looks helpful to gain market share in the business, however, they didn't mention too much about the updates of technology, we are inclined to regard it as the virulent price competition, which does not help to the company earnings. Thus it is not a bad decision to sell Eli Lilly stocks.
 
 Next, let's see what the buy options look like:
 
 ```
 Alphabet Inc (GOOG.O)
 WED, MAY 30 2018
-Google launches second app in China, woos top smartphone market
+Google launches the second app in China, woos top smartphone market
 * BEIJING Alphabet Inc's Google has launched a file managing tool in several Chinese app stores as it 
 * looks for fresh inroads into the world's biggest smartphone market, where most of the internet 
 * giant's top products remain banned.
 ```
 
 ```bash
-$ ./main.py -predict "Google launches second app in China  woos top smartphone market"
+$ ./main.py -predict "Google launches the second app in China  woos top smartphone market"
 >> Strong Buy
 ```
 
@@ -143,7 +143,9 @@ Note: the predictions are averaged, which explains why we have float numbers. Fr
 
 ### 5. Future works
 
-From the [work](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1331573) by Tim Loughran and Bill McDonald, some words have strong indication of positive and negative effects in finance, e.g. company merger and acquisition, we may need to dig into these words to find more information. In addition, detailed analysis and comparison in each industry is also useful.
+This is a very rough work. Actually, a better label should be based on the comparison of stock price changes between the company and the corresponding industry, instead of the S&P 500. The idea is similar to hedging, a good investor doesn't have to be capable to predict the stock price change, as long as knows what specific company does well in the specific industry, he will be able to make a decent prediction.
+
+From the [work](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1331573) by Tim Loughran and Bill McDonald, some words have a strong indication of positive and negative effects in finance, e.g. company merger and acquisition, we may need to dig into these words to find more information. In addition, detailed analysis and comparison in each industry are also useful.
 
 Another simple but interesting example can be found in [Financial Sentiment Analysis part1](http://francescopochetti.com/scrapying-around-web/), [part2](http://francescopochetti.com/financial-blogs-sentiment-analysis-part-crawling-web/). 
 
