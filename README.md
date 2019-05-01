@@ -143,9 +143,9 @@ Note: the predictions are averaged, which explains why we have float numbers. Fr
 
 ### 5. Future works
 
-This is a very rough work. Actually, a better label should be based on the comparison of stock price changes between the company and the corresponding industry, instead of the S&P 500. The idea is similar to hedging, a good investor doesn't have to be capable to predict the stock price change, as long as he knows what specific company does well in the specific industry, he will make a decent prediction.
+This is a very rough work. A better label should be based on the comparison of stock price changes between the company and the corresponding industry, instead of the S&P 500, which is in spririt similar to hedging.
 
-From the [work](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1331573) by Tim Loughran and Bill McDonald, some words have a strong indication of positive and negative effects in finance, e.g. company merger and acquisition, we may need to dig into these words to find more information. In addition, detailed analysis and comparison in each industry are also useful.
+By [Tim Loughran and Bill McDonald](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1331573), some words have strong indications of positive and negative effects in finance, e.g. company merger and acquisition. Therefore we need to dig into these words to find more information. In addition, detailed analysis and comparison in each industry are also useful.
 
 Another simple but interesting example can be found in [Financial Sentiment Analysis part1](http://francescopochetti.com/scrapying-around-web/), [part2](http://francescopochetti.com/financial-blogs-sentiment-analysis-part-crawling-web/). 
 
